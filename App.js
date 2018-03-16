@@ -11,24 +11,26 @@ import SplashScreen from './src/splash-screen/splashscreen';
 import SignupScreen from './src/auth/signup/signup';
 import LoginScreen from './src/auth/login/login';
 
-
-// class App extends Component {
-//   render() {
-//     return (
-//     <View>
-//         <SplashScreen></SplashScreen>
-//       </View>
-//     );
-//   }
-// }
-const App = StackNavigator({
-  // Home: { screen: HomeScreen },
-  Splash: { screen: SplashScreen },
-  Signup: { screen: SignupScreen },
-  Login: { screen: LoginScreen },
-
+const Application = StackNavigator(
+  {
+    Splash: { screen: SplashScreen },
+    Signup: { screen: SignupScreen },
+    Login: { screen: LoginScreen },
+  },
+  {
+    navigationOptions:{
+    header:false,
+  } 
 
 });
+
+export default class App extends Component {
+  render() {
+    return (
+      <Application/>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -48,5 +50,3 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
-
-export default App;

@@ -1,47 +1,42 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Image, KeyboardAvoidingView} from 'react-native';
-import LoginForm from './loginform';
+import { StyleSheet, Text, TextInput, View, Image, 
+  KeyboardAvoidingView, TouchableOpacity , StatusBar} from 'react-native';
+
+import styles from './style' 
 
 export default class LoginScreen extends Component {
   render() {
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image  
-            style={styles.logo}
-            source={require('../../../images/cam.png')} />
-          <Text style={styles.title}>Capture every moment</Text>
+          <View style={styles.logoContainer}>
+            <Image  
+              style={styles.logo}
+              source={require('../../../images/cam.png')} />
+            <Text style={styles.title}>Capture every moment</Text>
+          </View>
+         <View style={styles.formContainer}>
+              <TextInput style={styles.input}
+                  placeholder="username or email"
+                  returnKeyType="next"
+                  onSubmitEditing ={() => this.passwordInput.focus()}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoCorrect ={false}
+                  placeholderTextColor='rgba(225,225,225,0.7)'/>
 
-        </View>
-        
-        <View style={styles.formContainer}>
-          <LoginForm/>
-               
-        </View>
-      </KeyboardAvoidingView>
+              <TextInput style={styles.input}
+                      placeholder="password"
+                      returnKeyType="go"
+                      placeholderTextColor='rgba(225,225,225,0.7)'
+                      ref={(input) => this.passwordInput = input}
+                      secureTextEntry/>
+
+              <TouchableOpacity style={styles.buttonContainer}>
+                  <Text style={styles.buttonText}>LOGIN</Text>
+              </TouchableOpacity>
+          </View>
+      
+    </KeyboardAvoidingView>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#3498db',
-  },
-  logoContainer: {
-    alignItems: 'center',
-    flexGrow: 1,
-    justifyContent: 'center'
-  },
-  logo: {
-    width: 200,
-    height: 200
-  },
-  title:{
-    color: '#fff',
-    marginTop: 10,
-    width: 140,
-    textAlign: 'center',
-    opacity: 0.7
-  },
-});
