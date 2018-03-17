@@ -17,15 +17,15 @@ export default class HomeScreen extends Component {
                             <Text>Find</Text>
                         </Button>
                         <Button vertical>
-                            <Icon name="group" />
+                            <Icon name="people" />
                             <Text>Group</Text>
                         </Button>
                         <Button vertical active>
-                            <Icon active name="event" />
+                            <Icon active name="happy" />
                             <Text>Event</Text>
                         </Button>
                         <Button vertical>
-                            <Icon name="alarm" />
+                            <Icon name="notifications" />
                             <Text>Updates</Text>
                         </Button>
                         <Button vertical>
