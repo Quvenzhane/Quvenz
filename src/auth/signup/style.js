@@ -30,11 +30,11 @@ export default StyleSheet.create({
         marginBottom: 10,
         color: '#fff',
         paddingHorizontal: 10,
-
     },
     buttonContainer:{
         backgroundColor:'#2980b9',
-        paddingVertical:15
+        paddingVertical:15,
+        borderRadius :20
     },
     buttonText:{
         textAlign: 'center',

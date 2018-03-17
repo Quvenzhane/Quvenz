@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import {StyleSheet,Text, View, TouchableOpacity, Navigator} from 'react-native';
 import { StackNavigator,} from 'react-navigation';
 import styles from './style';
-import SignupScreen from '../auth/signup/signup';
-
 
 export default class SplashScreen extends Component {
 

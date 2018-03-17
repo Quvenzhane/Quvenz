@@ -16,7 +16,14 @@ export default class SignupScreen extends Component {
         </View>
         <View style={styles.formContainer}>
                 <TextInput style={styles.input}
-                    placeholder="username or email"
+                    placeholder="Username"
+                    returnKeyType="next"
+                    onSubmitEditing ={() => this.passwordInput.focus()}
+                    autoCorrect ={false}
+                    placeholderTextColor='rgba(225,225,225,0.7)'/>
+
+                  <TextInput style={styles.input}
+                    placeholder="Email"
                     returnKeyType="next"
                     onSubmitEditing ={() => this.passwordInput.focus()}
                     keyboardType="email-address"
@@ -25,7 +32,7 @@ export default class SignupScreen extends Component {
                     placeholderTextColor='rgba(225,225,225,0.7)'/>
 
                 <TextInput style={styles.input}
-                        placeholder="password"
+                        placeholder="Password"
                         returnKeyType="go"
                         placeholderTextColor='rgba(225,225,225,0.7)'
                         ref={(input) => this.passwordInput = input}

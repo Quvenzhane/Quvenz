@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Image, 
-  KeyboardAvoidingView, TouchableOpacity , StatusBar} from 'react-native';
+  KeyboardAvoidingView, TouchableOpacity , StatusBar, Navigator} from 'react-native';
 
 import styles from './style' 
 
 export default class LoginScreen extends Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
           <View style={styles.logoContainer}>
@@ -31,7 +32,8 @@ export default class LoginScreen extends Component {
                       ref={(input) => this.passwordInput = input}
                       secureTextEntry/>
 
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.buttonContainer} 
+                    onPress={() =>navigate('Home')}>
                   <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>
           </View>
