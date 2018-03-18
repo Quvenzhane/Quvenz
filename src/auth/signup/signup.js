@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, Image, ImageBackground,
   KeyboardAvoidingView, TouchableOpacity , StatusBar, AsyncStorage} from 'react-native';
+// import {Content, H1, H2, H3, Text } from 'native-base';
 import { graphql, compose } from 'react-apollo';
 
 import styles from './style' 
@@ -57,6 +58,7 @@ class SignupScreen extends Component {
               <View style={styles.container}>
                   <View style={styles.sologanText}>
                     <Text style={styles.title}>Capture Every Moment</Text>
+                    {/* <H2>Header Two</H2> */}
                     {this.state.loading && <Loading />}
                   </View>
                   <View style={styles.formContainer}>
