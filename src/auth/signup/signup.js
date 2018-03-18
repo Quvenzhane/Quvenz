@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput, View, Image, 
+import { StyleSheet, Text, TextInput, View, Image, ImageBackground,
   KeyboardAvoidingView, TouchableOpacity , StatusBar, AsyncStorage} from 'react-native';
 import { graphql, compose } from 'react-apollo';
 
@@ -49,52 +49,58 @@ class SignupScreen extends Component {
   render() {
     
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <View style={styles.logoContainer}>
-          <Image  
-            style={styles.logo}
-            source={require('../../../images/cam.png')} />
-          <Text style={styles.title}>Capture every moment</Text>
-          {this.state.loading && <Loading />}
-        </View>
-        <View style={styles.formContainer}>
-                <TextInput style={styles.input}
-                    placeholder="Username"
-                    returnKeyType="next"
-                    onSubmitEditing ={() => this.passwordInput.focus()}
-                    autoCorrect ={false}
-                    placeholderTextColor='rgba(225,225,225,0.7)'
-                   onChangeText={text => this.onInputTextChange(text, 'username')}
-                    />
+      
+          <KeyboardAvoidingView behavior="padding" style={styles.container}>
+            <ImageBackground style={styles.backgroundContainer} 
+                  source={require('../../../images/signup_bk.png')}>
 
-                  <TextInput style={styles.input}
-                    placeholder="Email"
-                    returnKeyType="next"
-                    onSubmitEditing ={() => this.passwordInput.focus()}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                    autoCorrect ={false}
-                    placeholderTextColor='rgba(225,225,225,0.7)'
-                    onChangeText={text => this.onInputTextChange(text, 'email')}
-                    />
+              <View style={styles.container}>
+                  <View style={styles.sologanText}>
+                    <Text style={styles.title}>Capture Every Moment</Text>
+                    {this.state.loading && <Loading />}
+                  </View>
+                  <View style={styles.formContainer}>
+                    <TextInput style={styles.input}
+                        placeholder="Username"
+                        returnKeyType="next"
+                        onSubmitEditing ={() => this.passwordInput.focus()}
+                        autoCorrect ={false}
+                        placeholderTextColor='#0049d9'
+                      onChangeText={text => this.onInputTextChange(text, 'username')}
+                        />
 
-                <TextInput style={styles.input}
+                      <TextInput style={styles.input}
+                        placeholder="Email"
+                        returnKeyType="next"
+                        onSubmitEditing ={() => this.passwordInput.focus()}
+                        keyboardType="email-address"
+                        autoCapitalize="none"
+                        autoCorrect ={false}
+                        placeholderTextColor='#0049d9'
+                        onChangeText={text => this.onInputTextChange(text, 'email')}
+                        />
+
+                    <TextInput style={styles.input}
                         placeholder="Password"
                         returnKeyType="go"
-                        placeholderTextColor='rgba(225,225,225,0.7)'
+                        placeholderTextColor='#0049d9'
                         ref={(input) => this.passwordInput = input}
                         secureTextEntry
                         onChangeText={text => this.onInputTextChange(text, 'password')}
                         
                         />
 
-                <TouchableOpacity onPress={this.onSignupPress} style={styles.buttonContainer} 
-                  disabled={this.state.signedup}>
-                    <Text style={styles.buttonText}> {this.state.signedup ? ' Thanks ' : 'SIGN UP'}</Text>
-                </TouchableOpacity>
-            </View>
-        
+                    <TouchableOpacity onPress={this.onSignupPress} style={styles.buttonContainer} 
+                      disabled={this.state.signedup}>
+                        <Text style={styles.buttonText}> {this.state.signedup ? ' Thanks ' : 'SIGN UP'}</Text>
+                    </TouchableOpacity>
+                </View>
+              </View>
+
+          </ImageBackground >
       </KeyboardAvoidingView>
+    
+  
     );
   }
 }
