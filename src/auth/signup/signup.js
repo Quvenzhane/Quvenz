@@ -58,7 +58,7 @@ class SignupScreen extends Component {
               <View style={styles.container}>
                   <View style={styles.sologanText}>
                     <Text style={styles.title}>Capture Every Moment</Text>
-                    {/* <H2>Header Two</H2> */}
+                    {/* <H2>Header Two </H2> */}
                     {this.state.loading && <Loading />}
                   </View>
                   <View style={styles.formContainer}>
