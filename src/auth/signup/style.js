@@ -3,7 +3,6 @@ import React, {StyleSheet} from 'react-native'
 export default StyleSheet.create({
     container: {
       flex: 1,
-      // backgroundColor: '#3498db',
     },
     backgroundContainer: {
         flex: 1,
@@ -14,7 +13,6 @@ export default StyleSheet.create({
       alignItems: 'center',
       flexGrow: 1,
       paddingTop: 100,
-      // fontSize: 56,
       justifyContent: 'center'
     },
     logo: {

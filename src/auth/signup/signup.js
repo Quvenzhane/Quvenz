@@ -19,6 +19,7 @@ class SignupScreen extends Component {
     this.setState({ [type]: text });
    // console.log(this.state);
   } 
+
   onSignupPress = async () => {
     this.setState({ loading: true });
     console.log('this.state in onsignuppress: ',this.state);
@@ -93,7 +94,6 @@ class SignupScreen extends Component {
                         ref={(input) => this.passwordInput = input}
                         secureTextEntry
                         onChangeText={text => this.onInputTextChange(text, 'password')}
-                        
                         />
 
                     <TouchableOpacity onPress={this.onSignupPress} style={styles.buttonContainer} 

@@ -6,7 +6,11 @@ import gql from "graphql-tag";
 import styles from './style';
 
 export default class SplashScreen extends Component {
-
+  constructor(props){
+    super(props);
+    console.disableYellowBox = true;
+  }
+  
   static navigationOptions = {
     title: 'Welcome',
   };

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'; 
 import { Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Item, Input,
-    Card, CardItem,Right  } from 'native-base'; 
-  
+    Card, CardItem,Right,Left,Thumbnail,Body  } from 'native-base'; 
+import { Image,ScrollView } from 'react-native';
 import styles from './style' 
 
 export default class HomeScreen extends Component {
+
      render() { 
          return (   
             <Container> 
@@ -20,7 +21,28 @@ export default class HomeScreen extends Component {
                         <Text>Search</Text>
                     </Button>
                 </Header>
+
+                {/* <ScrollView>   
+                <Image source={require('../../images/cam.png')} style={{height: 100, width: 100, flex: 2}}/>
+               <Image source={require('../../images/cam.png')} style={{height: 100, width: 100, flex: 2}}/>
+               </ScrollView> */}
+
                 <Content style={styles.container}>
+                    <Card>
+                        <CardItem>
+                        <Left>
+                            <Body>
+                            <Text>Birthday</Text>
+                            <Text note>10/10/2018</Text>
+                            </Body>
+                        </Left>
+                        </CardItem>
+                        <CardItem cardBody>
+                            <Image source={require('../../images/cam.png')} style={{height: 100, width: 100, flex: 2}}/>
+                        </CardItem>
+                            
+                    </Card>
+
                     <Card  >
                         <CardItem header>
                             <Text>Popular Events</Text>

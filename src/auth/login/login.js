@@ -4,8 +4,8 @@ import { StyleSheet, Text, TextInput, View, Image,
   AsyncStorage
 
 } from 'react-native';
-import { graphql} from 'react-apollo';
 
+import { graphql} from 'react-apollo';
 import styles from './style' 
 import LOGIN_MUTATION  from '../../graph/mutations/loginMutation';
 import Loading from '../../components/Loading';
@@ -17,7 +17,8 @@ class LoginScreen extends Component {
     this.state = {
       email: "", password: "", loading: false, loggedin: false,
       errorMessage: false
-    }
+    };
+    // console.disableYellowBox = true;
   }
   onInputTextChange = (text, type) => {
     this.setState({ [type]: text });
@@ -81,8 +82,8 @@ class LoginScreen extends Component {
                       secureTextEntry/>
 
               <TouchableOpacity style={styles.buttonContainer} 
-                    //onPress={() =>navigate('Home')}
-                    onPress={this.onLoginPress}
+                    onPress={() =>navigate('Home')}
+                    //onPress={this.onLoginPress}
                     >
                   <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>
