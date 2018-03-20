@@ -35,10 +35,14 @@ class SignupScreen extends Component {
       this.setState({signedup: true});
       console.log('signed up? '+this.state.signedup);//yeah, I know this is async and the state
       //might not have been set yet... but am leaving it this way for now..
+      this.props.navigation.navigate('Home');//this should be after AsyncStorage but it seems 
+        //asyncStorage is causing issues right now ... will later look into why
       await AsyncStorage.setItem('@pixfam_token', data.signup.token);
+      
       
      // here I will later redirect to login ... I'll do 
      //something like:  return this.props.login(); 
+     
 
      // Ope, up to you to do redirection after signup ... my fingers don't want to type 
      // redirection code right now...
