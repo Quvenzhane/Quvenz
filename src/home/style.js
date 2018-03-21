@@ -1,13 +1,14 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-    // flex: 1,
-    // justifyContent: 'center',
-    //alignItems: 'center',
-    padding: 20,
-    // backgroundColor: '#F5FCFF',
+  container: {
+      flex:1,
+    padding: 10,
   },
+  containerPopular: {
+    flex:1,
+    padding:10,
+ },
 
   defaultGroup: {
     flex: 1, 
@@ -38,27 +39,16 @@ export default StyleSheet.create({
     alignItems:'center',
 
   },
- 
-    // name: {
-    //   fontSize: 50,
-    //   textAlign: 'center',
-    //   margin: 10,
-    // },
-    // solgan: {
-    //   textAlign: 'center',
-    //   color: '#333333',
-    //   marginBottom: 100,
-    // },
-    // buttonContainer:{
-    //   marginBottom:20,
-    //   borderRadius: 10,
-    //   backgroundColor:'#2980b9',
-    //   paddingVertical:15,
-    // },
-    // buttonText:{
-    //     textAlign: 'center',
-    //     color: '#ffffff',
-    //     fontWeight:'700'
-    // }
-  });
+  groupHeader:{
+    paddingLeft:15,
+    paddingTop:10,
+  },
+  groupNav:{
+    flex: 1,
+    padding:15,
+    flexDirection: 'row', 
+    justifyContent: 'space-around',
+  }
+
+});
   
