@@ -41,9 +41,19 @@ class LoginScreen extends Component {
       this.setState({ loading: false });
       this.setState({loggedin: true});
       console.log('loggedin? '+this.state.login);
-      this.props.navigation.navigate('Home');//this should be after AsyncStorage but it seems 
-        //asyncStorage is causing issues right now ... will later look into why
-      await AsyncStorage.setItem('@pixfam_token', data.login.token);     
+      this.props.navigation.navigate('Home');// AsyncStorage is now working well,... but think it's
+      //ok to navigate before saving the token. 
+      
+      try{
+        await AsyncStorage.setItem('@pixfam_token', data.login.token); 
+        console.log('successfully setItem');
+      }
+      catch(error){
+        console.log('error in setItem');
+        throw error;
+      }
+      
+      
     } catch (error) {
       console.log('error in onlogin: ',error);
       this.setState({errorMessage: error.message});
