@@ -8,6 +8,37 @@ export default StyleSheet.create({
     padding: 20,
     // backgroundColor: '#F5FCFF',
   },
+
+  defaultGroup: {
+    flex: 1, 
+    flexDirection: 'row', 
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+
+  groupBirthday:{
+    width: 110, 
+    height: 110,
+    padding: 2,
+    backgroundColor: 'powderblue',
+    alignItems:'center',
+  },
+  groupWedding:{
+    width: 110, 
+    height: 110,
+    padding: 2,
+    backgroundColor: 'skyblue',
+    alignItems:'center',
+  },
+  groupGraduation:{
+    width: 110, 
+    height: 110,
+    padding: 2,
+    backgroundColor: 'steelblue',
+    alignItems:'center',
+
+  },
+ 
     // name: {
     //   fontSize: 50,
     //   textAlign: 'center',
