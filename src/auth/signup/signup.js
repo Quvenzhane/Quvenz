@@ -12,7 +12,8 @@ class SignupScreen extends Component {
   constructor(props){
     super(props);
     this.state = {
-      username: "", email: "", password: "", loading: false, signedup: false
+      username: "", email: "", password: "", loading: false, signedup: false,
+      errorMessage: false
     }
   }
   onInputTextChange = (text, type) => {
@@ -36,9 +37,19 @@ class SignupScreen extends Component {
       this.setState({signedup: true});
       console.log('signed up? '+this.state.signedup);//yeah, I know this is async and the state
       //might not have been set yet... but am leaving it this way for now..
-      this.props.navigation.navigate('Home');//this should be after AsyncStorage but it seems 
-        //asyncStorage is causing issues right now ... will later look into why
-      await AsyncStorage.setItem('@pixfam_token', data.signup.token);
+      this.props.navigation.navigate('Home');// AsyncStorage is now working well,... but think it's
+      //ok to navigate before saving the token. 
+        
+      
+      try{
+        await AsyncStorage.setItem('@pixfam_token', data.signup.token);
+        console.log('successfully setItem');
+      }
+      catch(error){
+        console.log('error in setItem');
+        throw error;
+      }
+
       
       
      // here I will later redirect to login ... I'll do 
@@ -49,6 +60,7 @@ class SignupScreen extends Component {
      // redirection code right now...
     } catch (error) {
       console.log('error in onsignup: ',error);
+      this.setState({errorMessage: error.message});
       throw error;
     }
 };
@@ -65,6 +77,8 @@ class SignupScreen extends Component {
                     <Text style={styles.title}>Capture Every Moment</Text>
                     {/* <H2>Header Two </H2> */}
                     {this.state.loading && <Loading />}
+                    <Text style={styles.title}>{this.state.errorMessage}</Text>
+
                   </View>
                   <View style={styles.formContainer}>
                     <TextInput style={styles.input}
