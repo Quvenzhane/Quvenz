@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import { Container, Content, Button, Text, Icon, Item, Input,
          Card, CardItem,Right,Left,Thumbnail,Body, H1  } from 'native-base'; 
 import { Image,ScrollView, View } from 'react-native'; 
-import styles from './style'; 
 import { StackNavigator,} from 'react-navigation';
-
+import styles from './style'; 
 
 export default class HomeBody extends Component {
     
-    constructor(props){
-        super(props);
-    }
   render() {
-    //const { navigate } = this.props.navigation;
     return (
         <Content style={styles.container}>
             <Text style={styles.groupHeader} note>Family Groups</Text>
@@ -35,14 +30,13 @@ export default class HomeBody extends Component {
             </View>
 
             <View style={styles.groupNav}  >
-                {/* <Button rounded light onPress={() => navigate('CreateGroup') }> */}
-                <Button rounded light>
+                <Button rounded light onPress={() => this.props.theNav('CreateGroup') }>
                     <Text >Create Group</Text>
                 </Button>
-                <Button rounded light>
+                <Button rounded light onPress={() => this.props.theNav('ListGroup') }>
                     <Text>List Group</Text>
                 </Button>
-                <Button rounded light>
+                <Button rounded light onPress={() => this.props.theNav('CreateEvent') }>
                     <Text>Add Event</Text>
                 </Button>
             </View>
