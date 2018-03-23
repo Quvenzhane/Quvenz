@@ -93,7 +93,7 @@ class LoginScreen extends Component {
 
               <TouchableOpacity style={styles.buttonContainer} 
                     onPress={() =>navigate('Home')}
-                    //onPress={this.onLoginPress}
+                   // onPress={this.onLoginPress}
                     >
                   <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>
