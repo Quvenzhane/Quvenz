@@ -10,7 +10,7 @@ export default class HomeFooter extends Component {
                     <Icon name="search" />
                     <Text>Find</Text>
                 </Button>
-                <Button vertical>
+                <Button onPress={() => this.props.theNav('ListGroup') }>
                     <Icon name="people" />
                     <Text>Group</Text>
                 </Button>
@@ -18,10 +18,10 @@ export default class HomeFooter extends Component {
                     <Icon active name="happy" />
                     <Text>Event</Text>
                 </Button>
-                <Button vertical>
+                {/* <Button vertical>
                     <Icon name="notifications" />
                     <Text>Updates</Text>
-                </Button>
+                </Button> */}
                 <Button vertical>
                     <Icon name="person" />
                     <Text>Profile</Text>

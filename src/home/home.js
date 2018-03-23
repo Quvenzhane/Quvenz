@@ -15,9 +15,9 @@ export default class HomeScreen extends Component {
 
          return (   
             <Container> 
-               <HomeHeader/>
+               <HomeHeader theNav={navigate}/>
                <HomeBody theNav={navigate}/>
-               <HomeFooter/>
+               <HomeFooter theNav={navigate}/>
             </Container>
         ); 
     }
