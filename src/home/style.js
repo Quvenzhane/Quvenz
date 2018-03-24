@@ -42,6 +42,8 @@ export default StyleSheet.create({
   groupHeader:{
     paddingLeft:15,
     paddingTop:10,
+    paddingBottom:10,
+
   },
   groupNav:{
     flex: 1,

@@ -44,7 +44,7 @@ export default class HomeBody extends Component {
             <Text style={styles.groupHeader} note>Manage</Text>
             <View style={styles.groupNav}  >
             <Root>
-                <Button
+                <Button  rounded light
                     onPress={() =>
                     ActionSheet.show(
                     {
@@ -67,7 +67,7 @@ export default class HomeBody extends Component {
                 </Button>
              </Root>   
              <Root>   
-                <Button
+                <Button  rounded light
                     onPress={() =>
                     ActionSheet.show(
                     {
@@ -97,7 +97,7 @@ export default class HomeBody extends Component {
                 <Text style={styles.groupHeader} note>Popular Events</Text>
                 <Card  >
                     <CardItem>
-                        <Text>The Experience 2018</Text>
+                        <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>

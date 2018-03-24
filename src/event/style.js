@@ -8,17 +8,13 @@ export default StyleSheet.create({
   button:{
     marginTop:30
   },
-  eventDataContainer:{
-    //flex: 1,
+  metricsContainer:{
     flexDirection: 'row', 
     justifyContent: 'space-around',
     paddingBottom:30,
   },
-  eventListHeader:{
-    //flex: 1,
+  listHeader:{
     flexDirection: 'row', 
-    // justifyContent: 'space-around',
-    // paddingBottom:10,
   }
 
 });

@@ -7,8 +7,8 @@ export default class HomeFooter extends Component {
         <Footer> 
             <FooterTab> 
                 <Button vertical>
-                    <Icon name="search" />
-                    <Text>Find</Text>
+                    <Icon name="search" onPress={() => this.props.theNav('Browse')} />
+                    <Text>Browse</Text>
                 </Button>
                 <Button onPress={() => this.props.theNav('ListGroup') }>
                     <Icon name="people" />
@@ -22,7 +22,7 @@ export default class HomeFooter extends Component {
                     <Icon name="notifications" />
                     <Text>Updates</Text>
                 </Button> */}
-                <Button vertical>
+                <Button vertical onPress={() => this.props.theNav('Profile')}>
                     <Icon name="person" />
                     <Text>Profile</Text>
                 </Button>

@@ -8,6 +8,12 @@ import CreateGroup from './src/group/create_group';
 import ListGroup from './src/group/list_group';
 import CreateEvent from './src/event/create_event';
 import ListEvent from './src/event/list_event';
+import EventScreen from './src/event/event_screen';
+import GroupScreen from './src/group/group_screen';
+import Profile from './src/profile/profile';
+import Browse from './src/browse/browse';
+
+
 
 const PixNavigation = StackNavigator(
   {
@@ -17,8 +23,12 @@ const PixNavigation = StackNavigator(
     Home: { screen: HomeScreen, navigationOptions: {header: false} },
     CreateGroup: { screen: CreateGroup, navigationOptions: {title: 'Create Group', headerStyle:{backgroundColor: '#ede'}}},
     ListGroup: { screen: ListGroup, navigationOptions: {title: 'Group List', headerStyle:{backgroundColor: '#ede'}}},
+    Group: { screen: GroupScreen, navigationOptions: {title: 'Group Events', headerStyle:{backgroundColor: '#ede'}}},
     CreateEvent: { screen: CreateEvent, navigationOptions: {title: 'Create Event', headerStyle:{backgroundColor: '#ede'}}},
     ListEvent: { screen: ListEvent, navigationOptions: {title: 'Event List', headerStyle:{backgroundColor: '#ede'}}},
+    Event: { screen: EventScreen, navigationOptions: {title: 'My Events', headerStyle:{backgroundColor: '#ede'}}},
+    Profile: { screen: Profile, navigationOptions: {title: 'Profile', headerStyle:{backgroundColor: '#ede'}}},
+    Browse: { screen: Browse, navigationOptions: {title: 'Browse Events', headerStyle:{backgroundColor: '#ede'}}},
 
   },
   {
