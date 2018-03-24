@@ -7,9 +7,7 @@ import HomeScreen from './src/home/home';
 import CreateGroup from './src/group/create_group';
 import ListGroup from './src/group/list_group';
 import CreateEvent from './src/event/create_event';
-
-
-
+import ListEvent from './src/event/list_event';
 
 const PixNavigation = StackNavigator(
   {
@@ -19,7 +17,8 @@ const PixNavigation = StackNavigator(
     Home: { screen: HomeScreen, navigationOptions: {header: false} },
     CreateGroup: { screen: CreateGroup, navigationOptions: {title: 'Create Group', headerStyle:{backgroundColor: '#ede'}}},
     ListGroup: { screen: ListGroup, navigationOptions: {title: 'Group List', headerStyle:{backgroundColor: '#ede'}}},
-    CreateEvent: { screen: CreateEvent, navigationOptions: {title: 'Create Event', headerStyle:{backgroundColor: '#ede'}}}
+    CreateEvent: { screen: CreateEvent, navigationOptions: {title: 'Create Event', headerStyle:{backgroundColor: '#ede'}}},
+    ListEvent: { screen: ListEvent, navigationOptions: {title: 'Event List', headerStyle:{backgroundColor: '#ede'}}},
 
   },
   {

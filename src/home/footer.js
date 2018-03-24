@@ -14,7 +14,7 @@ export default class HomeFooter extends Component {
                     <Icon name="people" />
                     <Text>Group</Text>
                 </Button>
-                <Button vertical active>
+                <Button vertical active onPress={() => this.props.theNav('ListEvent')}>
                     <Icon active name="happy" />
                     <Text>Event</Text>
                 </Button>

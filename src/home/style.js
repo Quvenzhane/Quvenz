@@ -45,9 +45,10 @@ export default StyleSheet.create({
   },
   groupNav:{
     flex: 1,
-    padding:15,
+    //padding:5,
     flexDirection: 'row', 
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
+    // alignItems: 'stretch'
   }
 
 });
