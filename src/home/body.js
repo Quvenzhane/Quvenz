@@ -101,19 +101,19 @@ export default class HomeBody extends Component {
                         </Right>
                     </CardItem>
                     <CardItem>
-                        <Text>Osun Osun-oshogo</Text>
+                        <Text onPress={() =>this.props.theNav('Event')}>Osun Osun-oshogo</Text>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
                     </CardItem>
                     <CardItem>
-                        <Text>Laravel Meetup 2020</Text>
+                        <Text onPress={() =>this.props.theNav('Event')}>Laravel Meetup 2020</Text>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
                     </CardItem> 
                     <CardItem>
-                        <Text>The Experience 2018</Text>
+                        <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
