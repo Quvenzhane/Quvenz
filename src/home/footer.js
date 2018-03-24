@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Footer, FooterTab, Button, Text, Icon, Input } from 'native-base'; 
+import { Footer, FooterTab, Button, Text, Icon, Input, Badge } from 'native-base'; 
 
 export default class HomeFooter extends Component {
   render() {
@@ -10,7 +10,8 @@ export default class HomeFooter extends Component {
                     <Icon name="search" onPress={() => this.props.theNav('Browse')} />
                     <Text>Browse</Text>
                 </Button>
-                <Button onPress={() => this.props.theNav('ListGroup') }>
+                <Button badge onPress={() => this.props.theNav('ListGroup') }>
+                    <Badge><Text>2</Text></Badge>
                     <Icon name="people" />
                     <Text>Group</Text>
                 </Button>

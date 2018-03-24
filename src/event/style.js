@@ -2,7 +2,8 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   container: {
-      flex:1,
+    flex:1,
+    flexDirection: 'column', 
     padding: 20,
   },
   button:{
@@ -12,6 +13,11 @@ export default StyleSheet.create({
     flexDirection: 'row', 
     justifyContent: 'space-around',
     paddingBottom:30,
+  },
+  cardContainer:{
+  //  flex:1,
+   flexDirection: 'column', 
+   justifyContent: 'flex-start',
   },
   listHeader:{
     flexDirection: 'row', 

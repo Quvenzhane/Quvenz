@@ -24,18 +24,18 @@ export default class HomeBody extends Component {
         <Content style={styles.container}>
             <Text style={styles.groupHeader} note>Family Groups</Text>
             <View style={styles.defaultGroup}>
-                <View style={styles.groupBirthday} >
-                    <Icon name="add" />
+                <View style={styles.groupBirthday}  >
+                    <Icon name="add" onPress={() =>this.props.theNav('Event')} />
                     <H1>B</H1>
                     <Text> Birthday</Text>
                 </View>    
-                <View style={styles.groupWedding}  >
-                    <Icon name="add" />
+                <View style={styles.groupWedding} >
+                    <Icon name="add" onPress={() =>this.props.theNav('Event')} />
                     <H1>W</H1>
                     <Text>Wedding</Text>
                 </View>    
                 <View style={styles.groupGraduation}  >
-                    <Icon name="add" />
+                    <Icon name="add" onPress={() =>this.props.theNav('Event')} />
                     <H1>G</H1>
                     <Text>Graduation</Text>
                 </View>    
@@ -43,58 +43,56 @@ export default class HomeBody extends Component {
 
             <Text style={styles.groupHeader} note>Manage</Text>
             <View style={styles.groupNav}  >
-            <Root>
-                <Button  rounded light
-                    onPress={() =>
-                    ActionSheet.show(
-                    {
-                        options: BUTTONS,
-                        cancelButtonIndex: CANCEL_INDEX,
-                        //destructiveButtonIndex: DESTRUCTIVE_INDEX,
-                        title: "Manage Groups"
-                    },
-                    buttonIndex => { 
-                        try{
-                            if(BUTTONS[buttonIndex].text == "Create" ){
-                                this.props.theNav('CreateGroup')
-                            }else if(BUTTONS[buttonIndex].text == "List" ){
-                                this.props.theNav('ListGroup')
-                            }
-                        }catch(error){}
-                     }
-                    )}>
-                    <Text>Groups</Text>
-                </Button>
-             </Root>   
-             <Root>   
-                <Button  rounded light
-                    onPress={() =>
-                    ActionSheet.show(
-                    {
-                        options: BUTTONS,
-                        cancelButtonIndex: CANCEL_INDEX,
-                        //destructiveButtonIndex: DESTRUCTIVE_INDEX,
-                        title: "Manage Events"
-                    },
-                    buttonIndex => { 
-                        try{
-                            if(BUTTONS[buttonIndex].text == "Create" ){
-                                this.props.theNav('CreateEvent')
-                            }else if(BUTTONS[buttonIndex].text == "List" ){
-                                this.props.theNav('ListEvent')
-                            }
-                        }catch(error){}
-                     }
-                    )}>
-                    <Text>Events</Text>
-                </Button>
-            </Root>
+                <Root>
+                    <Button  rounded light
+                        onPress={() =>
+                        ActionSheet.show(
+                        {
+                            options: BUTTONS,
+                            cancelButtonIndex: CANCEL_INDEX,
+                            //destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                            title: "Manage Groups"
+                        },
+                        buttonIndex => { 
+                            try{
+                                if(BUTTONS[buttonIndex].text == "Create" ){
+                                    this.props.theNav('CreateGroup')
+                                }else if(BUTTONS[buttonIndex].text == "List" ){
+                                    this.props.theNav('ListGroup')
+                                }
+                            }catch(error){}
+                        }
+                        )}>
+                        <Text>Groups</Text>
+                    </Button>
+                </Root>   
+                <Root>   
+                    <Button  rounded light
+                        onPress={() =>
+                        ActionSheet.show(
+                        {
+                            options: BUTTONS,
+                            cancelButtonIndex: CANCEL_INDEX,
+                            //destructiveButtonIndex: DESTRUCTIVE_INDEX,
+                            title: "Manage Events"
+                        },
+                        buttonIndex => { 
+                            try{
+                                if(BUTTONS[buttonIndex].text == "Create" ){
+                                    this.props.theNav('CreateEvent')
+                                }else if(BUTTONS[buttonIndex].text == "List" ){
+                                    this.props.theNav('ListEvent')
+                                }
+                            }catch(error){}
+                        }
+                        )}>
+                        <Text>Events</Text>
+                    </Button>
+                </Root>
             </View>
 
-             
-
+            <Text style={styles.groupHeader} note>Popular Events</Text>
             <View style={styles.containerPopular}>
-                <Text style={styles.groupHeader} note>Popular Events</Text>
                 <Card  >
                     <CardItem>
                         <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>

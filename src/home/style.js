@@ -42,13 +42,14 @@ export default StyleSheet.create({
   groupHeader:{
     paddingLeft:15,
     paddingTop:10,
-    paddingBottom:10,
+    paddingBottom:5,
 
   },
   groupNav:{
     flex: 1,
     //padding:5,
     flexDirection: 'row', 
+    padding:5,
     // justifyContent: 'space-around',
     // alignItems: 'stretch'
   }

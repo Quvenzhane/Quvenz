@@ -13,7 +13,7 @@ export default class Profile extends Component {
                     <Thumbnail large source={require('../../images/pic.jpg')}  />
                     <Body style={styles.itemPad} >
                         <H3 style={styles.itemPad}>Johnson Obi</H3>
-                        <Text style={styles.itemPadBottom} note>Lagos</Text>
+                        <Text style={styles.itemPadBottom} note>Nigeria.Lagos</Text>
                         <Button  rounded info>
                             <Text>Edit Profile</Text>
                         </Button>
