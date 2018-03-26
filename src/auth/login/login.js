@@ -34,23 +34,33 @@ class LoginScreen extends Component {
       const resp = await this.props.mutate({
         variables: {email, password}
       });
-      console.log('resp: ',resp);
-      const data = resp.data;
-      console.log('data.login.token:'+ data.login.token)
-      console.log(data)
-      this.setState({ loading: false });
-      this.setState({loggedin: true});
-      console.log('loggedin? '+this.state.login);
-      this.props.navigation.navigate('Home');// AsyncStorage is now working well,... but think it's
-      //ok to navigate before saving the token. 
-      
-      try{
-        await AsyncStorage.setItem('@pixfam_token', data.login.token); 
-        console.log('successfully setItem');
+      if(resp){
+        console.log('resp: ',resp);
+        const data = resp.data;
+        console.log('data.login.token:'+ data.login.token)
+        console.log(data)
+        this.setState({ loading: false });
+        this.setState({loggedin: true});
+        console.log('loggedin? '+this.state.login);
+        this.props.navigation.navigate('Home');// AsyncStorage is now working well,... but think it's
+        //ok to navigate before saving the token. 
+        
+        try{
+          await AsyncStorage.setItem('@pixfam_token', data.login.token); 
+          console.log('successfully setItem');
+        }
+        catch(error){
+          console.log('error in setItem');
+          throw error;
+        }  
       }
-      catch(error){
-        console.log('error in setItem');
-        throw error;
+      else{
+        this.setState({ loading: false });
+        this.setState({loggedin: false});
+        this.setState({errorMessage: 'an unsuspected error occurred..., pls tell us about it'});
+        console.log('this will probably only happen if apollo client is not being passed in properly from client.js');
+        console.log(JSON.stringify(this.props, null, 4));
+    
       }
       
       
@@ -92,8 +102,8 @@ class LoginScreen extends Component {
                       secureTextEntry/>
 
               <TouchableOpacity style={styles.buttonContainer} 
-                    onPress={() =>navigate('Home')}
-                   // onPress={this.onLoginPress}
+                    //onPress={() =>navigate('Home')}
+                    onPress={this.onLoginPress}
                     >
                   <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>

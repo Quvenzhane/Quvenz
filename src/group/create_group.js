@@ -64,7 +64,7 @@ class CreateGroup extends Component {
                 <Label>{success? "created successfully": ""} </Label>
               </Item>
               <Item floatingLabel>
-                <Label>Group name</Label>
+                <Label>Group name1</Label>
                 <Input onChangeText={text => this.onInputTextChange(text, 'title')}
                   value={this.state.title} />
               </Item>
