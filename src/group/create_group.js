@@ -7,8 +7,7 @@ import {ADD_GROUP } from '../graph/mutations/groupMutation';
 
 class CreateGroup extends Component {
   constructor(props){
-    super(props);
-    this.initialState = 
+    super(props); 
     this.state = {
       title: "", description: "", loading: false, created: false,
       errorMessage: false
