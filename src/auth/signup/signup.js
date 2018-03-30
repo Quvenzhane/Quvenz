@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput, View, Image, ImageBackground,
-  KeyboardAvoidingView, TouchableOpacity , StatusBar, AsyncStorage} from 'react-native';
-// import {Content, H1, H2, H3, Text } from 'native-base';
+import { StyleSheet, Text, TextInput, View, Image, ImageBackground,} from 'react-native';
+import { KeyboardAvoidingView, TouchableOpacity , StatusBar, AsyncStorage} from 'react-native';
+import {H3} from 'native-base';
 import { graphql, compose } from 'react-apollo';
 
 import styles from './style' 
@@ -65,7 +65,7 @@ class SignupScreen extends Component {
     }
 };
   render() {
-    
+    const { navigate } = this.props.navigation;
     return (
       
           <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -74,7 +74,7 @@ class SignupScreen extends Component {
 
               <View style={styles.container}>
                   <View style={styles.sologanText}>
-                    <Text style={styles.title}>Capture Every Moment</Text>
+                    <H3 style={styles.title}>Capture Every Moment</H3>
                     {/* <H2>Header Two </H2> */}
                     {this.state.loading && <Loading />}
                     <Text style={styles.title}>{this.state.errorMessage}</Text>
@@ -86,7 +86,7 @@ class SignupScreen extends Component {
                         returnKeyType="next"
                         onSubmitEditing ={() => this.passwordInput.focus()}
                         autoCorrect ={false}
-                        placeholderTextColor='#0049d9'
+                        placeholderTextColor='#2980b9'
                       onChangeText={text => this.onInputTextChange(text, 'username')}
                         />
 
@@ -97,14 +97,14 @@ class SignupScreen extends Component {
                         keyboardType="email-address"
                         autoCapitalize="none"
                         autoCorrect ={false}
-                        placeholderTextColor='#0049d9'
+                        placeholderTextColor='#2980b9'
                         onChangeText={text => this.onInputTextChange(text, 'email')}
                         />
 
                     <TextInput style={styles.input}
                         placeholder="Password"
                         returnKeyType="go"
-                        placeholderTextColor='#0049d9'
+                        placeholderTextColor='#2980b9'
                         ref={(input) => this.passwordInput = input}
                         secureTextEntry
                         onChangeText={text => this.onInputTextChange(text, 'password')}
@@ -114,6 +114,9 @@ class SignupScreen extends Component {
                       disabled={this.state.signedup}>
                         <Text style={styles.buttonText}> {this.state.signedup ? ' Thanks ' : 'SIGN UP'}</Text>
                     </TouchableOpacity>
+
+                     <Text style={styles.loginText}  
+                           onPress={() =>navigate('Login')} >Don't have an account Log in</Text>
                 </View>
               </View>
 

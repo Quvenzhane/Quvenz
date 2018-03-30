@@ -13,7 +13,7 @@ export default StyleSheet.create({
     sologanText: {
       alignItems: 'center',
       flexGrow: 1,
-      paddingTop: 100,
+      paddingTop: 150,
       // fontSize: 56,
       justifyContent: 'center'
     },
@@ -22,11 +22,9 @@ export default StyleSheet.create({
       height: 450
     },
     title:{
-      color: '#000',
-      marginTop: 10,
-      width: 140,
+      marginTop: 15,
       textAlign: 'center',
-      opacity: 0.7
+      opacity: 0.5
     },
     formContainer: {
       padding:50,
@@ -47,5 +45,8 @@ export default StyleSheet.create({
         textAlign: 'center',
         color: '#ffffff',
         fontWeight:'700'
+    },
+    signupText:{
+      padding:15,
     }
 });

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Image, 
-  KeyboardAvoidingView, TouchableOpacity , StatusBar, Navigator,ImageBackground ,
-  AsyncStorage
+import { StyleSheet, Text, TextInput, View, Image, KeyboardAvoidingView, TouchableOpacity}from 'react-native';
+import { StatusBar, Navigator,ImageBackground ,AsyncStorage} from 'react-native';
+import { H3} from 'native-base';
 
-} from 'react-native';
 
 import { graphql} from 'react-apollo';
 import styles from './style' 
@@ -18,12 +17,11 @@ class LoginScreen extends Component {
       email: "", password: "", loading: false, loggedin: false,
       errorMessage: false
     };
-    // console.disableYellowBox = true;
   }
   onInputTextChange = (text, type) => {
     this.setState({ [type]: text });
-   // console.log(this.state);
   } 
+
   onLoginPress = async () => {
     this.setState({ loading: true });
     console.log('this.state in onloginpress: ',this.state);
@@ -35,13 +33,13 @@ class LoginScreen extends Component {
         variables: {email, password}
       });
       if(resp){
-        console.log('resp: ',resp);
+        //console.log('resp: ',resp);
         const data = resp.data;
-        console.log('data.login.token:'+ data.login.token)
-        console.log(data)
+        // console.log('data.login.token:'+ data.login.token)
+        // console.log(data)
         this.setState({ loading: false });
         this.setState({loggedin: true});
-        console.log('loggedin? '+this.state.login);
+       // console.log('loggedin? '+this.state.login);
         this.props.navigation.navigate('Home');// AsyncStorage is now working well,... but think it's
         //ok to navigate before saving the token. 
         
@@ -79,7 +77,7 @@ class LoginScreen extends Component {
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <ImageBackground style={styles.backgroundContainer} source={require('../../../images/signup_bk.png')}>
               <View style={styles.sologanText}>
-                <Text style={styles.title}>Capture every moment</Text>
+                <H3 style={styles.title}>Capture Every Moment</H3>
                 <Text style={styles.title}>{this.state.errorMessage}</Text>
               </View>
             <View style={styles.formContainer}>
@@ -92,12 +90,12 @@ class LoginScreen extends Component {
                   autoCapitalize="none"
                   autoCorrect ={false}
                   onChangeText={text => this.onInputTextChange(text, 'email')}
-                  placeholderTextColor='#0049d9'/>
+                  placeholderTextColor='#2980b9'/>
 
               <TextInput style={styles.input}
                       placeholder="password"
                       returnKeyType="go"
-                      placeholderTextColor='#0049d9'
+                      placeholderTextColor='#2980b9'
                       onChangeText={text => this.onInputTextChange(text, 'password')}
                       secureTextEntry/>
 
@@ -107,6 +105,9 @@ class LoginScreen extends Component {
                     >
                   <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>
+
+              <Text style={styles.signupText}  
+                   onPress={() =>navigate('Signup')} >Don't have an account Sign up</Text>
            </View>
         </ImageBackground >
     </KeyboardAvoidingView>

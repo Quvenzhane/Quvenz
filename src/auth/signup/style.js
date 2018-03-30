@@ -12,7 +12,8 @@ export default StyleSheet.create({
     sologanText: {
       alignItems: 'center',
       flexGrow: 1,
-      paddingTop: 100,
+      paddingTop: 150,
+      // fontSize: 56,
       justifyContent: 'center'
     },
     logo: {
@@ -22,7 +23,7 @@ export default StyleSheet.create({
     title:{
       color: '#000',
       marginTop: 10,
-      width: 140,
+      // width: 140,
       textAlign: 'center',
       opacity: 0.7
     },
@@ -45,5 +46,9 @@ export default StyleSheet.create({
         textAlign: 'center',
         color: '#ffffff',
         fontWeight:'700'
-    }
+    },
+    loginText:{
+      alignItems: 'center',
+      padding:15,
+    },
 });

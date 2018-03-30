@@ -4,9 +4,13 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    //alignItems: 'center',
     padding: 30,
-    backgroundColor: '#F5FCFF',
+    //backgroundColor: '#F5FCFF',
+  },
+  backgroundContainer: {
+    flex: 1,
+    width: null,
+    height: null,
   },
     name: {
       fontSize: 50,
@@ -16,7 +20,7 @@ export default StyleSheet.create({
     solgan: {
       textAlign: 'center',
       color: '#333333',
-      marginBottom: 100,
+      marginBottom: 60,
     },
     buttonContainer:{
       marginBottom:20,

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {StyleSheet,Text, View, TouchableOpacity, Navigator} from 'react-native';
+import {StyleSheet,Text, View, TouchableOpacity, Navigator, ImageBackground} from 'react-native';
 import { StackNavigator,} from 'react-navigation';
 import gql from "graphql-tag";
 
@@ -17,20 +17,23 @@ export default class SplashScreen extends Component {
   render() {
   const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Text style={styles.name}>Pixfam </Text>
-        <Text style={styles.solgan}>Picture events sharing app</Text>
-       
-        <TouchableOpacity style={styles.buttonContainer} onPress={() =>
-          navigate('Login') }>
-            <Text style={styles.buttonText}>LOGIN</Text>
-        </TouchableOpacity>
+     
+        <ImageBackground style={styles.backgroundContainer} source={require('../../images/plain_bk.png')}>
+           <View style={styles.container}>
+              <Text style={styles.name}>Pixfam </Text>
+              <Text style={styles.solgan}>Picture events sharing app</Text>
+            
+              <TouchableOpacity style={styles.buttonContainer} onPress={() =>
+                navigate('Login') }>
+                  <Text style={styles.buttonText}>GET STARTED</Text>
+              </TouchableOpacity>
 
-        <TouchableOpacity style={styles.buttonContainer}  onPress={() =>
-          navigate('Signup') }>
-            <Text style={styles.buttonText}>SIGN UP</Text>
-        </TouchableOpacity>
-      </View>    
+              {/* <TouchableOpacity style={styles.buttonContainer}  onPress={() =>
+                navigate('Signup') }>
+                  <Text style={styles.buttonText}>SIGN UP</Text>
+              </TouchableOpacity> */}
+            </View>    
+          </ImageBackground>  
   )
   }
 
