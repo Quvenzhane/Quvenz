@@ -3,8 +3,14 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex:1,
-    flexDirection: 'column', 
-    padding: 20,
+    //flexDirection: 'column', 
+    padding: 10,
+  },
+  containerCardByPic: {
+    flex:1,
+    //flexDirection: 'column', 
+    //justifyContent: 'space-around',
+    //paddingBottom: 120,
   },
   button:{
     marginTop:30
@@ -21,6 +27,10 @@ export default StyleSheet.create({
   },
   listHeader:{
     flexDirection: 'row', 
+  },
+  eventScreenContainer:{
+    flex: 1,
+    backgroundColor: "#E6E6E6"
   }
 
 });

@@ -115,8 +115,10 @@ class SignupScreen extends Component {
                         <Text style={styles.buttonText}> {this.state.signedup ? ' Thanks ' : 'SIGN UP'}</Text>
                     </TouchableOpacity>
 
-                     <Text style={styles.loginText}  
-                           onPress={() =>navigate('Login')} >Don't have an account Log in</Text>
+                    <View style={styles.loginTextContain} >
+                     <Text onPress={() =>navigate('Login')}>Do you have an account?</Text>
+                      <Text onPress={() =>navigate('Login')} style={styles.loginText}> Log in</Text>     
+                    </View>       
                 </View>
               </View>
 

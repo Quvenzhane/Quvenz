@@ -47,8 +47,14 @@ export default StyleSheet.create({
         color: '#ffffff',
         fontWeight:'700'
     },
-    loginText:{
+    loginTextContain:{
+      flexGrow: 1,
       alignItems: 'center',
-      padding:15,
+      justifyContent:'center',
+      marginVertical: 16,
+      flexDirection: 'row'
     },
+    loginText: {
+      color: '#2980b9',
+    }
 });

@@ -46,7 +46,14 @@ export default StyleSheet.create({
         color: '#ffffff',
         fontWeight:'700'
     },
-    signupText:{
-      padding:15,
+    signupTextContain:{
+      flexGrow: 1,
+      alignItems: 'center',
+      justifyContent:'center',
+      marginVertical: 16,
+      flexDirection: 'row'
+    },
+    signupText: {
+      color: '#2980b9',
     }
 });

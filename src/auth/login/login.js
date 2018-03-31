@@ -106,8 +106,10 @@ class LoginScreen extends Component {
                   <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>
 
-              <Text style={styles.signupText}  
-                   onPress={() =>navigate('Signup')} >Don't have an account Sign up</Text>
+               <View style={styles.signupTextContain} >
+                  <Text onPress={() =>navigate('Signup')}>Don't have an account?</Text>
+                  <Text onPress={() =>navigate('Signup')} style={styles.signupText}> Sign up</Text>     
+               </View>   
            </View>
         </ImageBackground >
     </KeyboardAvoidingView>
