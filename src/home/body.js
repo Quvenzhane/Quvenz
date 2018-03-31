@@ -95,37 +95,55 @@ export default class HomeBody extends Component {
             <View style={styles.containerPopular}>
                 <Card  >
                     <CardItem>
-                        <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
+                        <Body>
+                            <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
+                            <Text note>reactions 102,043</Text>
+                        </Body>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
                     </CardItem>
                     <CardItem>
-                        <Text onPress={() =>this.props.theNav('Event')}>Osun Osun-oshogo</Text>
+                        <Body>
+                            <Text onPress={() =>this.props.theNav('Event')}>Osun Oshogbo Festival</Text>
+                            <Text note>reactions 90,677</Text>
+                        </Body>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
                     </CardItem>
                     <CardItem>
-                        <Text onPress={() =>this.props.theNav('Event')}>Laravel Meetup 2020</Text>
+                        <Body>
+                            <Text onPress={() =>this.props.theNav('Event')}>Laravel Meetup 2020</Text>
+                            <Text note>reactions 10,003</Text>
+                        </Body>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
                     </CardItem> 
                     <CardItem>
-                        <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
+                        <Body>
+                            <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
+                            <Text note>reactions 4,803</Text>
+                        </Body>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
                     </CardItem>
                     <CardItem>
-                        <Text>Osun Osun-oshogo</Text>
+                        <Body>
+                            <Text>Tinapa All women games March 2017/2018</Text>
+                            <Text note>reactions 12,003</Text>
+                        </Body>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
                     </CardItem>
                     <CardItem>
-                        <Text>Laravel Meetup 2020</Text>
+                        <Body>
+                            <Text>Laravel Meetup 2020</Text>
+                            <Text note>reactions 1,003</Text>
+                        </Body>
                         <Right>
                             <Icon name="arrow-forward" />
                         </Right>
