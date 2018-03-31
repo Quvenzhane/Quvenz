@@ -8,22 +8,21 @@ export default class EventPicDetails extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-      <H3>Soduko Birthday</H3> 
+      <Text note style={{padding:10}}>Reactions to Mayowa picture</Text> 
       <Content>
         <Card>
-          <CardItem>
+          <CardItem style={{height:80}}>
             <Left>
-              <Thumbnail source={require('../../images/pic.jpg')} />
+              <Thumbnail source={require('../../images/pic2.jpg')} />
               <Body>
-                <Text>By Obi</Text>
-                <Text note>#VIP</Text>
+                <Text>Mayowa</Text>
               </Body>
             </Left>
           </CardItem>
           <CardItem cardBody>
             <Image source={require('../../images/cam.png')} style={{height: 200, width: null, flex: 1}}/>
           </CardItem>
-          <CardItem>
+          <CardItem >
             <Left>
               <Button transparent>
                 <Icon active name="heart" style={{ color: '#ED4A6A' }}/>
@@ -32,7 +31,7 @@ export default class EventPicDetails extends Component {
             </Left>
             <Body>
               <Button transparent>
-                <Icon active name="chatbubbles" />
+                <Icon active name="ios-chatbubbles" />
                 <Text>4 Comments</Text>
               </Button>
             </Body>

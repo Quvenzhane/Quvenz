@@ -24,7 +24,7 @@ export default class SplashScreen extends Component {
               <Text style={styles.solgan}>Picture events sharing app</Text>
             
               <TouchableOpacity style={styles.buttonContainer} onPress={() =>
-                navigate('Login') }>
+                navigate('Home') }>
                   <Text style={styles.buttonText}>GET STARTED</Text>
               </TouchableOpacity>
 
@@ -38,15 +38,3 @@ export default class SplashScreen extends Component {
   }
 
 }
-
-// export const myscreens = StackNavigator({
-//   // Splash: { screen: SplashScreen },
-//   Signup: { screen: SignupScreen },
-// });
-
-
-// const myscreens = StackNavigator({
-//   Home: { screen: App },
-// });
-
-// export default myscreens;

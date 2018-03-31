@@ -20,6 +20,9 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     paddingBottom:30,
   },
+  headingContainer:{
+    padding:10
+  },
   cardContainer:{
   //  flex:1,
    flexDirection: 'column', 

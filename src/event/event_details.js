@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Content,Text, Badge, View, Icon, Fab} from 'native-base';
+import { Container, Content,Text, Badge, View, Icon, Fab, H3} from 'native-base';
 import CardViewEvent from './card_view_event'
 import styles from './style'; 
 
@@ -8,32 +8,24 @@ export default class EventDetails extends Component {
     const { navigate } = this.props.navigation;
     return (
         <Container style={styles.container}>
-        <View style={styles.metricsContainer}>
-                <Text>Pictures</Text>
-                <Badge>
-                    <Text>121</Text>
-                </Badge>
-                <Text>Participant</Text>
-                <Badge success>
-                    <Text>27</Text>
-                </Badge>
-                <Icon name="add" style={{paddingRight:15}}
-                            onPress={() =>navigate('CreateEvent')}/> 
+       
+        <View style={styles.headingContainer}>
+            <H3 style={{fontWeight:"900"}}>Soduko Birthday</H3> 
+            <Text note>Pictures taken by Mayowa</Text>
         </View>
-        <Text style={{padding:10, fontWeight:"900"}}>Soduko Birthday</Text> 
 
         <Content style={styles.eventScreenContainer}>
-            <CardViewEvent imageSource="1" likes="101" imageSourceProfile="1" username="Mayowa"/>
-            <CardViewEvent imageSource="2" likes="56" imageSourceProfile="2"  username="John"/>
-            <CardViewEvent imageSource="3" likes="346" imageSourceProfile="2" username="John"/> 
-            <CardViewEvent imageSource="4" likes="5" imageSourceProfile="3"  username="Michel"/>            
+            <CardViewEvent theNav={navigate} imageSource="1" likes="101" comments="2" imageSourceProfile="2" username="Mayowa"/>
+            <CardViewEvent theNav={navigate} imageSource="2" likes="56" comments="12" imageSourceProfile="2"  username="Mayowa"/>
+            <CardViewEvent theNav={navigate} imageSource="3" likes="346" comments="8" imageSourceProfile="2" username="Mayowa"/> 
+            <CardViewEvent theNav={navigate} imageSource="4" likes="5" comments="4" imageSourceProfile="2"  username="Mayowa"/>            
         </Content>
-        <Fab
+        {/* <Fab
             style={{ backgroundColor: '#2980b9' }}
             position="bottomRight"
             onPress={() =>navigate('EventPicDetails')}>
             <Icon name="add" />
-        </Fab>
+        </Fab> */}
      </Container>       
     )
   }

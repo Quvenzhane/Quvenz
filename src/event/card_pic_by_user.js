@@ -46,8 +46,8 @@ export default class CardPicByUser extends Component {
                     </CardItem>
                     <CardItem cardBody >
                     <TouchableOpacity onPress={() =>this.props.theNav('EventDetails')} >
-                        <Image style={{ height: 250, flex: 1 }} source={item.image} onPress={() =>this.props.theNav('AddPicture')}  />
-                        </TouchableOpacity>
+                        <Image style={{ height: 250, flex: 1 }} source={item.image}  />
+                    </TouchableOpacity>
 
                     </CardItem>
                     <CardItem style={{height:40}}>

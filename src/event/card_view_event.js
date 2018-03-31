@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Image, View, Text} from 'react-native';
+import { Image, View, Text, TouchableOpacity} from 'react-native';
 import { Card, CardItem, Thumbnail, Left, Right, Body, Icon, Button } from 'native-base';
 
 export default class CardViewEvent extends Component {
@@ -30,25 +30,26 @@ export default class CardViewEvent extends Component {
           </Left>  
         </CardItem>
         <CardItem cardBody>
-          <Image source={images[this.props.imageSource]} style={{height:200, width:null, flex:1}} />
+         {/* <TouchableOpacity onPress={() =>this.props.theNav('EventPicDetails')}> */}
+            <Image style={{height:200, width:null, flex:1}}  source={images[this.props.imageSource]} />
+          {/* </TouchableOpacity>   */}
         </CardItem>
 
         <CardItem style={{height:45}}>
           <Left>
             <Button transparent>
               <Icon name="heart" style={{ color: '#ED4A6A' }} />
+              <Text> {this.props.likes}</Text> 
             </Button>
             <Button transparent>
               <Icon name="ios-chatbubbles-outline" style={{color:"black"}} />
-            </Button><Button transparent>
-              <Icon name="ios-send-outline" style={{color:"black"}} />
-            </Button>  
+              <Text> {this.props.comments}</Text> 
+            </Button>
+            <Button transparent onPress={() =>this.props.theNav('EventPicDetails')}>
+              <Icon name="ios-eye-outline" style={{color:"black"}} />
+            </Button>
           </Left>
         </CardItem>
-
-        <CardItem style={{height:20}}>
-          <Text>{this.props.likes} likes</Text> 
-        </CardItem> 
 
         <CardItem>
           <Body>
