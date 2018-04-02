@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
-import { Card, CardItem, H3, Fab } from 'native-base';
+import { Card, CardItem, H3, Fab, Icon } from 'native-base';
 
 import styles from './style'; 
 
 export default class EventParticipants extends Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
         <Container style={styles.container}>
             <H3 style={styles.header}>Soduko Birthday</H3> 
