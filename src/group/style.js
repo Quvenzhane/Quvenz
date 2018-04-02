@@ -10,14 +10,15 @@ export default StyleSheet.create({
   },
   metricsContainer:{
     flexDirection: 'row', 
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     paddingBottom:30,
   },
   listHeader:{
     flexDirection: 'row', 
   },
   header:{
-    fontWeight:"600"
+    fontWeight:"600",
+    paddingBottom: 20
   },
 
 });

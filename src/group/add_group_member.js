@@ -7,7 +7,7 @@ export default class AddGroupMember extends Component {
     return (
       <Container style={styles.container}>
           <Content>
-              <H3 style={{paddingBottom:20}} style={styles.header}>Expand your group</H3>
+              <H3 style={styles.header}>Expand your group</H3>
               <Text note>Search app to add friend</Text>
               <Form>
                 <View style={{paddingTop:15, paddingBottom:15 }}>

@@ -52,15 +52,15 @@ export default class ListGroup extends Component {
         <Container style={styles.container}>
         <Content>
             <View style={styles.metricsContainer}>
-                <Text>Pictures</Text>
+                <Text>Pictures </Text>
                 <Badge>
                     <Text>2</Text>
                 </Badge>
-                <Text>Members</Text>
+                <Text>  Members </Text>
                 <Badge success>
                     <Text>2</Text>
                 </Badge>
-                <Text>Events</Text>
+                <Text  onPress={() =>navigate('ListEvent')}>  Events </Text>
                 <Badge primary>
                     <Text>45</Text>
                 </Badge>
@@ -68,7 +68,7 @@ export default class ListGroup extends Component {
              <View style={styles.listHeader}> 
                 <Icon name="add" style={{paddingRight:15}}
                                  onPress={() =>navigate('CreateGroup')}/>
-                <H3>Followed Groups</H3>
+                <H3 style={styles.header}>Followed Groups</H3>
                 {
                     console.log(error)
                     

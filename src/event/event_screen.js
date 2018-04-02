@@ -18,9 +18,9 @@ export default class EventScreen extends Component {
                 <Badge>
                     <Text>121</Text>
                 </Badge>
-                <Text>  Members </Text>
+                <Text onPress={() =>navigate('EventParticipant')}>  Participants </Text>
                 <Badge success>
-                    <Text>27</Text>
+                    <Text>20</Text>
                 </Badge>
                 
             </View>

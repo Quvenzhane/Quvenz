@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Container, Content,Text, Item, View, Icon, Input, H3, Form, Button} from 'native-base';
 import styles from './style'; 
 
-export default class AddEventMember extends Component {
+export default class AddEventParticipant extends Component {
   render() {
     return (
       <Container style={styles.container}>
           <Content>
-              <H3 style={styles.header}>Expand Event members</H3>
+              <H3 style={styles.header}>Expand Event participants</H3>
               <Text style={{paddingBottom:15}}>Members you add to event, do not have access to its group events </Text>
               <Text note >Search app to add friend</Text>
               <Form>

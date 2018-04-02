@@ -16,10 +16,6 @@ export default class ListEvent extends Component {
                     <Badge>
                         <Text>2</Text>
                     </Badge>
-                    <Text>  Members </Text>
-                    <Badge success>
-                        <Text>2</Text>
-                    </Badge>
                  </View> 
                  <View style={styles.listHeader}> 
                      <Icon name="add" style={{paddingRight:15}}
@@ -34,7 +30,7 @@ export default class ListEvent extends Component {
                             <Text onPress={() =>navigate('Event')}>{item} </Text>
                             <Text note>43,004 pictures</Text>
                         </Body>
-                        <Text note onPress={() =>navigate('AddEventMember')}>share</Text>
+                        <Text note onPress={() =>navigate('AddEventParticipant')}>share</Text>
                     </ListItem>
                     
                     }>
@@ -47,7 +43,7 @@ export default class ListEvent extends Component {
                             <Text onPress={() =>navigate('Event')}>{item} </Text>
                             <Text note>43,004 pictures</Text>
                         </Body>
-                        <Text note onPress={() =>navigate('AddEventMember')}>share</Text>
+                        <Text note onPress={() =>navigate('AddEventParticipant')}>share</Text>
                     </ListItem>
                     
                     }>
