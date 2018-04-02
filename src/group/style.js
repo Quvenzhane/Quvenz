@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
       flex:1,
-    padding: 20,
+     padding: 20,
   },
   button:{
     marginTop:30
@@ -15,7 +15,10 @@ export default StyleSheet.create({
   },
   listHeader:{
     flexDirection: 'row', 
-  }
+  },
+  header:{
+    fontWeight:"600"
+  },
 
 });
   

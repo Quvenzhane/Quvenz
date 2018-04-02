@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Image, ScrollView} from 'react-native';
+import { Image, ScrollView, View} from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
-import { List, ListItem, H3, Item, Input } from 'native-base';
+import { List, ListItem, H3, Item, Input, Form } from 'native-base';
 import styles from './style'; 
 
 export default class EventPicDetails extends Component {
@@ -9,39 +9,33 @@ export default class EventPicDetails extends Component {
     return (
       <ScrollView style={styles.container}>
       <Text note style={{padding:10}}>Reactions to Mayowa picture</Text> 
-      <Content>
+      <Content >
         <Card>
-          <CardItem style={{height:80}}>
-            <Left>
-              <Thumbnail source={require('../../images/pic2.jpg')} />
-              <Body>
-                <Text>Mayowa</Text>
-              </Body>
-            </Left>
-          </CardItem>
           <CardItem cardBody>
-            <Image source={require('../../images/cam.png')} style={{height: 200, width: null, flex: 1}}/>
+            <Image source={require('../../images/event1.jpg')} style={{height: 300, width: null, flex: 1}}/>
           </CardItem>
-          <CardItem >
+          <CardItem style={{height:40}} >
             <Left>
               <Button transparent>
-                <Icon active name="heart" style={{ color: '#ED4A6A' }}/>
+                <Icon  name="ios-heart" style={{ color: '#ED4A6A' }}/>
                 <Text>12 Likes</Text>
               </Button>
-            </Left>
-            <Body>
-              <Button transparent>
-                <Icon active name="ios-chatbubbles" />
+              <Button transparent  >
+                <Icon  name="ios-chatbubbles-outline" />
                 <Text>4 Comments</Text>
               </Button>
-            </Body>
+            </Left>
           </CardItem>
         </Card>
       </Content>
-  
-      <Item rounded >
-        <Input placeholder='Add comment'  />
-      </Item>
+      <Form>
+        <View style={{paddingTop:15, paddingBottom:15 }}>
+            <Item rounded >
+            <Input placeholder='Add comment' />
+            <Icon  name="send" />
+            </Item>
+        </View>
+      </Form>
       <List style={{backgroundColor:'#fff'}}>
           <ListItem>
             <Body>

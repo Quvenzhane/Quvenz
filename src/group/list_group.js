@@ -38,7 +38,7 @@ export default class ListGroup extends Component {
                         <Body>
     
                             <Text  onPress={() =>navigate('Group')}>{group.title}</Text>
-                            <Text note>103,004 participants</Text>
+                            <Text note>103,004 members</Text>
                         </Body>
                     </ListItem>
                     }>
@@ -52,15 +52,15 @@ export default class ListGroup extends Component {
         <Container style={styles.container}>
         <Content>
             <View style={styles.metricsContainer}>
-                <Text>Picture</Text>
+                <Text>Pictures</Text>
                 <Badge>
                     <Text>2</Text>
                 </Badge>
-                <Text>Participant</Text>
+                <Text>Members</Text>
                 <Badge success>
                     <Text>2</Text>
                 </Badge>
-                <Text>Event</Text>
+                <Text>Events</Text>
                 <Badge primary>
                     <Text>45</Text>
                 </Badge>
@@ -82,8 +82,9 @@ export default class ListGroup extends Component {
                         <Text>{errorShit}</Text>
 
                         <Text  onPress={() =>navigate('Group')}>{item}</Text>
-                        <Text note>103,004 participants</Text>
+                        <Text note>103,004 members</Text>
                     </Body>
+                    <Text note onPress={() =>navigate('AddGroupMember')}>add</Text>
                 </ListItem>
                 }>
             </List>

@@ -10,7 +10,7 @@ export default class EventDetails extends Component {
         <Container style={styles.container}>
        
         <View style={styles.headingContainer}>
-            <H3 style={{fontWeight:"900"}}>Soduko Birthday</H3> 
+            <H3 style={styles.header}>Soduko Birthday</H3> 
             <Text note>Pictures taken by Mayowa</Text>
         </View>
 
