@@ -3,19 +3,23 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
       flex:1,
-    padding: 20,
+     padding: 20,
   },
   button:{
     marginTop:30
   },
   metricsContainer:{
     flexDirection: 'row', 
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     paddingBottom:30,
   },
   listHeader:{
     flexDirection: 'row', 
-  }
+  },
+  header:{
+    fontWeight:"600",
+    paddingBottom: 20
+  },
 
 });
   

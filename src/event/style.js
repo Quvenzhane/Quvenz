@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex:1,
     //flexDirection: 'column', 
-    padding: 10,
+    padding: 20,
   },
   containerCardByPic: {
     flex:1,
@@ -17,7 +17,7 @@ export default StyleSheet.create({
   },
   metricsContainer:{
     flexDirection: 'row', 
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     paddingBottom:30,
   },
   headingContainer:{
@@ -30,6 +30,10 @@ export default StyleSheet.create({
   },
   listHeader:{
     flexDirection: 'row', 
+  },
+  header:{
+    fontWeight:"500",
+    paddingBottom: 20
   },
   eventScreenContainer:{
     flex: 1,
