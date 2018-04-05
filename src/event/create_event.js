@@ -30,7 +30,7 @@ export default class CreateEvent extends Component {
       
       const { group, title, description } = e;
       const {data,loading, error} = obj;
-      doAddEvent({variables: {title, description}});
+      doAddEvent({variables: {title, description, group}});
       if(loading) this.setState({loading: true});
       if(error) this.setState({errorMessage: 'an error occurred, try again'});
       if(data){

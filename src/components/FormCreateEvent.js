@@ -20,7 +20,7 @@ export default class FormCreateEvent extends Component {
       doSubmit = () => {
         const { group, title, description } = this.state;
         console.log('submitting...')
-       this.props.handleSubmit({title, description});
+       this.props.handleSubmit({title, description, group});
        this.props.iscreated && this.setState({title:'',description:''});
       } 
   
@@ -41,9 +41,9 @@ export default class FormCreateEvent extends Component {
                     selectedValue={this.state.group}
                     onValueChange={(itemValue, itemIndex) => this.setState({group: itemValue})}>
                     <Picker.Item label="Pick a Group" value="" />
-                    <Picker.Item label="Family" value="Family" />
-                    <Picker.Item label="Friends" value="Friends" />
-                    <Picker.Item label="Osun Festival" value="Festival" />
+                    <Picker.Item label="Family" value="5abb22d77e445926e4fb4e9e" />
+                    <Picker.Item label="Friends" value="5abb22d77e445926e4fb4e9e" />
+                    <Picker.Item label="Osun Festival" value="5abb22d77e445926e4fb4e9e" />
                 </Picker>
                 <Item floatingLabel>
                 <Label>Event name</Label>
