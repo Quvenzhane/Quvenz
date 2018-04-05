@@ -100,8 +100,8 @@ class LoginScreen extends Component {
                       secureTextEntry/>
 
               <TouchableOpacity style={styles.buttonContainer} 
-                    onPress={() =>navigate('Home')}
-                    // onPress={this.onLoginPress}
+                    //onPress={() =>navigate('Home')}
+                     onPress={this.onLoginPress}
                     >
                   <Text style={styles.buttonText}>LOGIN</Text>
               </TouchableOpacity>

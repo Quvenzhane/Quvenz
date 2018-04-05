@@ -18,7 +18,8 @@ import gql from "graphql-tag";
 //const httpLink = createHttpLink({uri: 'http://10.0.2.2:4800/graphql'});
 
 export const client = new ApolloClient({
-  uri: 'http://192.168.151.101:4800/graphql',
+  //uri: 'http://192.168.151.101:4800/graphql',
+  uri: 'http://10.0.2.2:4800/graphql',
   request: async (operation) => {
     const token = await AsyncStorage.getItem('@pixfam_token');
     if(token){

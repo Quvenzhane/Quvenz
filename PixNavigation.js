@@ -9,7 +9,6 @@ import ListGroup from './src/group/list_group';
 import AddGroupMember from './src/group/add_group_member';
 import GroupMember from './src/group/group_members';
 
-
 import CreateEvent from './src/event/create_event';
 import ListEvent from './src/event/list_event';
 import EventPicDetails from './src/event/event_pic_details';
@@ -17,6 +16,7 @@ import EventDetails from './src/event/event_details';
 import EventScreen from './src/event/event_screen';
 import AddEventParticipant from './src/event/add_event_participant';
 import EventParticipant from './src/event/event_participants';
+
 import AddPicture from './src/event/add_pic';
 import GroupScreen from './src/group/group_screen';
 import Notification from './src/notification/notification';
