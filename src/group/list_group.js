@@ -56,7 +56,7 @@ export default class ListGroup extends Component {
                 <Badge>
                     <Text>2</Text>
                 </Badge>
-                <Text>  Members </Text>
+                <Text onPress={() =>navigate('GroupMember')}>  Members </Text>
                 <Badge success>
                     <Text>2</Text>
                 </Badge>

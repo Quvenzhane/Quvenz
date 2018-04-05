@@ -22,21 +22,21 @@ export default class GroupScreen extends Component {
                 <ListItem>
                     <Thumbnail square size={80} source={require('../../images/star.png') } />
                     <Body>
-                        <Text>Soduko Family</Text>
+                        <Text onPress={() =>navigate('Event')}>Soduko Family</Text>
                         <Text note>123 pictures . .</Text>
                     </Body>
                 </ListItem>
                 <ListItem>
                     <Thumbnail square size={80} source={require('../../images/cam.png') } />
                     <Body>
-                        <Text>Annual Thanks giving</Text>
+                        <Text onPress={() =>navigate('Event')}>Annual Thanks giving</Text>
                         <Text note>300 pictures</Text>
                     </Body>
                 </ListItem>
                 <ListItem>
                     <Thumbnail square size={80} source={require('../../images/cam.png') } />
                     <Body>
-                        <Text>Startup Grind</Text>
+                        <Text onPress={() =>navigate('Event')}>Startup Grind</Text>
                         <Text note>132 pictures</Text>
                     </Body>
                 </ListItem>

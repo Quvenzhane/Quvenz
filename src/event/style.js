@@ -33,6 +33,7 @@ export default StyleSheet.create({
   },
   header:{
     fontWeight:"500",
+    opacity: 0.4,
     paddingBottom: 20
   },
   eventScreenContainer:{

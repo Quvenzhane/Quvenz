@@ -1,6 +1,6 @@
 import React, { Component } from 'react'; 
 import { Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Item, Input,
-    Card, CardItem,Right,Left,Thumbnail,Body, H1  } from 'native-base'; 
+    Card, CardItem,Right,Left,Thumbnail,Body, H1, Fab  } from 'native-base'; 
 import { Image,ScrollView, View } from 'react-native';
 import { StackNavigator,} from 'react-navigation';
 
@@ -17,7 +17,14 @@ export default class HomeScreen extends Component {
             <Container> 
                <HomeHeader theNav={navigate}/>
                <HomeBody theNav={navigate}/>
-               <HomeFooter theNav={navigate}/>
+                <Fab
+                    style={{ backgroundColor: '#2980b9', marginBottom:40
+                }}
+                    position="bottomRight"
+                    onPress={() =>navigate('EventPicDetails')}>
+                    <Icon name="add" />
+                </Fab>
+                <HomeFooter theNav={navigate}/>
             </Container>
         ); 
     }

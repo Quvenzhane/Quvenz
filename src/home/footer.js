@@ -13,8 +13,7 @@ export default class HomeFooter extends Component {
                         <Icon name="search" onPress={() => this.props.theNav('Browse')} />
                         <Text>Browse</Text>
                     </Button>
-                    <Button badge onPress={() => this.props.theNav('ListGroup') }>
-                        <Badge><Text>2</Text></Badge>
+                    <Button vertical onPress={() => this.props.theNav('ListGroup') }>
                         <Icon name="people" />
                         <Text>Group</Text>
                     </Button>
@@ -22,9 +21,10 @@ export default class HomeFooter extends Component {
                         <Icon active name="happy" />
                         <Text>Event</Text>
                     </Button>
-                    {/* <Button vertical>
+                    {/* <Button badge onPress={() => this.props.theNav('Notification') }>
+                        <Badge><Text>2</Text></Badge>
                         <Icon name="notifications" />
-                        <Text>Updates</Text>
+                        <Text>Alert</Text>
                     </Button> */}
                     <Button vertical onPress={() => this.props.theNav('Profile')}>
                         <Icon name="person" />

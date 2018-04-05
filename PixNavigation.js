@@ -19,6 +19,7 @@ import AddEventParticipant from './src/event/add_event_participant';
 import EventParticipant from './src/event/event_participants';
 import AddPicture from './src/event/add_pic';
 import GroupScreen from './src/group/group_screen';
+import Notification from './src/notification/notification';
 import Profile from './src/profile/profile';
 import Browse from './src/browse/browse';
 
@@ -48,6 +49,7 @@ const PixNavigation = StackNavigator(
     AddPicture: { screen: AddPicture, navigationOptions: {title: 'Add Event Pictures', headerStyle:{backgroundColor: '#ede'}}},
     Profile: { screen: Profile, navigationOptions: {title: 'Profile', headerStyle:{backgroundColor: '#ede'}}},
     Browse: { screen: Browse, navigationOptions: {title: 'Browse Events', headerStyle:{backgroundColor: '#ede'}}},
+    Notification: { screen: Notification, navigationOptions: {title: 'Notifications', headerStyle:{backgroundColor: '#ede'}}},
 
   },
   {
