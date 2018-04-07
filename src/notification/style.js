@@ -5,5 +5,6 @@ export default StyleSheet.create({
       flex:1,
      padding: 20,
   },
+
 });
   

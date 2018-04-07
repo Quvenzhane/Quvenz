@@ -12,6 +12,7 @@ export default StyleSheet.create({
     //justifyContent: 'space-around',
     //paddingBottom: 120,
   },
+
   button:{
     marginTop:30
   },
@@ -39,7 +40,7 @@ export default StyleSheet.create({
   eventScreenContainer:{
     flex: 1,
     backgroundColor: "#E6E6E6"
-  }
-
+  },
+  
 });
   

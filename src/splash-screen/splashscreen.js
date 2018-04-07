@@ -33,7 +33,7 @@ export default class SplashScreen extends Component {
                   <Text style={styles.buttonText}>SIGN UP</Text>
               </TouchableOpacity> */}
             </View>    
-          </ImageBackground>  
+        </ImageBackground>  
   )
   }
 

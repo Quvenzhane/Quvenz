@@ -21,6 +21,7 @@ export default StyleSheet.create({
     opacity: 0.4,
     paddingBottom: 20
   },
+ 
 
 });
   

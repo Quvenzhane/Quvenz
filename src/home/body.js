@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Content, Button, Text, Icon, Item, Input,
          Card, CardItem,Right,Left,Thumbnail,Body, H1, ActionSheet,Root  } from 'native-base'; 
-import { Image,ScrollView, View } from 'react-native'; 
+import { Image,ScrollView, View, ImageBackground } from 'react-native'; 
 import { StackNavigator,} from 'react-navigation';
 import styles from './style'; 
 
@@ -22,26 +22,25 @@ export default class HomeBody extends Component {
   render() {
     return (
         <Content style={styles.container}>
-            <Text style={styles.groupHeader} note>Family Groups</Text>
+            <Text style={styles.groupHeader} note> Group: Family</Text>
             <View style={styles.defaultGroup}>
-                <View style={styles.groupBirthday}  >
-                    <Icon name="add" onPress={() =>this.props.theNav('Event')} />
-                    <H1>B</H1>
-                    <Text> Birthday</Text>
+                
+                <ImageBackground style={styles.eventBirthday} source={require('../../images/cake.jpg')}>
+                    <Icon name="add" onPress={() =>this.props.theNav('Event')} style={{marginTop:40}} />
+                    {/* <H1>B</H1>
+                    <Text> Birthday</Text> */}
+                </ImageBackground>  
+
+                <View style={styles.createEvent1} >
+                    <Icon name="add" onPress={() =>this.props.theNav('CreateEvent')} style={{marginTop:40}} />
                 </View>    
-                <View style={styles.groupWedding} >
-                    <Icon name="add" onPress={() =>this.props.theNav('Event')} />
-                    <H1>W</H1>
-                    <Text>Wedding</Text>
-                </View>    
-                <View style={styles.groupGraduation}  >
-                    <Icon name="add" onPress={() =>this.props.theNav('Event')} />
-                    <H1>G</H1>
-                    <Text>Graduation</Text>
+                <View style={styles.createEvent2}  >
+                    <Icon name="add" onPress={() =>this.props.theNav('CreateEvent')} style={{marginTop:40}} />
                 </View>    
             </View>
 
-            <Text style={styles.groupHeader} note>Manage</Text>
+           
+            <Text style={styles.groupHeader} note> Manage</Text>
             <View style={styles.groupNav}  >
                 <Root>
                     <Button  rounded light
@@ -91,7 +90,7 @@ export default class HomeBody extends Component {
                 </Root>
             </View>
 
-            <Text style={styles.groupHeader} note>Popular Events</Text>
+            <Text style={styles.groupHeader} note><Icon name="ios-pulse-outline" style={{color:'gray'}}/>  Popular Events</Text>
             <View style={styles.containerPopular}>
                 <Card  >
                     <CardItem>
