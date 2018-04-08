@@ -23,6 +23,9 @@ import Notification from './src/notification/notification';
 import Profile from './src/profile/profile';
 import Browse from './src/browse/browse';
 
+import Welcome from './src/welcome/welcome';
+import WelcomeGroup from './src/welcome/group';
+import WelcomeEvent from './src/welcome/event';
 
 
 const PixNavigation = StackNavigator(
@@ -31,6 +34,11 @@ const PixNavigation = StackNavigator(
     Signup: { screen: SignupScreen, navigationOptions: {headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Login: { screen: LoginScreen, navigationOptions: {headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Home: { screen: HomeScreen, navigationOptions: {header: false} },
+
+    Welcome: { screen: Welcome, navigationOptions: {header: false} },
+    WelcomeGroup: { screen: WelcomeGroup, navigationOptions: {header: false} },
+    WelcomeEvent: { screen: WelcomeEvent, navigationOptions: {header: false} },
+
     
     CreateGroup: { screen: CreateGroup, navigationOptions: {title: 'Create Group', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     ListGroup: { screen: ListGroup, navigationOptions: {title: 'Group List', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
