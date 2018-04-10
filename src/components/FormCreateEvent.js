@@ -33,8 +33,8 @@ export default class FormCreateEvent extends Component {
             
             <Form>
                 <Item>
-                <Label>{this.props.iserror? this.props.iserror: ""} </Label>
-                <Label>{this.props.iscreated? "created successfully": ""} </Label>
+                    <Label>{this.props.iserror? this.props.iserror: ""} </Label>
+                    <Label>{this.props.iscreated? "created successfully": ""} </Label>
                 </Item>
 
                 <Picker
