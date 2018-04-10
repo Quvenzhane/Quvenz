@@ -17,9 +17,11 @@ export default StyleSheet.create({
     flexDirection: 'row', 
   },
   header:{
-    fontWeight:"600",
+    fontWeight:"500",
+    opacity: 0.4,
     paddingBottom: 20
   },
+ 
 
 });
   

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {  View, Text} from 'react-native'
+import {  View, Text,ImageBackground} from 'react-native'
 
 import { Mutation } from "react-apollo";
 import { Container, Content } from 'native-base';
@@ -45,12 +45,14 @@ export default class CreateEvent extends Component {
       {(addEvent, {data, loading, error }) => 
       (
         <Container style={styles.container}>
-          <FormCreateEvent isloading={this.state.loading} iserror={this.state.errorMessage} iscreated={this.state.created} 
-            handleSubmit={this.doSubmit.bind(this, addEvent, {data,loading, error})} />         
+          <FormCreateEvent isloading={this.state.loading} 
+                           iserror={this.state.errorMessage} 
+                           iscreated={this.state.created} 
+                           handleSubmit={this.doSubmit.bind(this, addEvent, {data,loading, error})} />         
         </Container>
 
       )}
-      </Mutation>      
+      </Mutation> 
     )
   }
 }

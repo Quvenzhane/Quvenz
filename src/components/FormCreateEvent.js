@@ -46,17 +46,17 @@ export default class FormCreateEvent extends Component {
                     <Picker.Item label="Osun Festival" value="5abb22d77e445926e4fb4e9e" />
                 </Picker>
                 <Item floatingLabel>
-                <Label>Event name</Label>
-                <Input onChangeText={text => this.onInputTextChange(text, 'title')}
-                    value={this.state.title} />
-                </Item>
+                    <Label>Event name</Label>
+                    <Input onChangeText={text => this.onInputTextChange(text, 'title')}
+                        value={this.state.title} />
+                    </Item>
                 <Item floatingLabel last>
-                <Label>Description</Label>
-                <Input onChangeText={text => this.onInputTextChange(text, 'description')} 
-                    value={this.state.description} />
+                    <Label>Description</Label>
+                    <Input onChangeText={text => this.onInputTextChange(text, 'description')} 
+                        value={this.state.description} />
                 </Item>
                 <Button block info style={styles.button} onPress={this.doSubmit} >
-                <Text>Create Event</Text>
+                     <Text>Create Event</Text>
                 </Button>
             </Form>
         </Content>

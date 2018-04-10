@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, List, ListItem, Text, Badge, View, H3, Icon, Body} from 'native-base';
 import styles from './style'; 
+import globalColor from '../../config/app-colors'; 
 import { Query } from "react-apollo";
 
 import { GET_GROUPS} from '../graph/queries/groupQueries';
@@ -40,6 +41,7 @@ export default class ListGroup extends Component {
                             <Text  onPress={() =>navigate('Group')}>{group.title}</Text>
                             <Text note>103,004 members</Text>
                         </Body>
+                        <Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddGroupMember')}>add</Text>
                     </ListItem>
                     }>
                 </List>)
@@ -56,7 +58,7 @@ export default class ListGroup extends Component {
                 <Badge>
                     <Text>2</Text>
                 </Badge>
-                <Text>  Members </Text>
+                <Text onPress={() =>navigate('GroupMember')}>  Members </Text>
                 <Badge success>
                     <Text>2</Text>
                 </Badge>
@@ -84,7 +86,7 @@ export default class ListGroup extends Component {
                         <Text  onPress={() =>navigate('Group')}>{item}</Text>
                         <Text note>103,004 members</Text>
                     </Body>
-                    <Text note onPress={() =>navigate('AddGroupMember')}>add</Text>
+                    <Text note style={styles.textClick} onPress={() =>navigate('AddGroupMember')}>add</Text>
                 </ListItem>
                 }>
             </List>

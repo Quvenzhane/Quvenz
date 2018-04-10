@@ -1,7 +1,6 @@
 import React, { Component } from 'react'; 
-import { Container, Header, Content, Footer, FooterTab, Button, Text, Icon, Item, Input,
-    Card, CardItem,Right,Left,Thumbnail,Body, H1  } from 'native-base'; 
-import { Image,ScrollView, View, AsyncStorage } from 'react-native';
+import { Container,Fab, Icon} from 'native-base'; 
+import { AsyncStorage } from 'react-native';
 import { StackNavigator,} from 'react-navigation';
 
 import HomeHeader from './header'; 
@@ -36,7 +35,12 @@ export default class HomeScreen extends Component {
             <Container> 
                <HomeHeader theNav={navigate}/>
                <HomeBody theNav={navigate}/>
-               <HomeFooter theNav={navigate}/>
+                <Fab style={{ backgroundColor: '#FF6600', marginBottom:40 }}
+                    position="bottomRight"
+                    onPress={() =>navigate('AddPicture')}>
+                    <Icon name="add" />
+                </Fab>
+                <HomeFooter theNav={navigate}/>
             </Container>
         ); 
     }

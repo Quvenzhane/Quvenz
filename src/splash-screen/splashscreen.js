@@ -24,7 +24,7 @@ export default class SplashScreen extends Component {
               <Text style={styles.solgan}>Picture events sharing app</Text>
             
               <TouchableOpacity style={styles.buttonContainer} onPress={() =>
-                navigate('Login') }>
+                navigate('Welcome') }>
                   <Text style={styles.buttonText}>GET STARTED</Text>
               </TouchableOpacity>
 
@@ -33,7 +33,7 @@ export default class SplashScreen extends Component {
                   <Text style={styles.buttonText}>SIGN UP</Text>
               </TouchableOpacity> */}
             </View>    
-          </ImageBackground>  
+        </ImageBackground>  
   )
   }
 

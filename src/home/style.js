@@ -17,26 +17,33 @@ export default StyleSheet.create({
     padding: 10,
   },
 
-  groupBirthday:{
-    width: 110, 
+  eventBirthday:{
+    width: 100, 
     height: 110,
     padding: 2,
-    backgroundColor: 'powderblue',
+    //backgroundColor: 'powderblue',
+    color:'#fff',
     alignItems:'center',
+    borderRadius :20,
+    opacity: 0.8
   },
-  groupWedding:{
-    width: 110, 
+  createEvent1:{
+    width: 100, 
     height: 110,
     padding: 2,
-    backgroundColor: 'skyblue',
+    backgroundColor: '#FAD566',
     alignItems:'center',
+    borderRadius :6,
+    opacity: 0.2
   },
-  groupGraduation:{
-    width: 110, 
+  createEvent2:{
+    width: 100, 
     height: 110,
     padding: 2,
-    backgroundColor: 'steelblue',
+    backgroundColor: '#FAD566',
     alignItems:'center',
+    borderRadius :6,
+    opacity: 0.2
 
   },
   groupHeader:{
