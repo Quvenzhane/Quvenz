@@ -3,6 +3,8 @@ import { Container, Header, Content, List, ListItem, Text, Badge, View, H3, Icon
 import { Right, Left} from 'native-base';
 
 import styles from './style'; 
+import globalColor from '../../config/app-colors'; 
+
 
 export default class ListEvent extends Component {
   render() {
@@ -30,7 +32,7 @@ export default class ListEvent extends Component {
                             <Text onPress={() =>navigate('Event')}>{item} </Text>
                             <Text note>43,004 pictures</Text>
                         </Body>
-                        <Text note onPress={() =>navigate('AddEventParticipant')}>share</Text>
+                        <Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddEventParticipant')}>share</Text>
                     </ListItem>
                     
                     }>
@@ -43,7 +45,7 @@ export default class ListEvent extends Component {
                             <Text onPress={() =>navigate('Event')}>{item} </Text>
                             <Text note>43,004 pictures</Text>
                         </Body>
-                        <Text note onPress={() =>navigate('AddEventParticipant')}>share</Text>
+                        <Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddEventParticipant')}>share</Text>
                     </ListItem>
                     
                     }>
