@@ -12,7 +12,7 @@ export default class WelcomeGroup extends Component {
           <Content style={styles.container}>
               <H1 style={styles.welcome}>Group</H1>
               <Text style={styles.sologanText} >
-              Arrange similar events into a Group. For example Family group could contain event like Dadday's Birthday. 
+                Arrange similar events into a Group. For example Family group could contain event like Dadday's Birthday.
               </Text>
 
               <Item disabled style={{marginTop:50}}>
