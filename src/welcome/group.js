@@ -15,18 +15,8 @@ export default class WelcomeGroup extends Component {
               Arrange similar events into Group. Family group could contain event like Dadday's Birthday. 
               </Text>
 
-              <Item disabled style={{marginTop:50}}>
-                <Input disabled placeholder='Family'
-                  placeholderTextColor='#C8D7F3'/>
-                <Icon name='information-circle' />
-              </Item>
-
-              <Text style={styles.sologanText}>Family is your default group. You can add more later.</Text>
-              
             <TouchableOpacity style={styles.buttonContainer} 
-                  onPress={() =>navigate('WelcomeEvent')}
-                  //onPress={this.onLoginPress}
-                  >
+                  onPress={() =>navigate('WelcomeEvent')}>
                 <Text style={styles.buttonText}>Continue</Text>
             </TouchableOpacity>
           </Content>
