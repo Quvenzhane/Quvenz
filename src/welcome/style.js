@@ -21,6 +21,7 @@ export default StyleSheet.create({
     sologanText: {
       color:'#FFF', 
       marginTop:20, 
+      marginBottom:80, 
       textAlign:'center'
     },  
     buttonContainer:{
