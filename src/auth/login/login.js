@@ -69,6 +69,15 @@ class LoginScreen extends Component {
     }
 };
 
+    async componentWillMount() {
+        await AsyncStorage.setItem('teststuff1', 'testvalue1');
+        const token = await AsyncStorage.getItem('@pixfam_token');
+        if (token) {
+            this.props.navigation.navigate('Home');
+            return;
+        }
+    };
+
 
   render() {
     

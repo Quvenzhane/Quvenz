@@ -37,7 +37,7 @@ class SignupScreen extends Component {
       this.setState({signedup: true});
       console.log('signed up? '+this.state.signedup);//yeah, I know this is async and the state
       //might not have been set yet... but am leaving it this way for now..
-      this.props.navigation.navigate('Home');// AsyncStorage is now working well,... but think it's
+      this.props.navigation.navigate('Welcome');// AsyncStorage is now working well,... but think it's
       //ok to navigate before saving the token. 
         
       
