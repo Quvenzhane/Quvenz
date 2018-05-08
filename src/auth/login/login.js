@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Image, KeyboardAvoidingView, TouchableOpacity}from 'react-native';
 import { StatusBar, Navigator,ImageBackground ,AsyncStorage} from 'react-native';
-import { H3} from 'native-base';
-
+import { H3, Toast } from 'native-base';
 
 import { graphql} from 'react-apollo';
 import styles from './style' 
@@ -15,11 +14,13 @@ class LoginScreen extends Component {
     super(props);
     this.state = {
       email: "", password: "", loading: false, loggedin: false,
-      errorMessage: false
+      errorMessage: false,
+      showToast: false
     };
   }
   onInputTextChange = (text, type) => {
     this.setState({ [type]: text });
+    this.setState({ loading: false });
   } 
 
   onLoginPress = async () => {
@@ -33,13 +34,9 @@ class LoginScreen extends Component {
         variables: {email, password}
       });
       if(resp){
-        //console.log('resp: ',resp);
         const data = resp.data;
-        // console.log('data.login.token:'+ data.login.token)
-        // console.log(data)
         this.setState({ loading: false });
         this.setState({loggedin: true});
-       // console.log('loggedin? '+this.state.login);
         this.props.navigation.navigate('Home');// AsyncStorage is now working well,... but think it's
         //ok to navigate before saving the token. 
         
@@ -65,6 +62,12 @@ class LoginScreen extends Component {
     } catch (error) {
       console.log('error in onlogin: ',error);
       this.setState({errorMessage: error.message});
+      Toast.show({
+        text: error.message,
+        buttonText: 'Okay',
+        type: "danger",
+        duration: 4000
+      });
       throw error;
     }
 };
@@ -83,45 +86,47 @@ class LoginScreen extends Component {
     
     const { navigate } = this.props.navigation;
     return (
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
-        <ImageBackground style={styles.backgroundContainer} source={require('../../../images/signup_bk.png')}>
-              <View style={styles.sologanText}>
-                <H3 style={styles.title}>Capture Every Moment</H3>
-                <Text style={styles.title}>{this.state.errorMessage}</Text>
-              </View>
-            <View style={styles.formContainer}>
-            
-              <TextInput style={styles.input}
-                  placeholder="username or email"
-                  returnKeyType="next"
-                  onSubmitEditing ={() => this.passwordInput.focus()}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  autoCorrect ={false}
-                  onChangeText={text => this.onInputTextChange(text, 'email')}
-                  placeholderTextColor='#2980b9'/>
+        <KeyboardAvoidingView behavior="padding" style={styles.container}>
+          <ImageBackground style={styles.backgroundContainer} source={require('../../../images/signup_bk.png')}>
+              
+                <View style={styles.sologanText}>
+                  <H3 style={styles.title}>Capture Every Moment</H3>
+                </View>
+                {this.state.loading && <Loading />}
+              <View style={styles.formContainer}>
+              
+                <TextInput style={styles.input}
+                    placeholder="username or email"
+                    returnKeyType="next"
+                    onSubmitEditing ={() => this.passwordInput.focus()}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    autoCorrect ={false}
+                    onChangeText={text => this.onInputTextChange(text, 'email')}
+                    placeholderTextColor='#2980b9'/>
 
-              <TextInput style={styles.input}
-                      placeholder="password"
-                      returnKeyType="go"
-                      placeholderTextColor='#2980b9'
-                      onChangeText={text => this.onInputTextChange(text, 'password')}
-                      secureTextEntry/>
+                <TextInput style={styles.input}
+                        placeholder="password"
+                        returnKeyType="go"
+                        placeholderTextColor='#2980b9'
+                        ref={(input) => this.passwordInput = input}
+                        onChangeText={text => this.onInputTextChange(text, 'password')}
+                        secureTextEntry/>
 
-              <TouchableOpacity style={styles.buttonContainer} 
-                    //onPress={() =>navigate('Home')}
-                     onPress={this.onLoginPress}
-                    >
-                  <Text style={styles.buttonText}>LOGIN</Text>
-              </TouchableOpacity>
+                <TouchableOpacity style={styles.buttonContainer} 
+                      //onPress={() =>navigate('Home')}
+                      onPress={this.onLoginPress}
+                      >
+                    <Text style={styles.buttonText}>LOGIN</Text>
+                </TouchableOpacity>
 
-               <View style={styles.signupTextContain} >
-                  <Text onPress={() =>navigate('Signup')}>Don't have an account?</Text>
-                  <Text onPress={() =>navigate('Signup')} style={styles.signupText}> Sign up</Text>     
-               </View>   
-           </View>
-        </ImageBackground >
-    </KeyboardAvoidingView>
+                <View style={styles.signupTextContain} >
+                    <Text onPress={() =>navigate('Signup')}>Don't have an account?</Text>
+                    <Text onPress={() =>navigate('Signup')} style={styles.signupText}> Sign up</Text>     
+                </View>   
+            </View>
+          </ImageBackground >
+        </KeyboardAvoidingView>
     );
   }
 }

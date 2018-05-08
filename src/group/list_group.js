@@ -3,7 +3,6 @@ import { Container, Header, Content, List, ListItem, Text, Badge, View, H3, Icon
 import styles from './style'; 
 import globalColor from '../../config/app-colors'; 
 import { Query } from "react-apollo";
-
 import { GET_GROUPS} from '../graph/queries/groupQueries';
 
 export default class ListGroup extends Component {

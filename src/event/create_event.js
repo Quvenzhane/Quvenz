@@ -20,12 +20,6 @@ export default class CreateEvent extends Component {
 
     }
     doSubmit(doAddEvent, obj, e){
-      console.log('handling submission ..');
-      
-      
-      console.log(doAddEvent);
-      console.log(obj);
-      console.log(e);
 
       
       const { group, title, description } = e;
@@ -50,7 +44,7 @@ export default class CreateEvent extends Component {
                            iscreated={this.state.created} 
                            handleSubmit={this.doSubmit.bind(this, addEvent, {data,loading, error})} />         
         </Container>
-
+ 
       )}
       </Mutation> 
     )

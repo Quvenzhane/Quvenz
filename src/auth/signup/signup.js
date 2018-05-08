@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, Image, ImageBackground,} from 'react-native';
 import { KeyboardAvoidingView, TouchableOpacity , StatusBar, AsyncStorage} from 'react-native';
-import {H3} from 'native-base';
+import {H3, Toast} from 'native-base';
 import { graphql, compose } from 'react-apollo';
 
 import styles from './style' 
@@ -13,12 +13,13 @@ class SignupScreen extends Component {
     super(props);
     this.state = {
       username: "", email: "", password: "", loading: false, signedup: false,
-      errorMessage: false
+      errorMessage: false,
+      showToast: false
     }
   }
   onInputTextChange = (text, type) => {
     this.setState({ [type]: text });
-   // console.log(this.state);
+    this.setState({ loading: false });
   } 
 
   onSignupPress = async () => {
@@ -50,8 +51,6 @@ class SignupScreen extends Component {
         throw error;
       }
 
-      
-      
      // here I will later redirect to login ... I'll do 
      //something like:  return this.props.login(); 
      
@@ -61,13 +60,19 @@ class SignupScreen extends Component {
     } catch (error) {
       console.log('error in onsignup: ',error);
       this.setState({errorMessage: error.message});
+      Toast.show({
+        text: error.message,
+        buttonText: 'Okay',
+        type: "danger",
+        duration: 4000
+      });
       throw error;
     }
 };
   render() {
     const { navigate } = this.props.navigation;
     return (
-      
+        
           <KeyboardAvoidingView behavior="padding" style={styles.container}>
             <ImageBackground style={styles.backgroundContainer} 
                   source={require('../../../images/signup_bk.png')}>
@@ -75,16 +80,15 @@ class SignupScreen extends Component {
               <View style={styles.container}>
                   <View style={styles.sologanText}>
                     <H3 style={styles.title}>Capture Every Moment</H3>
-                    {/* <H2>Header Two </H2> */}
-                    {this.state.loading && <Loading />}
-                    <Text style={styles.title}>{this.state.errorMessage}</Text>
-
+                    {/* <Text style={styles.title}>{this.state.errorMessage}</Text> */}
                   </View>
+                  {this.state.loading && <Loading />}
+                  
                   <View style={styles.formContainer}>
                     <TextInput style={styles.input}
                         placeholder="Username"
                         returnKeyType="next"
-                        onSubmitEditing ={() => this.passwordInput.focus()}
+                        onSubmitEditing ={() => this.passwordEmail.focus()}
                         autoCorrect ={false}
                         placeholderTextColor='#2980b9'
                       onChangeText={text => this.onInputTextChange(text, 'username')}
@@ -97,6 +101,7 @@ class SignupScreen extends Component {
                         keyboardType="email-address"
                         autoCapitalize="none"
                         autoCorrect ={false}
+                        ref={(input) => this.passwordEmail = input}
                         placeholderTextColor='#2980b9'
                         onChangeText={text => this.onInputTextChange(text, 'email')}
                         />
@@ -124,7 +129,6 @@ class SignupScreen extends Component {
 
           </ImageBackground >
       </KeyboardAvoidingView>
-    
   
     );
   }

@@ -1,14 +1,4 @@
 import React from 'react';
-/*
-import { createHttpLink, HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory'
-
-import { ApolloClient } from 'apollo-client'
-import { setContext } from 'apollo-link-context';
-import { onError } from "apollo-link-error";
-import { ApolloLink } from 'apollo-link';
-*/
-
 import {AsyncStorage} from 'react-native';
 import ApolloClient from 'apollo-boost';
 import gql from "graphql-tag";
@@ -18,7 +8,7 @@ import gql from "graphql-tag";
 //const httpLink = createHttpLink({uri: 'http://10.0.2.2:4800/graphql'});
 
 export const client = new ApolloClient({
-  uri: 'http://192.168.1.181:4800/graphql',
+  uri: 'http://192.168.1.111:4800/graphql',
   request: async (operation) => {
     const token = await AsyncStorage.getItem('@pixfam_token');
     if(token){
