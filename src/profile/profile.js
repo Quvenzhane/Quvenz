@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Image,ScrollView, View } from 'react-native'; 
-import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Button, H3 } from 'native-base';
+import { Container, Header, Content, List, ListItem, Thumbnail, Text, Body, Button, H3, Toast } from 'native-base';
 import styles from './style'; 
 import globalColor from '../../config/app-colors'; 
 import { Query } from "react-apollo";
 import { GET_PROFILE} from '../graph/queries/profileQueries';
 
 export default class Profile extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          showToast: false
+        };
+    }
+      
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -14,9 +21,18 @@ export default class Profile extends Component {
         <Query query={GET_PROFILE}>
             {({ loading, error, data }) => {
             var theList = null;
+            var name = null;
 
-            if (loading) return <Text>Loading...</Text>;
-           // if (error) return <Text>Error :(</Text>;
+            if (loading) return <Text> Loading...</Text>;
+            if (error){
+                Toast.show({
+                    text: error.message,
+                    buttonText: 'Okay',
+                    type: "danger",
+                    duration: 4000
+                    });
+                    return <Text> Whoops! Something got broken</Text>;
+            }
 
            if(data){ console.log('there is data'); loadingIt = ""; errorShit = "";
                 if(data.getProfile.groupMember){
@@ -28,11 +44,11 @@ export default class Profile extends Component {
                                 <Thumbnail square size={80} source={require('../../images/cam.png') } />
                                 <Body>
                                     <Text  onPress={() =>navigate('Group')}>{groups.group.title}</Text>
-                                    <Text note>123 Participants . .</Text>
+                                    <Text note>{groups.member.length} Participants . .</Text>
                                 </Body>
                             </ListItem>
-                        }>
-                    </List>)
+                            }>
+                        </List>)
                 }
                 if(data.getProfile.eventMember){
                     eventList=(
@@ -46,10 +62,14 @@ export default class Profile extends Component {
                             </ListItem>
                         }>
                     </List>
-
-                    )
-                    
+                    ) 
                 }
+                if(data.getProfile.first_name){
+                    name= data.getProfile.first_name+" "+data.getProfile.last_name ;
+                }else{
+                    name = data.getProfile.user.username;
+                }
+
             }
             return(
                 <Container  style={styles.container}>            
@@ -58,9 +78,9 @@ export default class Profile extends Component {
                             <ListItem>
                             <Thumbnail large source={require('../../images/pic.jpg')}  />
                             <Body style={styles.itemPad} >
-                                <H3 style={styles.itemPad}>{data.getProfile.user.username}</H3>
+                                <H3 style={styles.itemPad}>{name}</H3>
                                 <Text style={styles.itemPadBottom} note>{data.getProfile.country}.{data.getProfile.state}</Text>
-                                <Button  rounded info>
+                                <Button  rounded info  onPress={() =>navigate('EditProfile')}>
                                     <Text>Edit Profile</Text>
                                 </Button>
                             </Body> 

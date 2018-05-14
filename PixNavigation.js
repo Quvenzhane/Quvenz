@@ -21,6 +21,7 @@ import AddPicture from './src/event/add_pic';
 import GroupScreen from './src/group/group_screen';
 import Notification from './src/notification/notification';
 import Profile from './src/profile/profile';
+import EditProfile from './src/profile/edit_profile';
 import Browse from './src/browse/browse';
 
 import Welcome from './src/welcome/welcome';
@@ -39,7 +40,6 @@ const PixNavigation = StackNavigator(
     WelcomeGroup: { screen: WelcomeGroup, navigationOptions: {header: false} },
     WelcomeEvent: { screen: WelcomeEvent, navigationOptions: {header: false} },
 
-    
     CreateGroup: { screen: CreateGroup, navigationOptions: {title: 'Create Group', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     ListGroup: { screen: ListGroup, navigationOptions: {title: 'Group List', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Group: { screen: GroupScreen, navigationOptions: {title: 'Group Details', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
@@ -56,6 +56,7 @@ const PixNavigation = StackNavigator(
 
     AddPicture: { screen: AddPicture, navigationOptions: {title: 'Add Event Pictures', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Profile: { screen: Profile, navigationOptions: {title: 'Profile', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
+    EditProfile: { screen: EditProfile, navigationOptions: {title: 'Edit Profile', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Browse: { screen: Browse, navigationOptions: {title: 'Browse Events', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Notification: { screen: Notification, navigationOptions: {title: 'Notifications', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
 
