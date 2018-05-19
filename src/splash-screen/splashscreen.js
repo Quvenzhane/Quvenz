@@ -15,12 +15,8 @@ export default class SplashScreen extends Component {
         title: 'Welcome',
     };
 
-
-
     render() {
         const {navigate} = this.props.navigation;
-
-
         return (
 
             <ImageBackground style={styles.backgroundContainer} source={require('../../images/plain_bk.png')}>
@@ -29,7 +25,7 @@ export default class SplashScreen extends Component {
                     <Text style={styles.solgan}>Picture events sharing app</Text>
 
                     <TouchableOpacity style={styles.buttonContainer} onPress={() =>
-                        navigate('Login')}>
+                        navigate('Home')}>
                         <Text style={styles.buttonText}>GET STARTED</Text>
                     </TouchableOpacity>
 

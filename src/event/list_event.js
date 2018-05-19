@@ -5,7 +5,7 @@ import { Right, Left} from 'native-base';
 import styles from './style'; 
 import globalColor from '../../config/app-colors'; 
 import { Query } from "react-apollo";
-import { GET_GROUP_EVENTLIST} from '../graph/queries/groupEventListQueries';
+import { GET_EVENTS} from '../graph/queries/eventQueries';
 
 
 export default class ListEvent extends Component {
@@ -19,10 +19,10 @@ export default class ListEvent extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const groupId ="5ae4e9d4e08d44277015f14d";
-    var items = ['Sola Birthday','Jonas Jnr Birthday'];
+    var items = ['Sola Birthday','Jonas Jnr Birthdfddday'];
     return (
 
-        <Query query={GET_GROUP_EVENTLIST} variables={{ groupId }}>
+        <Query query={GET_EVENTS}>
             {({ loading, error, data }) => 
             { 
                 var theList = null;
@@ -36,47 +36,40 @@ export default class ListEvent extends Component {
                         });
                         return <Text> Whoops! Something got broken</Text>;
                 }
+                if(data){ console.log('there is data');
+                if(data.getEventMembers){ 
+                    theList = (
+                        <List dataArray={data.getEventMembers}
+                        renderRow={(eventMembers) =>
+                         <ListItem>
+                            {eventMembers.event.e_type=="Private"?<Icon name="lock" style={{color:"gray"}}/>:<Icon name="people" style={{color:"gray"}}/>}
+                            <Body>
+                                <Text onPress={() =>navigate('Event')}>{eventMembers.event.title}</Text>
+                                <Text note>43,004 pictures</Text>
+                            </Body>
+                            <Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddEventParticipant')}>share</Text>
+                        </ListItem>
+                        }>
+                    </List>)
+                }
+            }
 
                 return(   
+                    
                     <Container style={styles.container}>
                         <Content>
-                            <View style={styles.metricsContainer}>
+                            {/* <View style={styles.metricsContainer}>
                                 <Text>  Pictures  </Text>
                                 <Badge>
                                     <Text>2</Text>
                                 </Badge>
-                            </View> 
+                            </View>  */}
                             <View style={styles.listHeader}> 
                                 <Icon name="add" style={{paddingRight:15}}
                                             onPress={() =>navigate('CreateEvent')}/>                
                                 <H3 style={styles.header}>Followed Events</H3>
-                            </View>   
-                            <List dataArray={items}
-                                renderRow={(item) =>
-                                <ListItem>
-                                    <Icon name="lock" style={{color:"gray"}}/>
-                                    <Body>
-                                        <Text onPress={() =>navigate('Event')}>{item} </Text>
-                                        <Text note>43,004 pictures</Text>
-                                    </Body>
-                                    <Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddEventParticipant')}>share</Text>
-                                </ListItem>
-                                
-                                }>
-                            </List>
-                            <List dataArray={items}
-                                renderRow={(item) =>
-                                <ListItem>
-                                    <Icon name="people" style={{color:"gray"}}/>
-                                    <Body>
-                                        <Text onPress={() =>navigate('Event')}>{item} </Text>
-                                        <Text note>43,004 pictures</Text>
-                                    </Body>
-                                    <Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddEventParticipant')}>share</Text>
-                                </ListItem>
-                                
-                                }>
-                            </List>
+                            </View>  
+                            {theList}
                         </Content>
                     </Container>
                 )
