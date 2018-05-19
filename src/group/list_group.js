@@ -41,7 +41,7 @@ export default class ListGroup extends Component {
                             <ListItem>
                                 <Body>
                                     <Text  onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.group.title}</Text>
-                                    <Text note>{groups.member.length} members</Text>
+                                    <Text note>{groups.member.length==1?groups.member.length+" member":groups.member.length+" members" }</Text>
                                 </Body>
                     
                                 {groups.user_type=="Admin"?<Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddGroupMember')}>add</Text>:<Text></Text>}

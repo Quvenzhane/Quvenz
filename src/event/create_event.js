@@ -19,9 +19,7 @@ export default class CreateEvent extends Component {
       this.doSubmit = this.doSubmit.bind(this);
 
     }
-    doSubmit(doAddEvent, obj, e){
-
-      
+    doSubmit(doAddEvent, obj, e){      
       const { group, title, description } = e;
       const {data,loading, error} = obj;
       doAddEvent({variables: {title, description, group}});

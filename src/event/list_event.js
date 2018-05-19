@@ -18,8 +18,6 @@ export default class ListEvent extends Component {
   
   render() {
     const { navigate } = this.props.navigation;
-    const groupId ="5ae4e9d4e08d44277015f14d";
-    var items = ['Sola Birthday','Jonas Jnr Birthdfddday'];
     return (
 
         <Query query={GET_EVENTS}>
@@ -45,6 +43,7 @@ export default class ListEvent extends Component {
                             {eventMembers.event.e_type=="Private"?<Icon name="lock" style={{color:"gray"}}/>:<Icon name="people" style={{color:"gray"}}/>}
                             <Body>
                                 <Text onPress={() =>navigate('Event')}>{eventMembers.event.title}</Text>
+                                <Text note style={{fontSize:10}}>{eventMembers.event.description}</Text>
                                 <Text note>43,004 pictures</Text>
                             </Body>
                             <Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddEventParticipant')}>share</Text>

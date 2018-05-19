@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   container: {
       flex:1,
-     padding: 20,
+     padding: 15,
   },
   button:{
     marginTop:30
@@ -21,6 +21,12 @@ export default StyleSheet.create({
     opacity: 0.4,
     paddingBottom: 20
   },
+  backgroundEdit:{
+    flex: 1, 
+    padding: 15,
+    borderRadius :7,
+    backgroundColor: '#FFF'
+},
  
 
 });

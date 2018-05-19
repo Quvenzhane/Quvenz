@@ -1,85 +1,84 @@
 import React, { Component } from 'react'
-import { Container, Content, Form, Item, Input, Label, Button,Text } from 'native-base';
+import { Container, Content, Form, Item, Input, Label, Button,Text,Toast } from 'native-base';
 import { graphql } from "react-apollo";
 import styles from './style'; 
-
+import { Mutation } from "react-apollo";
 import {ADD_GROUP } from '../graph/mutations/groupMutation';
 
-class CreateGroup extends Component {
+export default class CreateGroup extends Component {
   constructor(props){
     super(props); 
     this.state = {
-      title: "", description: "", loading: false, created: false,
-      errorMessage: false
+      title: "", description: "",
+      showToast: false
     };
-
+    this.doSubmit = this.doSubmit.bind(this);
   }
 
   onInputTextChange = (text, type) => {
     this.setState({ [type]: text });
-   // console.log(this.state);
+    //this.state.showToast = false;
   } 
-  onCreatePress = async () => {
-    this.setState({ loading: true });
-    console.log('this.state in oncreatepress: ',this.state);
-    const { title, description } = this.state;
-    try 
-    {
-      const resp = await this.props.mutate({
-        variables: {title, description}
-      });
-      console.log('resp: ');
-      console.log(JSON.stringify(resp, null, 4))
-      const data = resp.data;
-      console.log(data)
-      this.setState({ loading: false });
-      this.setState({created: true}); 
-      this.setState({title:"", description: "", errorMessage:""});     
-    } catch (error) 
-    {
-      console.log('error in oncreate: ',error);
-      this.setState({ loading: false });
-      this.setState({created: false}); 
-      const responseError = error.message.substring(error.message.lastIndexOf(':')+1);
-      this.setState({errorMessage: responseError, created: false});
-      console.log(JSON.stringify(error, null, 4));
+ 
+  doSubmit = (doAddGroup, obj, e) => {
+    if(this.state.title != ""){
+      const { title, description } = this.state;
+      const {data,loading, error} = obj;
+     doAddGroup({variables: {title, description}}); 
+     this.state.title=""; 
+     this.state.description="";
 
-      //this.setState({errorMessage: error.message});
-      //throw error;
+    }else{
+      Toast.show({
+          text: "Aw! Provide Group title",
+          type: "warning",
+          duration: 4000
+          });
     }
-}
+ 
+} 
 
-
-   // const { email, password } = this.state;
   render() {
-    const theError = this.state.errorMessage;
-    const success = this.state.created;
+    const { navigate } = this.props.navigation;
     return (
+      <Mutation mutation={ADD_GROUP}>
+      {(addGroup, {data, loading, error }) => 
+      (
+       
         <Container style={styles.container}>
-          <Content>
-            <Form>
-              <Item>
-                <Label>{theError? theError: ""} </Label>
-                <Label>{success? "created successfully": ""} </Label>
-              </Item>
-              <Item floatingLabel>
-                <Label>Group name1</Label>
-                <Input onChangeText={text => this.onInputTextChange(text, 'title')}
-                  value={this.state.title} />
-              </Item>
-              <Item floatingLabel last>
-                <Label>Description</Label>
-                <Input onChangeText={text => this.onInputTextChange(text, 'description')} 
-                  value={this.state.description}/>
-              </Item>
-              <Button block style={styles.button} onPress={this.onCreatePress}>
-                <Text>Create Group</Text>
-              </Button>
-            </Form>
-          </Content>
+            {loading && <Text>Loading...</Text>}
+            {error && <Text>Error :( Please try again</Text>}
+            {data &&  Toast.show({
+                        text: "Group was successfuly created",
+                        type: "success",
+                        duration: 4000
+                        })
+            }
+            
+            <Text note style={{padding:5}}>Create a group to organise similar events</Text>
+
+            <Content style={styles.backgroundEdit}>
+              <Form >
+                <Item floatingLabel>
+                  <Label>Group name</Label>
+                  <Input onChangeText={text => this.onInputTextChange(text, 'title')}
+                    value={this.state.title} />
+                </Item>
+                <Item floatingLabel last>
+                  <Label>Description</Label>
+                  <Input onChangeText={text => this.onInputTextChange(text, 'description')} 
+                    value={this.state.description}/>
+                </Item>
+                <Button block rounded info style={styles.button} onPress={this.doSubmit.bind(this, addGroup, {data,loading, error})}>
+                  <Text>Create Group</Text>
+                </Button>
+              </Form>
+            
+            </Content>
         </Container>
+      )}
+      </Mutation> 
     )
   }
 }
 
-export default graphql(ADD_GROUP)( CreateGroup);
