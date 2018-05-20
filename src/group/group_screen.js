@@ -41,7 +41,7 @@ export default class GroupScreen extends Component {
                          <ListItem>
                          <Thumbnail square size={80} source={require('../../images/star.png') } />
                          <Body>
-                             <Text onPress={() =>navigate('Event')}>{events.title}</Text>
+                             <Text onPress={() =>navigate('Event',{eventId:events._id})}>{events.title}</Text>
                              <Text note>123 pictures . .</Text>
                          </Body>
                      </ListItem>

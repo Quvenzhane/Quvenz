@@ -76,8 +76,6 @@ export default class ListGroup extends Component {
                     </View>   
                     <View>
                         {theList}
-                        <Text>{console.log(data)}</Text>
-                        <Text>{data && console.log(data.getGroups)}</Text>
                     </View>
                 </Content>
             </Container>)

@@ -9,7 +9,7 @@ query {
         }
         groupMember {
           group{
-            title,description
+            title,description,_id
           }
           member{
             _id
@@ -17,7 +17,7 @@ query {
         }
         eventMember{
           event{
-            title,description
+            _id,title,description
           }
         }
     }

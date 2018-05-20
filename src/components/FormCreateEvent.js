@@ -50,14 +50,14 @@ export default class FormCreateEvent extends Component {
             type: "danger",
             duration: 4000
             });
-        }   
-        if(this.props.isSuccess){
-            Toast.show({
-                text: "Event was successfully created",
-                type: "success",
-                duration: 4000
-                });
-        }      
+    }   
+    if(this.props.isSuccess){
+        Toast.show({
+            text: "Event was successfully created",
+            type: "success",
+            duration: 4000
+            });
+    }      
     return (
         <Query query={GET_GROUPLIST}>
             {({ loading, error, data }) => 

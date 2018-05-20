@@ -43,8 +43,8 @@ export default class Profile extends Component {
                             <ListItem>
                                 <Thumbnail square size={80} source={require('../../images/cam.png') } />
                                 <Body>
-                                    <Text  onPress={() =>navigate('Group')}>{groups.group.title}</Text>
-                                    <Text note>{groups.member.length} Participants . .</Text>
+                                    <Text  onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.group.title}</Text>
+                                    <Text note>{groups.member.length==1?groups.member.length+" Participant":groups.member.length+" Participants"} . . .</Text>
                                 </Body>
                             </ListItem>
                             }>
@@ -56,7 +56,7 @@ export default class Profile extends Component {
                         renderRow={(events) =>
                             <ListItem>
                                 <Body>
-                                    <Text  onPress={() =>navigate('Event')}>{events.event.title}</Text>
+                                    <Text  onPress={() =>navigate('Event',{eventId:events.event._id})}>{events.event.title}</Text>
                                     <Text note>{events.event.description}</Text>
                                 </Body>
                             </ListItem>
