@@ -13,34 +13,31 @@ export default class CreateEvent extends Component {
     constructor(props){
       super(props);
       this.state = { 
-        loading: false, created: false,
-        errorMessage: false 
+     
       };
       this.doSubmit = this.doSubmit.bind(this);
 
     }
+  
+
     doSubmit(doAddEvent, obj, e){      
-      const { group, title, description } = e;
+      const { group, title, description, eventType } = e;
       const {data,loading, error} = obj;
-      doAddEvent({variables: {title, description, group}});
-      if(loading) this.setState({loading: true});
-      if(error) this.setState({errorMessage: 'an error occurred, try again'});
-      if(data){
-        console.log('successfully created your event ');
-        this.setState({created: true, errorMessage: false, loading: false})
-      }
-      //console.log(obj);
+      doAddEvent({variables: {title, description, eventType, group}});
     }
+
   render() {
     return (
       <Mutation mutation={ADD_EVENT}>
       {(addEvent, {data, loading, error }) => 
       (
         <Container style={styles.container}>
-          <FormCreateEvent isloading={this.state.loading} 
-                           iserror={this.state.errorMessage} 
-                           iscreated={this.state.created} 
-                           handleSubmit={this.doSubmit.bind(this, addEvent, {data,loading, error})} />         
+          <Text>{loading && 'loading...'}</Text>
+          <Text note style={{padding:5}}>Organise your event under a group</Text>
+          <FormCreateEvent 
+                isError={ error? error.message:''}
+                isSuccess={ data? data:''}
+                handleSubmit={this.doSubmit.bind(this, addEvent, {data,loading, error})} />         
         </Container>
  
       )}

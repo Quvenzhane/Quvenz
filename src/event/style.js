@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container: {
     flex:1,
     //flexDirection: 'column', 
-    padding: 20,
+    padding: 15,
   },
   containerCardByPic: {
     flex:1,
@@ -41,6 +41,12 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#E6E6E6"
   },
+  backgroundEdit:{
+    flex: 1, 
+    padding: 10,
+    borderRadius :7,
+    backgroundColor: '#FFF'
+},
   
 });
   
