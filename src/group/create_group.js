@@ -4,6 +4,7 @@ import { graphql } from "react-apollo";
 import styles from './style'; 
 import { Mutation } from "react-apollo";
 import {ADD_GROUP } from '../graph/mutations/groupMutation';
+import { GET_GROUPLIST} from '../graph/queries/groupListQueries';
 
 export default class CreateGroup extends Component {
   constructor(props){
@@ -41,7 +42,7 @@ export default class CreateGroup extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <Mutation mutation={ADD_GROUP}>
+      <Mutation mutation={ADD_GROUP} refetchQueries={[ {query:GET_GROUPLIST}]}>
       {(addGroup, {data, loading, error }) => 
       (
        

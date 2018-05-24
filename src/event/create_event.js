@@ -6,6 +6,7 @@ import { Container, Content } from 'native-base';
 
 
 import { ADD_EVENT} from '../graph/mutations/eventMutation';
+import { GET_EVENTS} from '../graph/queries/eventQueries';
 import styles from './style'; 
 import FormCreateEvent from '../components/FormCreateEvent';
 
@@ -16,10 +17,8 @@ export default class CreateEvent extends Component {
      
       };
       this.doSubmit = this.doSubmit.bind(this);
-
     }
   
-
     doSubmit(doAddEvent, obj, e){      
       const { group, title, description, eventType } = e;
       const {data,loading, error} = obj;
@@ -28,7 +27,7 @@ export default class CreateEvent extends Component {
 
   render() {
     return (
-      <Mutation mutation={ADD_EVENT}>
+      <Mutation mutation={ADD_EVENT} refetchQueries={[ {query:GET_EVENTS}]}>
       {(addEvent, {data, loading, error }) => 
       (
         <Container style={styles.container}>

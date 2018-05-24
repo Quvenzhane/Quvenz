@@ -6,8 +6,6 @@ import styles from './../profile/style';
 import { Query } from "react-apollo";
 import { GET_PROFILE} from '../graph/queries/profileQueries';
 
-
-
 export default class FormEditProfile extends Component {
     constructor(props){
         super(props); 
@@ -64,8 +62,9 @@ export default class FormEditProfile extends Component {
                 text: "Profile update successful",
                 type: "success",
                 duration: 4000
-                });
-            }         
+            });
+            this.props.theNav('Profile');
+        }         
 
     return (
         <Query query={GET_PROFILE}>
@@ -88,15 +87,15 @@ export default class FormEditProfile extends Component {
                             <Item floatingLabel>
                                 <Label>First Name</Label>
                                 <Input onChangeText={text => this.onInputTextChange(text, 'firstName')}
-                                    value={this.state.firstName? this.state.firstName: data.getProfile.first_name} />
+                                    value={this.state.firstName? this.state.firstName: this.state.firstName = data.getProfile.first_name} />
                             </Item>
                             <Item floatingLabel>
                                 <Label>Last Name</Label>
                                 <Input onChangeText={text => this.onInputTextChange(text, 'lastName')}
-                                    value={this.state.lastName ?this.state.lastName :data.getProfile.last_name} />
+                                    value={this.state.lastName ?this.state.lastName :this.state.lastName = data.getProfile.last_name} />
                             </Item>
                             <Picker
-                                selectedValue={this.state.sex ?this.state.sex :data.getProfile.sex}
+                                selectedValue={this.state.sex ?this.state.sex : this.state.sex = data.getProfile.sex}
                                 onValueChange={(itemValue, itemIndex) => this.setState({sex: itemValue})} style={styles.picker}>
                                 <Picker.Item label="Pick a sex" value="" />
                                 <Picker.Item label="Male" value="Male" />
@@ -108,7 +107,7 @@ export default class FormEditProfile extends Component {
                             <Item floatingLabel>
                                 <Label>Who are you?</Label>
                                 <Input onChangeText={text => this.onInputTextChange(text, 'bio')}
-                                    value={this.state.bio? this.state.bio : data.getProfile.bio} />
+                                    value={this.state.bio? this.state.bio :this.state.bio = data.getProfile.bio} />
                             </Item>
                             <Button  block rounded info style={styles.editButton} onPress={this.doSubmit} >
                                 <Text>Save Profile</Text>

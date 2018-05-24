@@ -5,6 +5,7 @@ import { Mutation } from "react-apollo";
 import { Container, Content } from 'native-base';
 
 import { EDIT_PROFILE} from '../graph/mutations/profileMutation';
+import { GET_PROFILE} from '../graph/queries/profileQueries';
 import styles from './style'; 
 import FormEditProfile from '../components/FormEditProfile';
 
@@ -23,20 +24,21 @@ export default class EditProfile extends Component {
         doEditProfile({variables: {firstName, lastName, sex, dateOfBirth, bio}}); 
     }
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <Mutation mutation={EDIT_PROFILE}>
-      {(updateProfile, {data, loading, error }) => 
-      (
-        <Container style={styles.container}>
-          <Text>{loading && 'loading'}</Text>
-          {/* <Text>{data && 'success'}</Text> */}
-            <FormEditProfile
-                isError={ error? error.message:''}
-                isSuccess={ data? data:''}
-                handleSubmit={this.doSubmit.bind(this, updateProfile, {data,loading, error})} />         
-        </Container>
- 
-      )}
+      <Mutation mutation={EDIT_PROFILE} refetchQueries={[ {query:GET_PROFILE}]}>
+        {(updateProfile, {data, loading, error }) => 
+        (
+          <Container style={styles.container}>
+            <Text>{loading && 'loading...'}</Text>
+            {/* <Text>{data && 'success'}</Text> */}
+              <FormEditProfile
+                  isError={ error? error.message:''}
+                  isSuccess={ data? data:''}
+                  handleSubmit={this.doSubmit.bind(this, updateProfile, {data,loading, error})} theNav={navigate} />         
+          </Container>
+  
+        )}
       </Mutation> 
     )
   }
