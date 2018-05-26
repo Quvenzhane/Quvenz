@@ -39,9 +39,9 @@ export default class ListGroup extends Component {
                             <List dataArray={data.getUserGroups}
                             renderRow={(groups) =>
                             <ListItem>
-                                <Body>
+                                <Body >
                                     <Text  onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.group.title}</Text>
-                                    <Text note>{groups.member.length==1?groups.member.length+" member":groups.member.length+" members" }</Text>
+                                    <Text note onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.member.length==1?groups.member.length+" member":groups.member.length+" members" }</Text>
                                 </Body>
                     
                                 {groups.user_type=="Admin"?<Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddGroupMember')}>add</Text>:<Text></Text>}
@@ -70,9 +70,11 @@ export default class ListGroup extends Component {
                         </Badge> */}
                     </View> 
                     <View style={styles.listHeader}> 
-                        <Icon name="add" style={{paddingRight:15}}
-                                        onPress={() =>navigate('CreateGroup')}/>
-                        <H3 style={styles.header}>Followed Groups</H3>
+                        
+                        <H3 style={styles.header}>
+                            <Icon name="add" style={{paddingRight:15}}
+                                        onPress={() =>navigate('CreateGroup')}/> Followed Groups
+                        </H3>
                     </View>   
                     <View>
                         {theList}

@@ -37,7 +37,7 @@ export default class HomeScreen extends Component {
                <HomeBody theNav={navigate}/>
                 <Fab style={{ backgroundColor: '#FF6600', marginBottom:40 }}
                     position="bottomRight"
-                    onPress={() =>navigate('AddPicture')}>
+                    onPress={() =>navigate('AddPictureByList')}>
                     <Icon name="add" />
                 </Fab>
                 <HomeFooter theNav={navigate}/>

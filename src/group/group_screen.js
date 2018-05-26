@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Content, Badge, Icon, View, Text, H3} from 'native-base';
-import { List, ListItem, Body, Thumbnail, Toast} from 'native-base';
+import { List, ListItem, Body, Thumbnail, Toast, Fab} from 'native-base';
 
 import styles from './style'; 
 import { Query } from "react-apollo";
@@ -64,6 +64,11 @@ export default class GroupScreen extends Component {
                         
                         {theList}
                     </Content>
+                    <Fab style={{ backgroundColor: '#FF6600', marginBottom:40 }}
+                        position="bottomRight"
+                        onPress={() =>navigate('CreateGroup')}>
+                        <Icon name="add" />
+                    </Fab>
                 </Container>
                 )
             }}

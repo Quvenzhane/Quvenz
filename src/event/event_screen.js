@@ -17,7 +17,9 @@ export default class EventScreen extends Component {
         };
     }
     loadDetails() {
+        var cardDetails =null;
         return this.state.eventDetail.map(details => (
+
             <CardPicByUser username={details.user.profile!=null
                 ?details.user.profile.first_name+" "+details.user.profile.last_name
                 :details.user.username} 

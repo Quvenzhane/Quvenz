@@ -5,11 +5,13 @@ export default gql`
     $username: String!
     $email: String!
     $password: String!
+    $imagePath: String!
     ) {
         signup(
         username: $username
         email: $email
         password: $password
+        image_path: $imagePath
         ) {token}
       }
 `;

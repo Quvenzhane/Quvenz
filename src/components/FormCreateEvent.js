@@ -86,6 +86,7 @@ export default class FormCreateEvent extends Component {
                             <Picker
                                 selectedValue={this.state.group}
                                 onValueChange={(itemValue, itemIndex) => this.setState({group: itemValue})}>
+                                <Picker.Item label="Pick Group" value="" />
                                 {this.loadGroupList()}
                             </Picker>
                             <Item floatingLabel>

@@ -9,7 +9,9 @@ import gql from "graphql-tag";
 
 export const client = new ApolloClient({
   // uri: 'https://pix-fam.herokuapp.com/graphql',
-  uri: 'http://10.0.2.2:4800/graphql',
+  //uri: 'http://10.0.2.2:4800/graphql',
+  uri: 'http://192.168.43.76:4800/graphql',
+  
   request: async (operation) => {
     const token = await AsyncStorage.getItem('@pixfam_token');
     if(token){

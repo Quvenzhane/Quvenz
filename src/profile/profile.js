@@ -76,7 +76,7 @@ export default class Profile extends Component {
                     <View style={styles.containerWhite}>
                         <List>
                             <ListItem>
-                            <Thumbnail large source={require('../../images/pic.jpg')}  />
+                            <Thumbnail large source={require('../../images/profile.jpg')}  />
                             <Body style={styles.itemPad} >
                                 <H3 style={styles.itemPad}>{name}</H3>
                                 <Text style={styles.itemPadBottom} note>{data.getProfile.country}.{data.getProfile.state}</Text>
@@ -84,6 +84,8 @@ export default class Profile extends Component {
                                     <Text>Edit Profile</Text>
                                 </Button>
                             </Body> 
+                            {/* <Image source={{uri: 'https://magbodo.com/asset/pixfam-images/pic3.jpg'}}
+                                        style={{width: 40, height: 40}} /> */}
                             </ListItem>
                         </List>
                     </View>

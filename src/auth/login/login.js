@@ -20,7 +20,6 @@ class LoginScreen extends Component {
   }
   onInputTextChange = (text, type) => {
     this.setState({ [type]: text });
-    this.setState({ loading: false });
   } 
 
   onLoginPress = async () => {
@@ -61,6 +60,7 @@ class LoginScreen extends Component {
       
     } catch (error) {
       console.log('error in onlogin: ',error);
+      this.setState({ loading: false });
       this.setState({errorMessage: error.message});
       Toast.show({
         text: error.message,
@@ -96,7 +96,7 @@ class LoginScreen extends Component {
               <View style={styles.formContainer}>
               
                 <TextInput style={styles.input}
-                    placeholder="username or email"
+                    placeholder="Username or email"
                     returnKeyType="next"
                     onSubmitEditing ={() => this.passwordInput.focus()}
                     keyboardType="email-address"
@@ -106,7 +106,7 @@ class LoginScreen extends Component {
                     placeholderTextColor='#2980b9'/>
 
                 <TextInput style={styles.input}
-                        placeholder="password"
+                        placeholder="Password"
                         returnKeyType="go"
                         placeholderTextColor='#2980b9'
                         ref={(input) => this.passwordInput = input}

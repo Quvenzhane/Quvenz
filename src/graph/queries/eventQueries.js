@@ -5,6 +5,9 @@ query {
     getEventMembers{
         event{
           _id,title,description,e_type
+          photo{
+            image_url
+          }
         }
       }
   }

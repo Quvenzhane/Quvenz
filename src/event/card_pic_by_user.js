@@ -32,8 +32,8 @@ const cards = [
 export default class CardPicByUser extends Component {
   render() {
     return (
-        <Container  >
-           {/* <Card >      */}
+        // <Container  >
+           <View>     
            <DeckSwiper
                 dataSource={cards}
                 renderItem={item =>
@@ -57,8 +57,8 @@ export default class CardPicByUser extends Component {
                 </Card>
                 }
           />
-          {/* </Card>  */}
-        </Container>
+          </View> 
+        // {/* </Container> */}
       );
    
   }

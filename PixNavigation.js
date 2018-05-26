@@ -17,7 +17,8 @@ import EventScreen from './src/event/event_screen';
 import AddEventParticipant from './src/event/add_event_participant';
 import EventParticipant from './src/event/event_participants';
 
-import AddPicture from './src/event/add_pic';
+import AddPictureByList from './src/picture/add_by_event_list';
+import AddPictureByItem from './src/picture/add_by_event';
 import GroupScreen from './src/group/group_screen';
 import Notification from './src/notification/notification';
 import Profile from './src/profile/profile';
@@ -54,7 +55,9 @@ const PixNavigation = StackNavigator(
     AddEventParticipant: { screen: AddEventParticipant, navigationOptions: {title: 'Add Participant', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     EventParticipant: { screen: EventParticipant, navigationOptions: {title: 'Event participant', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
 
-    AddPicture: { screen: AddPicture, navigationOptions: {title: 'Add Event Pictures', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
+    AddPictureByList: { screen: AddPictureByList, navigationOptions: {title: 'Add Event Pictures', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
+    AddPictureByItem: { screen: AddPictureByItem, navigationOptions: {title: 'Add Event Pictures', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
+
     Profile: { screen: Profile, navigationOptions: {title: 'Profile', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     EditProfile: { screen: EditProfile, navigationOptions: {title: 'Edit Profile', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Browse: { screen: Browse, navigationOptions: {title: 'Browse Events', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},

@@ -12,25 +12,27 @@ class SignupScreen extends Component {
   constructor(props){
     super(props);
     this.state = {
-      username: "", email: "", password: "", loading: false, signedup: false,
+      username: "", email: "", password: "", imagePath:"", loading: false, signedup: false,
       errorMessage: false,
       showToast: false
     }
   }
   onInputTextChange = (text, type) => {
     this.setState({ [type]: text });
-    this.setState({ loading: false });
   } 
 
   onSignupPress = async () => {
     this.setState({ loading: true });
+    //temp
+    var img = Math.floor(Math.random()*3)+1;
+    this.state.imagePath = "https://magbodo.com/asset/pixfam-images/pic"+img+".jpg";
     console.log('this.state in onsignuppress: ',this.state);
 
-    const { username, email, password } = this.state;
+    const { username, email, password, imagePath } = this.state;
 
     try {
       const {data} = await this.props.mutate({
-        variables: {username, email, password}
+        variables: {username, email, password, imagePath}
       });
       console.log('data.signup.token:'+ data.signup.token)
       console.log(data)
@@ -59,6 +61,7 @@ class SignupScreen extends Component {
      // redirection code right now...
     } catch (error) {
       console.log('error in onsignup: ',error);
+      this.setState({ loading: false });
       this.setState({errorMessage: error.message});
       Toast.show({
         text: error.message,
