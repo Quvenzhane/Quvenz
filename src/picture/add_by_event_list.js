@@ -66,7 +66,7 @@ export default class AddPictureByList extends Component {
                         this.state.eventList = data.getEventMembers;
                         //temp
                         var img = Math.floor(Math.random()*5)+1;
-                        this.state.imageUrl = "../../images/event"+img+".jpg";
+                        this.state.imageUrl = "https://magbodo.com/asset/pixfam-images/event"+img+".jpg";
                    }
                 }
             return(

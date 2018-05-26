@@ -43,7 +43,7 @@ export default class EventParticipants extends Component {
                 <List>
                     <ListItem avatar>
                         <Left>
-                            <Thumbnail source={require('../../images/pic.jpg')} />
+                            <Thumbnail source={require('../../images/pic1.jpg')} />
                         </Left>
                         <Body>
                             <Text>Kumar Pratik</Text>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Image, ScrollView} from 'react-native';
 import { Container, Content, List, ListItem, Text, Badge, View, Icon, Toast} from 'native-base';
-import { DeckSwiper, Card, CardItem, Thumbnail, Left, Body, H3, Fab, Button } from 'native-base';
+import { DeckSwiper, Card, CardItem, Thumbnail, Left, Body, H3, Fab, Button, Right } from 'native-base';
 import styles from './style'; 
 // import CardViewEvent from './card_view_event'
 import CardPicByUser from './card_pic_by_user'
@@ -72,7 +72,20 @@ export default class EventScreen extends Component {
                     <Text style={{fontWeight:"500"}}>{data.getEvent.title}</Text> 
                     <Text note>{data.getEvent.description}</Text>
                     <Content >
-                        {this.loadDetails()}
+                        <List>
+                            <ListItem avatar>
+                            <Left>
+                                <Thumbnail source={{ uri: 'https://magbodo.com/asset/pixfam-images/pic3.jpg' }} />
+                            </Left>
+                            <Body>
+                                <Text>Kumar Pratik</Text>
+                                <Text note>Doing what you like will always keep you happy . .</Text>
+                            </Body>
+                            <Right>
+                                <Text note>3:43 pm</Text>
+                            </Right>
+                            </ListItem>
+                        </List>
                     </Content>  
                     
                     <Fab

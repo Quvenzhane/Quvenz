@@ -6,25 +6,25 @@ const cards = [
     {
       likes: '10',
       image: require('../../images/cam.png'),
-      profileImage: require('../../images/pic.jpg'),
+      profileImage: require('../../images/pic1.jpg'),
 
     },
     {
         likes: '354',
-        image: require('../../images/pic.jpg'),
+        image: require('../../images/pic1.jpg'),
         profileImage: require('../../images/pic2.jpg'),
 
     },
       {
         likes: '16',
         image: require('../../images/star.png'),
-        profileImage: require('../../images/pic.jpg'),
+        profileImage: require('../../images/pic1.jpg'),
 
     },
   ];
 
   const profileImages={
-    "1":require('../../images/pic.jpg'),
+    "1":require('../../images/pic1.jpg'),
     "2":require('../../images/pic2.jpg'),
     "3":require('../../images/pic3.jpg'),
   }

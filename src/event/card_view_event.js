@@ -13,7 +13,7 @@ export default class CardViewEvent extends Component {
     }
 
     const profileImages={
-      "1":require('../../images/pic.jpg'),
+      "1":require('../../images/pic1.jpg'),
       "2":require('../../images/pic2.jpg'),
       "3":require('../../images/pic3.jpg'),
     }
