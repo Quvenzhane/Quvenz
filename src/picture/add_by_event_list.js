@@ -28,6 +28,10 @@ export default class AddPictureByList extends Component {
       }
       doSubmit = (doAddPhoto, obj, e) => {
         if(this.state.event != ""){
+          //temp
+          var img = Math.floor(Math.random()*5)+1;
+          this.state.imageUrl = "https://magbodo.com/asset/pixfam-images/event"+img+".jpg";
+          
           const { imageUrl, event, description} = this.state;
           const {data,loading, error} = obj;
           doAddPhoto({variables: {imageUrl, event, description}}); 
@@ -64,9 +68,6 @@ export default class AddPictureByList extends Component {
                 if(data){
                     if(data.getEventMembers){ 
                         this.state.eventList = data.getEventMembers;
-                        //temp
-                        var img = Math.floor(Math.random()*5)+1;
-                        this.state.imageUrl = "https://magbodo.com/asset/pixfam-images/event"+img+".jpg";
                    }
                 }
             return(

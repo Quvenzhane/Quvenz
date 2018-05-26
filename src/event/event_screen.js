@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Image, ScrollView} from 'react-native';
 import { Container, Content, List, ListItem, Text, Badge, View, Icon, Toast} from 'native-base';
-import { DeckSwiper, Card, CardItem, Thumbnail, Left, Body, H3, Fab, Button, Right } from 'native-base';
+import { DeckSwiper, Card, CardItem, Thumbnail, Left, Body, H3, Fab, Button } from 'native-base';
 import styles from './style'; 
 // import CardViewEvent from './card_view_event'
-import CardPicByUser from './card_pic_by_user'
+// import CardPicByUser from './card_pic_by_user'
 import { Query } from "react-apollo";
 import { GET_EVENTSCREEN} from '../graph/queries/eventScreenQueries';
 
@@ -16,15 +16,36 @@ export default class EventScreen extends Component {
            eventDetail: null,
         };
     }
-    loadDetails() {
-        var cardDetails =null;
+    loadDetails() {   
         return this.state.eventDetail.map(details => (
 
-            <CardPicByUser username={details.user.profile!=null
-                ?details.user.profile.first_name+" "+details.user.profile.last_name
-                :details.user.username} 
-            imageSourceProfile="1" theNav={this.props.navigation.navigate} />
+            <ListItem avatar>
+            <Left>
+                <Thumbnail source={{ uri: details.user.image_path }} />
+            </Left>
+            <Body>
+                <Text onPress={() =>this.props.navigation.navigate('EventDetails')}>
+                    {details.user.profile!=null
+                    ?details.user.profile.first_name+" "+details.user.profile.last_name
+                    :details.user.username}
+                </Text>
+                <Text note onPress={() =>this.props.navigation.navigate('EventDetails')}>10 likes | 3 Comments  
+                    | {details.photo.length > 1?details.photo.length+" pictures":details.photo.length+" picture"}
+                </Text>
+            </Body>
+            </ListItem>
          ))
+    }
+    getTotalPictures(){
+        var  myEvent = this.state.eventDetail;
+        var pictures =0;
+        if( myEvent){
+            for (let index = 0; index <  myEvent.length; index++) {
+                const element =  myEvent[index];
+                pictures = parseInt(pictures) + parseInt(element.photo.length)
+            }
+           return pictures
+        }
     }
 
   render() {
@@ -55,43 +76,31 @@ export default class EventScreen extends Component {
             return(    
                 <Container style={styles.container}>
                     <View style={styles.metricsContainer}>
-                        <Icon name="add" style={{paddingRight:15}}
-                                    onPress={() =>navigate('CreateEvent')}/> 
-                        <Text>  Pictures  </Text>
+                       
+                        <Text> Pictures  </Text>
                         <Badge>
-                            <Text>121</Text>
+                            <Text>{this.getTotalPictures()}</Text>
                         </Badge>
                         <Text onPress={() =>navigate('EventParticipant')}>  
-                            {data.getEvent.eventMember.length==1?"Participant":"Participants"} </Text>
+                            {data.getEvent.eventMember.length==1?"  Participant":"  Participants"} </Text>
                         <Badge success>
                             <Text>{data.getEvent.eventMember.length}</Text>
                         </Badge>
                         
                     </View>
 
-                    <Text style={{fontWeight:"500"}}>{data.getEvent.title}</Text> 
+                    <H3 style={{fontWeight:"300"}}>{data.getEvent.title}</H3> 
                     <Text note>{data.getEvent.description}</Text>
                     <Content >
                         <List>
-                            <ListItem avatar>
-                            <Left>
-                                <Thumbnail source={{ uri: 'https://magbodo.com/asset/pixfam-images/pic3.jpg' }} />
-                            </Left>
-                            <Body>
-                                <Text>Kumar Pratik</Text>
-                                <Text note>Doing what you like will always keep you happy . .</Text>
-                            </Body>
-                            <Right>
-                                <Text note>3:43 pm</Text>
-                            </Right>
-                            </ListItem>
+                           {this.loadDetails()}
                         </List>
                     </Content>  
                     
                     <Fab
                         style={{ backgroundColor: '#5067FF' }}
                         position="bottomRight"
-                        onPress={() =>navigate('AddPicture')}>
+                        onPress={() =>navigate('AddPictureByItem',{eventName:data.getEvent.title, eventId:eventId})}>
                         <Icon name="add" />
                     </Fab>  
                 </Container>)

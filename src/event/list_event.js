@@ -59,16 +59,11 @@ export default class ListEvent extends Component {
                     
                     <Container style={styles.container}>
                         <Content>
-                            {/* <View style={styles.metricsContainer}>
-                                <Text>  Pictures  </Text>
-                                <Badge>
-                                    <Text>2</Text>
-                                </Badge>
-                            </View>  */}
                             <View style={styles.listHeader}> 
-                                <Icon name="add" style={{paddingRight:15}}
-                                            onPress={() =>navigate('CreateEvent')}/>                
-                                <H3 style={styles.header}>Followed Events</H3>
+                            <Icon name="add" style={{paddingRight:15}} onPress={() =>navigate('CreateEvent')}/>
+                                <H3 style={styles.header}>
+                                      Followed Events
+                                </H3>
                             </View>  
                             {theList}
                         </Content>
