@@ -4,25 +4,11 @@ import { Card, CardItem, Thumbnail, Left, Right, Body, Icon, Button } from 'nati
 
 export default class CardViewEvent extends Component {
   render() {
-
-    const images={
-      "1":require('../../images/event1.jpg'),
-      "2":require('../../images/event2.jpg'),
-      "3":require('../../images/event3.jpg'),
-      "4":require('../../images/event4.jpg'),
-    }
-
-    const profileImages={
-      "1":require('../../images/pic1.jpg'),
-      "2":require('../../images/pic2.jpg'),
-      "3":require('../../images/pic3.jpg'),
-    }
-
     return (
       <Card>
         <CardItem>
           <Left>
-            <Thumbnail source={profileImages[this.props.imageSourceProfile]}/>
+            <Thumbnail source={{ uri: this.props.imageSourceProfile}}/>
             <Body>
               <Text>{this.props.username}</Text>
               <Text note>Jan 30, 2018</Text>
@@ -31,7 +17,7 @@ export default class CardViewEvent extends Component {
         </CardItem>
         <CardItem cardBody>
          {/* <TouchableOpacity onPress={() =>this.props.theNav('EventPicDetails')}> */}
-            <Image style={{height:200, width:null, flex:1}}  source={images[this.props.imageSource]} />
+            <Image style={{height:200, width:null, flex:1}}  source={{ uri: this.props.imageSource}} />
           {/* </TouchableOpacity>   */}
         </CardItem>
 

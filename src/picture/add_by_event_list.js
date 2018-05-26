@@ -6,6 +6,8 @@ import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import {ADD_PHOTO } from '../graph/mutations/photoMutation';
 import { GET_EVENTS} from '../graph/queries/eventQueries';
+import { GET_EVENTSCREEN} from '../graph/queries/eventScreenQueries';
+import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
 
 
 export default class AddPictureByList extends Component {
@@ -71,7 +73,9 @@ export default class AddPictureByList extends Component {
                    }
                 }
             return(
-                <Mutation mutation={ADD_PHOTO} refetchQueries={[ {query:GET_EVENTS}]}>
+                <Mutation mutation={ADD_PHOTO} 
+                    refetchQueries={[ {query:GET_EVENTS},{query:GET_EVENTSCREEN, variables:{eventId}}]
+                    }>
                 {(addPhoto, {data, loading, error }) => 
                 (
                  

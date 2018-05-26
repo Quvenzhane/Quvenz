@@ -6,6 +6,8 @@ import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import {ADD_PHOTO } from '../graph/mutations/photoMutation';
 import { GET_EVENTS} from '../graph/queries/eventQueries';
+import { GET_EVENTSCREEN} from '../graph/queries/eventScreenQueries';
+import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
 
 
 export default class AddPictureByItem extends Component {
@@ -46,9 +48,10 @@ export default class AddPictureByItem extends Component {
     const { navigate } = this.props.navigation;
     this.state.event = this.props.navigation.getParam('eventId');
     this.state.eventName = this.props.navigation.getParam('eventName');
+    const eventId = this.props.navigation.getParam('eventId');
     return (
 
-        <Mutation mutation={ADD_PHOTO} refetchQueries={[ {query:GET_EVENTS}]}>
+        <Mutation mutation={ADD_PHOTO} refetchQueries={[ {query:GET_EVENTS}, {query:GET_EVENTSCREEN, variables:{eventId}} ]}>
         {(addPhoto, {data, loading, error }) => 
         (
             

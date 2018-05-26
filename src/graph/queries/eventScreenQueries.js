@@ -11,7 +11,7 @@ query getEvent ($eventId: ID!){
         eventMember{
           _id
           user{
-            username,image_path
+            _id,username,image_path
             profile{
               first_name,last_name
             }

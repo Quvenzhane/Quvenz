@@ -16,7 +16,7 @@ export default class EventScreen extends Component {
            eventDetail: null,
         };
     }
-    loadDetails() {   
+    loadDetails(eventId, eventTitle) {   
         return this.state.eventDetail.map(details => (
 
             <ListItem avatar>
@@ -24,12 +24,12 @@ export default class EventScreen extends Component {
                 <Thumbnail source={{ uri: details.user.image_path }} />
             </Left>
             <Body>
-                <Text onPress={() =>this.props.navigation.navigate('EventDetails')}>
+                <Text onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
                     {details.user.profile!=null
                     ?details.user.profile.first_name+" "+details.user.profile.last_name
                     :details.user.username}
                 </Text>
-                <Text note onPress={() =>this.props.navigation.navigate('EventDetails')}>10 likes | 3 Comments  
+                <Text note onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>10 likes | 3 Comments  
                     | {details.photo.length > 1?details.photo.length+" pictures":details.photo.length+" picture"}
                 </Text>
             </Body>
@@ -53,7 +53,7 @@ export default class EventScreen extends Component {
     const eventId = this.props.navigation.getParam('eventId');
     
     return (  
-        <Query query={GET_EVENTSCREEN} variables={{ eventId }}>
+        <Query query={GET_EVENTSCREEN} variables={{ eventId }} pollInterval={30000}>
             {({ loading, error, data }) => 
             { 
                 var theList = null;
@@ -93,7 +93,7 @@ export default class EventScreen extends Component {
                     <Text note>{data.getEvent.description}</Text>
                     <Content >
                         <List>
-                           {this.loadDetails()}
+                           {this.loadDetails(eventId, data.getEvent.title)}
                         </List>
                     </Content>  
                     
