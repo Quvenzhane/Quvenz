@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker } from 'react-native'; 
+import { Picker, Keyboard } from 'react-native'; 
 import { Container, Content, Form, Item, Input, Label, Button, Text, Toast} from 'native-base';
 import styles from './style'; 
 import { Query } from "react-apollo";
@@ -7,7 +7,7 @@ import { Mutation } from "react-apollo";
 import {ADD_PHOTO } from '../graph/mutations/photoMutation';
 import { GET_EVENTS} from '../graph/queries/eventQueries';
 import { GET_EVENTSCREEN} from '../graph/queries/eventScreenQueries';
-import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
+// import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
 
 
 export default class AddPictureByList extends Component {
@@ -29,6 +29,7 @@ export default class AddPictureByList extends Component {
          ))
       }
       doSubmit = (doAddPhoto, obj, e) => {
+        Keyboard.dismiss();
         if(this.state.event != ""){
           //temp
           var img = Math.floor(Math.random()*5)+1;
@@ -73,9 +74,7 @@ export default class AddPictureByList extends Component {
                    }
                 }
             return(
-                <Mutation mutation={ADD_PHOTO} 
-                    refetchQueries={[ {query:GET_EVENTS},{query:GET_EVENTSCREEN, variables:{eventId}}]
-                    }>
+                <Mutation mutation={ADD_PHOTO} refetchQueries={[ {query:GET_EVENTS}]}>
                 {(addPhoto, {data, loading, error }) => 
                 (
                  

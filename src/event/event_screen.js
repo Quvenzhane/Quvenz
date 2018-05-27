@@ -98,7 +98,7 @@ export default class EventScreen extends Component {
                     </Content>  
                     
                     <Fab
-                        style={{ backgroundColor: '#5067FF' }}
+                        style={{ backgroundColor: '#FF6600' }}
                         position="bottomRight"
                         onPress={() =>navigate('AddPictureByItem',{eventName:data.getEvent.title, eventId:eventId})}>
                         <Icon name="add" />

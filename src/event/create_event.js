@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {  View, Text,ImageBackground} from 'react-native'
+import {  View, Text,ImageBackground, Keyboard} from 'react-native'
 
 import { Mutation } from "react-apollo";
 import { Container, Content } from 'native-base';
@@ -19,7 +19,8 @@ export default class CreateEvent extends Component {
       this.doSubmit = this.doSubmit.bind(this);
     }
   
-    doSubmit(doAddEvent, obj, e){      
+    doSubmit(doAddEvent, obj, e){   
+      Keyboard.dismiss();   
       const { group, title, description, eventType } = e;
       const {data,loading, error} = obj;
       doAddEvent({variables: {title, description, eventType, group}});

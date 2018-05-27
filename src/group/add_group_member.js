@@ -6,9 +6,10 @@ export default class AddGroupMember extends Component {
   render() {
     return (
       <Container style={styles.container}>
-          <Content>
-              <H3 style={styles.header}>Expand your group</H3>
-              <Text note>Search app to add friend</Text>
+          
+          <H3 style={styles.header}>Add friends to group</H3>
+          <Content style={styles.backgroundEdit}>
+              <Text note>Search to add</Text>
               <Form>
                 <View style={{paddingTop:15, paddingBottom:15 }}>
                     <Item rounded >
@@ -18,7 +19,7 @@ export default class AddGroupMember extends Component {
                 </View>
               </Form>
 
-              <Text style={{paddingTop:30 }} note>Add friend's email to invite</Text>
+              <Text style={{paddingTop:30 }} note>Invite by email</Text>
               <Form>
                 <View style={{paddingTop:15, paddingBottom:15 }}>
                     <Item rounded >

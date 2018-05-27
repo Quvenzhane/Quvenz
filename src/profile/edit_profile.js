@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text,ImageBackground} from 'react-native'
+import { View, Text,ImageBackground, Keyboard} from 'react-native'
 
 import { Mutation } from "react-apollo";
 import { Container, Content } from 'native-base';
@@ -16,9 +16,10 @@ export default class EditProfile extends Component {
         //loading: false,
       };
       this.doSubmit = this.doSubmit.bind(this);
-
     }
+    
     doSubmit(doEditProfile, obj, e){
+        Keyboard.dismiss();
         const { firstName, lastName, sex, dateOfBirth, bio } = e;
         const {data,loading, error} = obj;
         doEditProfile({variables: {firstName, lastName, sex, dateOfBirth, bio}}); 

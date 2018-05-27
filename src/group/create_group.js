@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Keyboard} from 'react-native'
 import { Container, Content, Form, Item, Input, Label, Button,Text,Toast } from 'native-base';
 import { graphql } from "react-apollo";
 import styles from './style'; 
@@ -22,6 +23,7 @@ export default class CreateGroup extends Component {
   } 
  
   doSubmit = (doAddGroup, obj, e) => {
+    Keyboard.dismiss();
     if(this.state.title != ""){
       const { title, description } = this.state;
       const {data,loading, error} = obj;

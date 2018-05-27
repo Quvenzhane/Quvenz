@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Picker } from 'react-native'; 
+import { Picker, Keyboard } from 'react-native'; 
 import { Container, Content, Form, Item, Input, Label, Button, Text, Toast} from 'native-base';
 import styles from './style'; 
 import { Query } from "react-apollo";
@@ -25,6 +25,7 @@ export default class AddPictureByItem extends Component {
       } 
      
       doSubmit = (doAddPhoto, obj, e) => {
+        Keyboard.dismiss();
         if(this.state.event != ""){
           //temp
           var img = Math.floor(Math.random()*5)+1;

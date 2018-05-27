@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, Image, ImageBackground,} from 'react-native';
-import { KeyboardAvoidingView, TouchableOpacity , StatusBar, AsyncStorage} from 'react-native';
+import { KeyboardAvoidingView, Keyboard, TouchableOpacity , StatusBar, AsyncStorage} from 'react-native';
 import {H3, Toast} from 'native-base';
 import { graphql, compose } from 'react-apollo';
 
@@ -22,6 +22,7 @@ class SignupScreen extends Component {
   } 
 
   onSignupPress = async () => {
+    Keyboard.dismiss()
     this.setState({ loading: true });
     //temp
     var img = Math.floor(Math.random()*3)+1;
@@ -93,6 +94,7 @@ class SignupScreen extends Component {
                         returnKeyType="next"
                         onSubmitEditing ={() => this.passwordEmail.focus()}
                         autoCorrect ={false}
+                        autoCapitalize="none"
                         placeholderTextColor='#2980b9'
                       onChangeText={text => this.onInputTextChange(text, 'username')}
                         />
@@ -113,6 +115,7 @@ class SignupScreen extends Component {
                         placeholder="Password"
                         returnKeyType="go"
                         placeholderTextColor='#2980b9'
+                        autoCapitalize="none"
                         ref={(input) => this.passwordInput = input}
                         secureTextEntry
                         onChangeText={text => this.onInputTextChange(text, 'password')}

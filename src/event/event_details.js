@@ -32,7 +32,7 @@ export default class EventDetails extends Component {
 
 
     return (
-        <Query query={GET_USER_PHOTO} variables={{ userId, eventId }} pollInterval={2000}>
+        <Query query={GET_USER_PHOTO} variables={{ userId, eventId }} pollInterval={30000}>
         {({ loading, error, data }) => 
         { 
             var theList = null;

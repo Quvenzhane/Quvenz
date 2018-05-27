@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Image, KeyboardAvoidingView, TouchableOpacity}from 'react-native';
-import { StatusBar, Navigator,ImageBackground ,AsyncStorage} from 'react-native';
+import { StatusBar, Navigator,ImageBackground ,AsyncStorage, Keyboard} from 'react-native';
 import { H3, Toast } from 'native-base';
 
 import { graphql} from 'react-apollo';
@@ -23,6 +23,7 @@ class LoginScreen extends Component {
   } 
 
   onLoginPress = async () => {
+    Keyboard.dismiss()
     this.setState({ loading: true });
     console.log('this.state in onloginpress: ',this.state);
 
@@ -108,6 +109,7 @@ class LoginScreen extends Component {
                 <TextInput style={styles.input}
                         placeholder="Password"
                         returnKeyType="go"
+                        autoCapitalize="none"
                         placeholderTextColor='#2980b9'
                         ref={(input) => this.passwordInput = input}
                         onChangeText={text => this.onInputTextChange(text, 'password')}
