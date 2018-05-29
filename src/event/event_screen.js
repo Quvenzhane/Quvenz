@@ -53,7 +53,7 @@ export default class EventScreen extends Component {
     const eventId = this.props.navigation.getParam('eventId');
     
     return (  
-        <Query query={GET_EVENTSCREEN} variables={{ eventId }} pollInterval={30000}>
+        <Query query={GET_EVENTSCREEN} variables={{ eventId }} pollInterval={60000}>
             {({ loading, error, data }) => 
             { 
                 var theList = null;

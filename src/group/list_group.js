@@ -44,7 +44,8 @@ export default class ListGroup extends Component {
                                     <Text note onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.member.length==1?groups.member.length+" member":groups.member.length+" members" }</Text>
                                 </Body>
                     
-                                {groups.user_type=="Admin"?<Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddGroupMember')}>add</Text>:<Text></Text>}
+                                {groups.user_type=="Admin"?<Text note style={globalColor.appDarkPrimayColor} 
+                                        onPress={() =>navigate('AddGroupMember',{groupId:groups.group._id,groupTitle:groups.group.title})}>add</Text>:<Text></Text>}
                             </ListItem>
                             }>
                         </List>)
@@ -70,10 +71,10 @@ export default class ListGroup extends Component {
                         </Badge> */}
                     </View> 
                     <View style={styles.listHeader}> 
-                        
+                         <Icon name="add" style={{paddingRight:15}}
+                            onPress={() =>navigate('CreateGroup')}/>
                         <H3 style={styles.header}>
-                            <Icon name="add" style={{paddingRight:15}}
-                                        onPress={() =>navigate('CreateGroup')}/> Followed Groups
+                          Followed Groups
                         </H3>
                     </View>   
                     <View>

@@ -32,7 +32,7 @@ export default class EventDetails extends Component {
 
 
     return (
-        <Query query={GET_USER_PHOTO} variables={{ userId, eventId }} pollInterval={30000}>
+        <Query query={GET_USER_PHOTO} variables={{ userId, eventId }} fetchPolicy="network-only">
         {({ loading, error, data }) => 
         { 
             var theList = null;
