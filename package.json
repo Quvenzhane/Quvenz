@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
-    "postinstall": "patch -p0 < patch/apollo.patch || true",
     "test": "jest"
   },
   "dependencies": {
