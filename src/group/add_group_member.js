@@ -33,6 +33,7 @@ export default class AddGroupMember extends Component {
         variables: { searchQuery: text }
       });
       try{
+        console.log(data.userSearch.username);
         this.state.findUserStatus = true;
         this.state.receiverUser = data.userSearch._id
         this.onResultGotten(data.userSearch.username+" was found. Invite user");
