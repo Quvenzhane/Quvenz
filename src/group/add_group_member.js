@@ -4,7 +4,7 @@ import styles from './style';
 import { Keyboard } from 'react-native'
 import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
-import { ADD_REQUEST } from '../graph/mutations/addRequestMutation';
+import { SEND_REQUEST } from '../graph/mutations/sendRequestMutation';
 import { USER_SEARCH} from '../graph/queries/userSearchQueries';
 import { ApolloConsumer } from 'react-apollo';
 
@@ -74,15 +74,15 @@ export default class AddGroupMember extends Component {
           <H3 style={styles.header}>Add friends to {groupTitle}</H3>
           <Content style={styles.backgroundEdit}>
               <Text note>{this.state.findUserResult}</Text>
-              <Mutation mutation={ADD_REQUEST}>
-                {(doAddRequest, {data, loading, error }) => 
+              <Mutation mutation={SEND_REQUEST}>
+                {(doSendRequest, {data, loading, error }) => 
                 (
                 <Form>
                     {loading && <Text>Loading...</Text>}
                     {error && <Text>Error :( Please try again</Text>}
                    
                     {data?
-                      data.addRequest.status == "Pending"
+                      data.sendRequest.status == "Pending"
                         ?Toast.show({
                           text: "Invite was successfull. Add another user",
                           type: "success",
@@ -102,7 +102,7 @@ export default class AddGroupMember extends Component {
                             <Input placeholder='Search username or email' 
                             onChangeText={text => this.doSearchOnTextChange(text,'findUser',client)}
                             value={this.state.findUser} />
-                            <Icon  name="send" onPress={this.doSubmit.bind(this, doAddRequest, {data,loading, error})} />
+                            <Icon  name="send" onPress={this.doSubmit.bind(this, doSendRequest, {data,loading, error})} />
                           </Item>
                         )}
                     </ApolloConsumer>
