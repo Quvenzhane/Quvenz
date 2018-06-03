@@ -19,7 +19,7 @@ export default StyleSheet.create({
   metricsContainer:{
     flexDirection: 'row', 
     justifyContent: 'flex-start',
-    paddingBottom:30,
+    paddingBottom:20,
   },
   headingContainer:{
     padding:10

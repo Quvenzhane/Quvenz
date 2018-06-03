@@ -13,7 +13,7 @@ export default class AddGroupMember extends Component {
     super(props);
     this.state = { 
        showToast: false,
-       findUser:"", findUserResult:"Search to add", findUserStatus:false,
+       findUser:"", findUserResult:"Search on Pixfam to add", findUserStatus:false,
        timeout: null,
        group:null, receiverUser:null, status:"Pending",
     };
@@ -65,6 +65,7 @@ export default class AddGroupMember extends Component {
   }
 
   onResultGotten = findUserResult => this.setState(() => ({findUserResult}));
+
   render() {
     this.state.group = this.props.navigation.getParam('groupId');
     const groupTitle = this.props.navigation.getParam('groupTitle');
@@ -73,14 +74,20 @@ export default class AddGroupMember extends Component {
           
           <H3 style={styles.header}>Add friends to {groupTitle}</H3>
           <Content style={styles.backgroundEdit}>
-              <Text note>{this.state.findUserResult}</Text>
+              <Text style={{marginBottom:15}}>Friends you add to a group will have access to all the events under this group</Text>
+
               <Mutation mutation={SEND_REQUEST}>
                 {(doSendRequest, {data, loading, error }) => 
                 (
                 <Form>
                     {loading && <Text>Loading...</Text>}
-                    {error && <Text>Error :( Please try again</Text>}
-                   
+                    {error?
+                      Toast.show({
+                        text: error.message,
+                        type: "danger",
+                        duration: 4000
+                        }):<Text></Text>}
+
                     {data?
                       data.sendRequest.status == "Pending"
                         ?Toast.show({
@@ -95,7 +102,9 @@ export default class AddGroupMember extends Component {
                             })
                       :<Text></Text>
                     }  
-                  <View style={{paddingTop:15, paddingBottom:15 }}>
+                  <View style={{paddingTop:5, paddingBottom:15 }}>
+                  <Text note style={{marginBottom:10}}>{this.state.findUserResult}</Text>
+
                     <ApolloConsumer>
                         {client => (
                           <Item rounded >
@@ -111,16 +120,8 @@ export default class AddGroupMember extends Component {
                 )}
               </Mutation> 
 
-              <Text style={{paddingTop:30 }} note>Invite by email</Text>
-              <Form>
-                <View style={{paddingTop:15, paddingBottom:15 }}>
-                    <Item rounded >
-                    <Input placeholder='Add email' />
-                    <Icon  name="send" />
-                    </Item>
-                </View>
-              </Form>
-              <Text style={{paddingTop:30, paddingBottom:30 }} >Members in a group can add pictures, comments and like all events under that group</Text>
+          
+              <Text style={{paddingTop:30, paddingBottom:10 }} note >Share link with friends to add to group</Text>
               <Button  full rounded info>
                    <Text>Share group link</Text>
               </Button>

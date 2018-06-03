@@ -6,7 +6,10 @@ query getEvent ($eventId: ID!){
       getEvent (_id: $eventId){
         title,description
         group{
-          title
+          title,
+          user{
+            username
+          }
         }
         eventMember{
           _id

@@ -25,7 +25,7 @@ export default class EventScreen extends Component {
             </Left>
             <Body>
                 <Text onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
-                    {details.user.profile!=null
+                    {details.user.profile
                     ?details.user.profile.first_name+" "+details.user.profile.last_name
                     :details.user.username}
                 </Text>
@@ -88,9 +88,9 @@ export default class EventScreen extends Component {
                         </Badge>
                         
                     </View>
-
-                    <H3 style={{fontWeight:"300"}}>{data.getEvent.title}</H3> 
-                    <Text note>{data.getEvent.description}</Text>
+                    <H3 style={{fontWeight:"300", paddingBottom:10, paddingTop:10}}>{data.getEvent.title}</H3> 
+                    <Text note>{data.getEvent.group.user.username}: {data.getEvent.description}</Text>
+                  
                     <Content >
                         <List>
                            {this.loadDetails(eventId, data.getEvent.title)}
