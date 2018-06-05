@@ -5,7 +5,7 @@ import { Right, Left} from 'native-base';
 import styles from './style'; 
 import globalColor from '../../config/app-colors'; 
 import { Query } from "react-apollo";
-import { GET_EVENTS} from '../graph/queries/eventQueries';
+import { GET_USER_EVENTS} from '../graph/queries/eventListQueries';
 
 
 export default class ListEvent extends Component {
@@ -20,7 +20,7 @@ export default class ListEvent extends Component {
     const { navigate } = this.props.navigation;
     return (
 
-        <Query query={GET_EVENTS}>
+        <Query query={GET_USER_EVENTS}>
             {({ loading, error, data }) => 
             { 
                 var theList = null;
@@ -35,9 +35,9 @@ export default class ListEvent extends Component {
                         return <Text> Whoops! Something got broken</Text>;
                 }
                 if(data){ console.log('there is data');
-                if(data.getEventMembers){ 
+                if(data.getUserEvents){ 
                     theList = (
-                        <List dataArray={data.getEventMembers}
+                        <List dataArray={data.getUserEvents}
                         renderRow={(eventMembers) =>
                          <ListItem>
                             {eventMembers.event.e_type=="Private"?<Icon name="lock" style={{color:"gray"}}/>:<Icon name="people" style={{color:"gray"}}/>}
