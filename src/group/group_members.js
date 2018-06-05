@@ -1,92 +1,137 @@
 import React, { Component } from 'react'
-import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Toast, View } from 'native-base';
 import { Card, CardItem, H3, Fab, Icon } from 'native-base';
 import { Alert } from 'react-native';
 import styles from './style'; 
+import { graphql} from 'react-apollo';
+import { Query } from "react-apollo";
+import { GET_GROUP_MEMBERS} from '../graph/queries/groupMemberQueries';
+import { MAKE_GROUP_ADMIN } from '../graph/mutations/groupAdminMutation';
 
- 
-ShowAlertDialog = () =>{
- 
-    Alert.alert(
-        '',
-        'Edit user access',
-        [
-          {text: 'Make Admin', onPress: () => console.log('OK Pressed')},
-          {text: 'Remove', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'Block', onPress: () => console.log('OK Pressed')},
-        ],
-        // { cancelable: false }
-      )
-  }
 
-export default class GroupMember extends Component {
+class GroupMember extends Component {
+    constructor(props){
+        super(props);
+        this.state = { 
+           showToast: false,
+           groupMemberId: null,
+        };
+    }
+
+    showAlertDialog = (groupMemberID, groupID) =>{
+ 
+        Alert.alert(
+            '',
+            'Edit User Access',
+            [
+              {text: 'Make Admin',onPress: this.doSubmit.bind(this, groupMemberID,groupID)},
+            ],
+            // { cancelable: false }
+          )
+    }
+
+    doSubmit= async (groupMemberID, groupId)=> {
+        this.state.groupMemberId = groupMemberID;
+        const {groupMemberId} = this.state
+        try {
+            console.log(groupId)
+           const {data} = await this.props.mutate({variables:{groupMemberId}, refetchQueries:[{query:GET_GROUP_MEMBERS, variables:{groupId}}]} )
+            if(data.makeGroupAdmin.user_type == "Admin"){
+                Toast.show({
+                    text: "User is now an Admin",
+                    type: "success",
+                    duration: 4000
+                  });
+            }else{
+                Toast.show({
+                    text: "Some strange went wrong",
+                    type: "warning",
+                    duration: 4000
+                  });
+            }
+            
+        }catch(error){
+            Toast.show({
+                text: error.message,
+                buttonText: 'Okay',
+                type: "danger",
+                duration: 4000
+              });
+              throw error;
+        }
+    }
  
   render() {
     const { navigate } = this.props.navigation;
-    return (
-        <Container style={styles.container}>
-            <Content>
-                <Card>
-                    <CardItem header style={{height:10}} >
-                        <Text>Group creator</Text>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Text>
-                              Create by Judah at 09/05/2018
-                            </Text>
-                        </Body>
-                    </CardItem>
-                </Card>
+    const groupId = this.props.navigation.getParam('groupId');
 
-                <Text note style={{paddingTop:20}}> Group Members</Text>
-                <List>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/pic1.jpg')} />
-                        </Left>
-                        <Body>
-                            <Text>Kumar Pratik</Text>
-                            <Text note onPress={ShowAlertDialog}>Doing what you like will always keep you happy . .</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/pic2.jpg')}/>
-                        </Left>
-                        <Body>
-                            <Text>Mayow will</Text>
-                            <Text note onPress={ShowAlertDialog}>I wish i had time machine</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/pic3.jpg')}/>
-                        </Left>
-                        <Body>
-                            <Text>Ike Jonas</Text>
-                            <Text note onPress={ShowAlertDialog}>KISS</Text>
-                        </Body>
-                        <Right><Text note>admin</Text></Right>
-                    </ListItem>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/cam.png')}/>
-                        </Left>
-                        <Body>
-                            <Text>Mayow will</Text>
-                            <Text note onPress={ShowAlertDialog}>I wish i had time machine</Text>
-                        </Body>
-                    </ListItem>
-                </List>
-            </Content>
-            <Fab
-                style={{ backgroundColor: '#5067FF' }}
-                position="bottomRight"
-                onPress={() =>navigate('AddPicture')}>
-                <Icon name="add" />
-            </Fab> 
-        </Container>
+    return (
+
+        <Query query={GET_GROUP_MEMBERS} variables={{groupId}}>
+            {({ loading, error, data }) => 
+            { 
+                var theList = null;
+                if (loading) return <Text> Loading...</Text>;
+                if (error){
+                    Toast.show({
+                        text: error.message,
+                        buttonText: 'Okay',
+                        type: "danger",
+                        duration: 4000
+                        });
+                        return <Text> Whoops! Something got broken</Text>;
+                }
+                if(data){ console.log('there is data');
+                    if(data.getGroupMembers){ 
+                        theList = (
+                            <List dataArray={data.getGroupMembers}
+                                renderRow={(members) =>
+                                <ListItem avatar>
+                                <Left>
+                                    <Thumbnail source={{uri: members.user.image_path}}/>
+                                </Left>
+                                <Body>
+                                    <Text onPress={this.showAlertDialog.bind(this,members._id,groupId)}>
+                                        {members.user.profile
+                                            ?members.user.profile.first_name+" "+members.user.profile.last_name
+                                            :members.user.username}</Text>
+                                    <Text note onPress={this.showAlertDialog.bind(this,members._id,groupId)}>{members.user.profile?members.user.profile.bio:"Hi! I am on Pixfam"}..</Text>
+                                </Body>
+                                {members.user_type=="Admin"?<Right><Text note>admin</Text></Right>:<Text></Text>}
+                            </ListItem>
+                            }>
+                        </List>)
+                    }
+                }
+                
+
+            return(
+                <Container style={styles.container}>
+                    <Content>
+                        <Card>
+                            <CardItem header style={{height:10}} >
+                                <Text>{data.getGroupMembers[0].group.title}</Text>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                    <Text note>{data.getGroupMembers[0].group.description}</Text>
+                                </Body>
+                            </CardItem>
+                        </Card>
+
+                        <Text note style={{paddingTop:20}}> Group Members</Text>
+                        <View>
+                            {theList}
+                        </View>
+                    </Content>
+                </Container>
+            )
+
+        }}
+        </Query>
     )
   }
 }
+
+export default graphql(MAKE_GROUP_ADMIN) ( GroupMember);
+

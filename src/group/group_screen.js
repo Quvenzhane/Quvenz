@@ -16,7 +16,7 @@ export default class GroupScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const groupId = this.props.navigation.getParam('groupId');
-    console.log(this.props.navigation.getParam('groupId'));
+    const groupMember = this.props.navigation.getParam('groupMember');
 
     return (
         <Query query={GET_GROUP_EVENTLIST} variables={{ groupId }}>
@@ -56,9 +56,14 @@ export default class GroupScreen extends Component {
                         <View style={styles.metricsContainer}>
                             <Text> Pictures  </Text>
                             <Badge>
-                                <Text>280</Text>
+                                <Text>12</Text>
                             </Badge>
-                            </View> 
+                            <Text onPress={() =>navigate('GroupMember',{groupId:groupId})}>  
+                                {groupMember==1?"  Participant":"  Participants"} </Text>
+                            <Badge success>
+                                <Text>{groupMember}</Text>
+                            </Badge>
+                        </View> 
                         <H3 style={styles.header}>{data.getGroup.title} events</H3>
                         <Text note>{data.getGroup.description}</Text>
                         
