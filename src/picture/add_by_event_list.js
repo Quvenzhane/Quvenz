@@ -69,8 +69,8 @@ export default class AddPictureByEventList extends Component {
                         return <Text> Whoops! Something got broken</Text>;
                 }
                 if(data){
-                    if(data.getEventMembers){ 
-                        this.state.eventList = data.getEventMembers;
+                    if(data.getUserEvents){ 
+                        this.state.eventList = data.getUserEvents;
                    }
                 }
             return(
