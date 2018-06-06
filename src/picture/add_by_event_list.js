@@ -10,7 +10,7 @@ import { GET_EVENTSCREEN} from '../graph/queries/eventScreenQueries';
 // import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
 
 
-export default class AddPictureByList extends Component {
+export default class AddPictureByEventList extends Component {
     constructor(props){
         super(props); 
         this.state = { 

@@ -3,19 +3,39 @@ import { Image, ScrollView} from 'react-native';
 import { Container, Content, List, ListItem, Text, Badge, View, Icon, Toast} from 'native-base';
 import { DeckSwiper, Card, CardItem, Thumbnail, Left, Body, H3, Fab, Button } from 'native-base';
 import styles from './style'; 
+import { AsyncStorage } from 'react-native';
 // import CardViewEvent from './card_view_event'
 // import CardPicByUser from './card_pic_by_user'
 import { Query } from "react-apollo";
 import { GET_EVENTSCREEN} from '../graph/queries/eventScreenQueries';
 
 export default class EventScreen extends Component {
+
     constructor(props){
         super(props);
         this.state = { 
            showToast: false,
            eventDetail: null,
+           email:"no@mail.com",
+           isAMember: false
+
         };
     }
+
+    async componentWillMount() {
+        try 
+        {    
+            console.log('componentWillMount : ...')
+             await AsyncStorage.setItem('teststuff1','testvalue1');
+             this.state.email = await AsyncStorage.getItem('@pixfam_email');
+             console.log('there is email: '+  this.state.email );
+        } catch (error) {
+            console.log('error: '+error.message);  
+        } 
+    };
+
+
+   
     loadDetails(eventId, eventTitle) {   
         return this.state.eventDetail.map(details => (
 
@@ -33,6 +53,7 @@ export default class EventScreen extends Component {
                     | {details.photo.length > 1?details.photo.length+" pictures":details.photo.length+" picture"}
                 </Text>
             </Body>
+            {details.user.email == this.state.email? this.state.isAMember = true :""}
             </ListItem>
          ))
     }
@@ -67,7 +88,7 @@ export default class EventScreen extends Component {
                         });
                         return <Text> Whoops! Something got bursted</Text>;
                 }
-                if(data){
+                if(data){ console.log(data)
                     if(data.getEvent.eventMember){ 
                          this.state.eventDetail = data.getEvent.eventMember;
                     }
@@ -81,7 +102,7 @@ export default class EventScreen extends Component {
                         <Badge>
                             <Text>{this.getTotalPictures()}</Text>
                         </Badge>
-                        <Text onPress={() =>navigate('EventParticipant')}>  
+                        <Text onPress={() =>navigate('EventParticipant',{eventId:eventId})}>  
                             {data.getEvent.eventMember.length==1?"  Participant":"  Participants"} </Text>
                         <Badge success>
                             <Text>{data.getEvent.eventMember.length}</Text>
@@ -89,7 +110,7 @@ export default class EventScreen extends Component {
                         
                     </View>
                     <H3 style={{fontWeight:"300", paddingBottom:10, paddingTop:10}}>{data.getEvent.title}</H3> 
-                    <Text note>{data.getEvent.group.user.username}: {data.getEvent.description}</Text>
+                    <Text note>Created by : {data.getEvent.group.user.username}</Text>
                   
                     <Content >
                         <List>
@@ -100,7 +121,7 @@ export default class EventScreen extends Component {
                     <Fab
                         style={{ backgroundColor: '#FF6600' }}
                         position="bottomRight"
-                        onPress={() =>navigate('AddPictureByItem',{eventName:data.getEvent.title, eventId:eventId})}>
+                        onPress={() =>navigate('AddPictureByEvent',{eventName:data.getEvent.title, eventId:eventId})}>
                         <Icon name="add" />
                     </Fab>  
                 </Container>)
