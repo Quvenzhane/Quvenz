@@ -38,7 +38,7 @@ import { RESPOND_2_REQUEST } from '../graph/mutations/respond2RequestMutation';
             const {data} = await this.props.mutate({variables:{requestId, responseType}, refetchQueries:[{query:GET_REQUESTS}]} )
             if(data.respond2Request.status != null){
                 Toast.show({
-                    text: "You have "+data.respond2Request.status+" the invite",
+                    text: "You have "+data.respond2Request.status+" the request",
                     type: "success",
                     duration: 4000
                   });
@@ -87,7 +87,10 @@ import { RESPOND_2_REQUEST } from '../graph/mutations/respond2RequestMutation';
                                 <Body>
                                     {requestDetails.group
                                         ?<Text note>You are invite to join {requestDetails.group.title} group</Text>
-                                        :<Text note>An invite for you to join {requestDetails.event.title} event</Text>}
+                                        :<Text note>{requestDetails.requestType == "Invite"
+                                                    ?"An invite for you to join"
+                                                    :"Someone request to join"} {requestDetails.event.title +" event"}</Text>
+                                    }
                                     <Text>From {requestDetails.senderUser.profile.length > 0
                                                 ?requestDetails.senderUser.profile.first_name+" "+requestDetails.senderUser.profile.last_name
                                                 :requestDetails.senderUser.username}</Text>
@@ -104,8 +107,7 @@ import { RESPOND_2_REQUEST } from '../graph/mutations/respond2RequestMutation';
                             return <Text> Aw! You have no pending request</Text>;
                     }
                 }
-                
-                
+                     
                 return(
                     <Container style={styles.container}>
                         <Content>

@@ -48,7 +48,7 @@ export default class ListEvent extends Component {
                                     eventMembers.event.photo.length+" pictures":
                                     eventMembers.event.photo.length+" picture"}</Text>
                             </Body>
-                            {eventMembers.event.user_type=="Admin"
+                            {eventMembers.user_type=="Admin"
                                 ?<Text note style={globalColor.appDarkPrimayColor} onPress={() =>navigate('AddEventParticipant',{eventId:eventMembers.event._id, eventTitle:eventMembers.event.title})}>share</Text>
                                 :<Text></Text>}
                         </ListItem>

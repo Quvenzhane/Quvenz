@@ -8,7 +8,7 @@ query getEvent ($eventId: ID!){
         group{
           title,
           user{
-            username
+            _id,username
           }
         }
         eventMember{

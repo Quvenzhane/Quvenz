@@ -16,7 +16,7 @@ export default class AddEventParticipant extends Component {
        showToast: false,
        findUser:"", findUserResult:"Search for friends on Pixfam", findUserStatus:false,
        timeout: null,
-       event:null, receiverUser:null, status:"Pending",
+       event:null, receiverUser:null, status:"Pending",requestType:"Invite"
     };
   }
 
@@ -40,7 +40,7 @@ export default class AddEventParticipant extends Component {
         this.onResultGotten(data.userSearch.username+" was found. Invite user");
       }catch (error){
         this.state.findUserStatus = false;
-        this.onResultGotten('User not found on our records. Try again!');
+        this.onResultGotten('User not found in our records. Try again!');
       }
     
   }
@@ -59,9 +59,9 @@ export default class AddEventParticipant extends Component {
         duration: 4000
         });
     }else{
-      const { receiverUser, event, status } = this.state;
+      const { receiverUser, event, status, requestType } = this.state;
       const {data,loading, error} = obj;
-      doSendInvite({variables: {receiverUser, event,status}});
+      doSendInvite({variables: {receiverUser, event,status, requestType}});
     }
   }
 
