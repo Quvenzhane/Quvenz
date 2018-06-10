@@ -12,7 +12,10 @@ export default StyleSheet.create({
     //justifyContent: 'space-around',
     //paddingBottom: 120,
   },
-
+  containerPicComment :{
+    backgroundColor:'#fff',
+    borderRadius :7
+  },
   button:{
     marginTop:30
   },

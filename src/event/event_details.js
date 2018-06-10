@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Content,Text, Badge, View, Icon, Fab, H3,Toast} from 'native-base';
+import { Container, Content,Text, Badge, View, Icon, Fab, H3,Toast, Thumbnail, Body, List,ListItem} from 'native-base';
 import CardViewEvent from './card_view_event'
 import styles from './style'; 
 import { Query } from "react-apollo";
@@ -11,7 +11,7 @@ export default class EventDetails extends Component {
         this.state = { 
            showToast: false,
            userPhotoDetails: null,
-           username: ""
+           username: "",profileImage:null
         };
     }
     loadDetails() {   
@@ -20,8 +20,7 @@ export default class EventDetails extends Component {
                 imageSource={details.image_url}
                 likes="101" 
                 comments="2" 
-                imageSourceProfile={details.user.image_path} 
-                username={this.state.username} />
+                />
          ))
     }
   render() {
@@ -52,6 +51,7 @@ export default class EventDetails extends Component {
                     var photoData =  data.getUserPhotos;
                    console.log(photoData[0])
                    try{
+                        this.state.profileImage =photoData[0].user.image_path
                         if(photoData[0].user.profile.length > 0){
                             this.state.username= photoData[0].user.profile.first_name+" "+photoData[0].user.profile.last_name;
                         }else{
@@ -72,10 +72,17 @@ export default class EventDetails extends Component {
             return(    
                 <Container style={styles.container}>
             
-                    <View style={styles.headingContainer}>
-                        <H3 style={styles.header}>{eventTitle}</H3> 
-                        <Text note>Pictures taken by {this.state.username}</Text>
-                    </View>
+                    <List>
+                        <ListItem>
+                        <Thumbnail source={{ uri: this.state.profileImage}}/>
+                        <Body style={{padding:5}} >
+                            <H3>{eventTitle}</H3> 
+                            <Text note>            
+                                Pictures by {this.state.username}
+                            </Text>
+                        </Body> 
+                        </ListItem>
+                    </List>
 
                     <Content style={styles.eventScreenContainer}>
                         {this.loadDetails()}
