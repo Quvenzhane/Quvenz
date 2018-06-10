@@ -52,7 +52,7 @@ export default class EventDetails extends Component {
                     var photoData =  data.getUserPhotos;
                    console.log(photoData[0])
                    try{
-                        if(photoData[0].user.profile!=null){
+                        if(photoData[0].user.profile.length > 0){
                             this.state.username= photoData[0].user.profile.first_name+" "+photoData[0].user.profile.last_name;
                         }else{
                             this.state.username =photoData[0].user.username;

@@ -6,7 +6,7 @@ import { Container, Content } from 'native-base';
 
 
 import { ADD_EVENT} from '../graph/mutations/eventMutation';
-import { GET_EVENTS} from '../graph/queries/eventQueries';
+import { GET_USER_EVENTS} from '../graph/queries/eventListQueries';
 import styles from './style'; 
 import FormCreateEvent from '../components/FormCreateEvent';
 
@@ -28,7 +28,7 @@ export default class CreateEvent extends Component {
 
   render() {
     return (
-      <Mutation mutation={ADD_EVENT} refetchQueries={[ {query:GET_EVENTS}]}>
+      <Mutation mutation={ADD_EVENT} refetchQueries={[ {query:GET_USER_EVENTS}]}>
       {(addEvent, {data, loading, error }) => 
       (
         <Container style={styles.container}>

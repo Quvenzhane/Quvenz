@@ -4,6 +4,8 @@ import { Container, Content, Button, Text, Icon, Item, Input,
 import { Image,ScrollView, View, ImageBackground } from 'react-native'; 
 import { StackNavigator,} from 'react-navigation';
 import styles from './style'; 
+import { Query } from "react-apollo";
+import { GET_POPULAR_EVENTS} from '../graph/queries/eventPopularQueries';
 
 var BUTTONS = [
     { text: "Create", icon: "add", iconColor: "#2c8ef4" },
@@ -16,10 +18,28 @@ var CANCEL_INDEX = 3;
 export default class HomeBody extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            popularEvents:null,
+        };
+
       }
 
+    loadDetails() {   
+    return this.state.popularEvents.map(events => (
+        <CardItem>
+            <Body>
+                <Text onPress={() =>this.props.theNav('Event',{eventId:events._id})}>{events.title}</Text>
+                <Text note>reactions 102,043</Text>
+            </Body>
+            <Right>
+                <Icon name="arrow-forward" />
+            </Right>
+        </CardItem>
+        ))
+    }
+
   render() {
+
     return (
         <Content style={styles.container}>
             <Text style={styles.groupHeader} note> Group: Family</Text>
@@ -92,62 +112,24 @@ export default class HomeBody extends Component {
 
             <Text style={styles.groupHeader} note><Icon name="ios-pulse-outline" style={{color:'gray'}}/>  Popular Events</Text>
             <View style={styles.containerPopular}>
-                <Card  >
-                    <CardItem>
-                        <Body>
-                            <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
-                            <Text note>reactions 102,043</Text>
-                        </Body>
-                        <Right>
-                            <Icon name="arrow-forward" />
-                        </Right>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Text onPress={() =>this.props.theNav('Event')}>Osun Oshogbo Festival</Text>
-                            <Text note>reactions 90,677</Text>
-                        </Body>
-                        <Right>
-                            <Icon name="arrow-forward" />
-                        </Right>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Text onPress={() =>this.props.theNav('Event')}>Laravel Meetup 2020</Text>
-                            <Text note>reactions 10,003</Text>
-                        </Body>
-                        <Right>
-                            <Icon name="arrow-forward" />
-                        </Right>
-                    </CardItem> 
-                    <CardItem>
-                        <Body>
-                            <Text onPress={() =>this.props.theNav('Event')}>The Experience 2018</Text>
-                            <Text note>reactions 4,803</Text>
-                        </Body>
-                        <Right>
-                            <Icon name="arrow-forward" />
-                        </Right>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Text>Tinapa All women games March 2017/2018</Text>
-                            <Text note>reactions 12,003</Text>
-                        </Body>
-                        <Right>
-                            <Icon name="arrow-forward" />
-                        </Right>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Text>Laravel Meetup 2020</Text>
-                            <Text note>reactions 1,003</Text>
-                        </Body>
-                        <Right>
-                            <Icon name="arrow-forward" />
-                        </Right>
-                    </CardItem> 
-                </Card>
+                <Query query={GET_POPULAR_EVENTS} fetchPolicy="network-only">
+                {({ loading, error, data }) => 
+                { 
+                    var theList = null;
+                    if (loading) return <Text> Loading...</Text>;
+                    if (error) return <Text> error...</Text>
+                    if(data){ console.log(data)
+                        if(data.getPopularEvents){ 
+                            this.state.popularEvents = data.getPopularEvents;
+                        }
+                    }
+                    return(    
+                        <Card >
+                             {this.loadDetails()}
+                        </Card>
+                        )
+                    }}
+                </Query>
             </View> 
         </Content> 
     )

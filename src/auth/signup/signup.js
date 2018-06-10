@@ -47,6 +47,7 @@ class SignupScreen extends Component {
       
       try{
         await AsyncStorage.setItem('@pixfam_token', data.signup.token);
+        await AsyncStorage.setItem('@pixfam_email', email); //used by event member
         console.log('successfully setItem');
       }
       catch(error){

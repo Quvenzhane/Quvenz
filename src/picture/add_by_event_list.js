@@ -5,12 +5,12 @@ import styles from './style';
 import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import {ADD_PHOTO } from '../graph/mutations/photoMutation';
-import { GET_EVENTS} from '../graph/queries/eventQueries';
+import { GET_USER_EVENTS} from '../graph/queries/eventListQueries';
 import { GET_EVENTSCREEN} from '../graph/queries/eventScreenQueries';
 // import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
 
 
-export default class AddPictureByList extends Component {
+export default class AddPictureByEventList extends Component {
     constructor(props){
         super(props); 
         this.state = { 
@@ -54,7 +54,7 @@ export default class AddPictureByList extends Component {
 
     return (
     
-        <Query query={GET_EVENTS}>
+        <Query query={GET_USER_EVENTS}>
             {({ loading, error, data }) => 
             { 
                 var theList = null;
@@ -69,12 +69,12 @@ export default class AddPictureByList extends Component {
                         return <Text> Whoops! Something got broken</Text>;
                 }
                 if(data){
-                    if(data.getEventMembers){ 
-                        this.state.eventList = data.getEventMembers;
+                    if(data.getUserEvents){ 
+                        this.state.eventList = data.getUserEvents;
                    }
                 }
             return(
-                <Mutation mutation={ADD_PHOTO} refetchQueries={[ {query:GET_EVENTS}]}>
+                <Mutation mutation={ADD_PHOTO} refetchQueries={[ {query:GET_USER_EVENTS}]}>
                 {(addPhoto, {data, loading, error }) => 
                 (
                  

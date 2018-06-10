@@ -40,8 +40,8 @@ export default class ListGroup extends Component {
                             renderRow={(groups) =>
                             <ListItem>
                                 <Body >
-                                    <Text  onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.group.title}</Text>
-                                    <Text note onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.member.length==1?groups.member.length+" member":groups.member.length+" members" }</Text>
+                                    <Text  onPress={() =>navigate('Group',{groupId:groups.group._id, groupMember:groups.member.length})}>{groups.group.title}</Text>
+                                    <Text note onPress={() =>navigate('Group',{groupId:groups.group._id, groupMember:groups.member.length})}>{groups.member.length==1?groups.member.length+" member":groups.member.length+" members" }</Text>
                                 </Body>
                     
                                 {groups.user_type=="Admin"?<Text note style={globalColor.appDarkPrimayColor} 

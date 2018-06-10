@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 export const GET_REQUESTS = gql`
 query {
     getRequests {
-          _id
+          _id,requestType
           group{
             title,description,_id
           }

@@ -1,92 +1,99 @@
 import React, { Component } from 'react'
-import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
+import { Container, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Toast, View } from 'native-base';
 import { Card, CardItem, H3, Fab, Icon } from 'native-base';
 import { Alert } from 'react-native';
 import styles from './style'; 
+import { Query } from "react-apollo";
+import { GET_EVENT_MEMBERS} from '../graph/queries/eventMemberQueries';
 
  
-ShowAlertDialog = () =>{
- 
-    Alert.alert(
-        '',
-        'Edit user access',
-        [
-          {text: 'Make Admin', onPress: () => console.log('OK Pressed')},
-          {text: 'Remove', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'Block', onPress: () => console.log('OK Pressed')},
-        ],
-        // { cancelable: false }
-      )
-  }
-
 export default class EventParticipants extends Component {
- 
+    constructor(props){
+        super(props);
+        this.state = { 
+           showToast: false,
+           groupMemberId: null,
+        };
+    }
+
   render() {
     const { navigate } = this.props.navigation;
-    return (
-        <Container style={styles.container}>
-            <H3 style={styles.header}>Soduko Birthday</H3> 
-            <Content>
-                <Card>
-                    <CardItem header style={{height:10}} >
-                        <Text>Event Description</Text>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <Text>Hi friends! This is my 21st birthday event. I hope guys have lots of fun. Add your pictures please
-                            </Text>
-                        </Body>
-                    </CardItem>
-                </Card>
+    const eventId =  this.props.navigation.getParam('eventId');
 
-                <Text note style={{paddingTop:20}}> Event participants</Text>
-                <List>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/pic1.jpg')} />
-                        </Left>
-                        <Body>
-                            <Text>Kumar Pratik</Text>
-                            <Text note onPress={ShowAlertDialog}>Doing what you like will always keep you happy . .</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/pic2.jpg')}/>
-                        </Left>
-                        <Body>
-                            <Text>Mayow will</Text>
-                            <Text note onPress={ShowAlertDialog}>I wish i had time machine</Text>
-                        </Body>
-                    </ListItem>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/pic3.jpg')}/>
-                        </Left>
-                        <Body>
-                            <Text>Ike Jonas</Text>
-                            <Text note onPress={ShowAlertDialog}>KISS</Text>
-                        </Body>
-                        <Right><Text note>admin</Text></Right>
-                    </ListItem>
-                    <ListItem avatar>
-                        <Left>
-                            <Thumbnail source={require('../../images/cam.png')}/>
-                        </Left>
-                        <Body>
-                            <Text>Mayow will</Text>
-                            <Text note onPress={ShowAlertDialog}>I wish i had time machine</Text>
-                        </Body>
-                    </ListItem>
-                </List>
-            </Content>
-            <Fab
-                style={{ backgroundColor: '#5067FF' }}
-                position="bottomRight"
-                onPress={() =>navigate('AddPicture')}>
-                <Icon name="add" />
-            </Fab> 
-        </Container>
+    return (
+
+        <Query query={GET_EVENT_MEMBERS} variables={{eventId}}>
+        {({ loading, error, data }) => 
+        { 
+            var theList = null;
+            if (loading) return <Text> Loading...</Text>;
+            if (error){
+                Toast.show({
+                    text: error.message,
+                    buttonText: 'Okay',
+                    type: "danger",
+                    duration: 10000
+                    });
+                    return <Text> Whoops! Something got broken</Text>;
+            }
+            if(data){ console.log('there is data');
+           
+                if(data.getEventMembers){ 
+
+                    //is user a member
+                    theList = (
+                        <List dataArray={data.getEventMembers}
+                            renderRow={(members) =>
+                                <ListItem avatar>
+                                <Left>
+                                    <Thumbnail source={{uri: members.user.image_path}} />
+                                </Left>
+                                <Body>
+                                    <Text>{members.user.profile
+                                        ?members.user.profile.first_name+" "+members.user.profile.last_name
+                                        :members.user.username}
+                                    </Text>
+                                    <Text note>{members.user.profile?members.user.profile.bio:"Hi! I am on Pixfam"}..</Text>
+                                </Body>
+                                {members.user_type=="Admin"?<Right><Text note>admin</Text></Right>:<Text></Text>}           
+                            </ListItem>
+                        }>
+                    </List>)
+                }
+            }
+            
+
+            return(
+                <Container style={styles.container}>
+                    <H3 style={styles.header}>{data.getEventMembers[0].event.title}</H3> 
+                    <Content>
+                        <Card>
+                            <CardItem header style={{height:10}} >
+                                <Text>Event Description</Text>
+                            </CardItem>
+                            <CardItem>
+                                <Body>
+                                    <Text note>{data.getEventMembers[0].event.description}</Text>
+                                </Body>
+                            </CardItem>
+                        </Card>
+
+                        <Text note style={{paddingTop:20}}> Event participants</Text>
+                        <View>
+                            {theList}
+                        </View>
+                    </Content>
+                     
+                    <Fab
+                        style={{ backgroundColor: '#FF6600' }}
+                        position="bottomRight"
+                        onPress={() =>navigate('AddPictureByEvent',{eventName:data.getEventMembers[0].event.title, eventId:eventId})}>
+                        <Icon name="add" />
+                    </Fab>  
+                </Container>
+            )   
+        }}
+        </Query>
     )
   }
 }
