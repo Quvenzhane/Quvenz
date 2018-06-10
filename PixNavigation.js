@@ -51,7 +51,7 @@ const PixNavigation = StackNavigator(
     ListEvent: { screen: ListEvent, navigationOptions: {title: 'Event List', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Event: { screen: EventScreen, navigationOptions: {title: 'Event', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     EventDetails: { screen: EventDetails, navigationOptions: {title: 'Events Details', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
-    EventPicDetails: { screen: EventPicDetails, navigationOptions: {title: 'Picture Details', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
+    EventPicDetails: { screen: EventPicDetails, navigationOptions: {title: 'Picture Comments', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     AddEventParticipant: { screen: AddEventParticipant, navigationOptions: {title: 'Add Participant', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     EventParticipant: { screen: EventParticipant, navigationOptions: {title: 'Event participant', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
 
