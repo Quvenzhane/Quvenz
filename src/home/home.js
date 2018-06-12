@@ -33,7 +33,7 @@ export default class HomeScreen extends Component {
 
          return (   
             <Container> 
-               <HomeHeader theNav={navigate}/>
+               {/* <HomeHeader theNav={navigate}/> */}
                <HomeBody theNav={navigate}/>
                 <Fab style={{ backgroundColor: '#FF6600', marginBottom:40 }}
                     position="bottomRight"
