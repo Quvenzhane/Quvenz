@@ -15,7 +15,7 @@ export default class AddGroupMember extends Component {
        showToast: false,
        findUser:"", findUserResult:"Search on Pixfam to add", findUserStatus:false,
        timeout: null,
-       group:null, receiverUser:null, status:"Pending",
+       group:null, receiverUser:null, status:"Pending",requestType:"Invite"
     };
   }
 
@@ -58,9 +58,9 @@ export default class AddGroupMember extends Component {
         duration: 4000
         });
     }else{
-      const { receiverUser, group, status } = this.state;
+      const { receiverUser, group, status,requestType } = this.state;
       const {data,loading, error} = obj;
-      doSendInvite({variables: {receiverUser, group,status}});
+      doSendInvite({variables: {receiverUser, group,status,requestType}});
     }
   }
 
@@ -108,7 +108,9 @@ export default class AddGroupMember extends Component {
                     <ApolloConsumer>
                         {client => (
                           <Item rounded >
-                            <Input placeholder='Search username or email' 
+                            <Input placeholder='Search username or email'   
+                            autoCapitalize="none"
+                            autoCorrect={false}
                             onChangeText={text => this.doSearchOnTextChange(text,'findUser',client)}
                             value={this.state.findUser} />
                             <Icon  name="send" onPress={this.doSubmit.bind(this, doSendRequest, {data,loading, error})} />

@@ -24,7 +24,7 @@ export default class HomeScreen extends Component {
           position="bottomRight"
           onPress={() => navigate("AddPictureByEventList")}
         >
-          <Icon name="add" />
+          <Icon name="camera" />
         </Fab>
         <HomeFooter theNav={navigate} />
       </Container>

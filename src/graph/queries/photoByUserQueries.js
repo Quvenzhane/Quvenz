@@ -4,9 +4,15 @@ export const GET_USER_PHOTO = gql`
 query getUserPhotos($userId:ID!, $eventId:ID!) {
 
   getUserPhotos(user:$userId, event:$eventId){
-    image_url,description
+    _id,image_url,description
+    photoComment{
+      _id,comment
+      user{
+        username
+      }
+    }
     user{
-      username, image_path
+      _id,username, image_path
       profile{
         last_name, first_name
       }

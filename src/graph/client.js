@@ -3,13 +3,8 @@ import { AsyncStorage } from "react-native";
 import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
 
-//http://localhost was giving error, so I changed to http://10.0.2.2
-//const httpLink = new HttpLink({ uri: 'http://10.0.2.2:4800/graphql' })
-//const httpLink = createHttpLink({uri: 'http://10.0.2.2:4800/graphql'});
-
 export const client = new ApolloClient({
   //uri: "https://pix-fam.herokuapp.com/graphql",
-  // uri: 'http://192.168.43.76:4800/graphql',
   uri: "http://10.0.3.2:4800/graphql",
   //uri: "http://192.168.88.22:4800/graphql",
 

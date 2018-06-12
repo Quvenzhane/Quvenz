@@ -110,7 +110,9 @@ export default class AddEventParticipant extends Component {
                     <ApolloConsumer>
                         {client => (
                           <Item rounded >
-                            <Input placeholder='Search username or email' 
+                            <Input placeholder='Search username or email'  
+                            autoCapitalize="none"
+                            autoCorrect={false}
                             onChangeText={text => this.doSearchOnTextChange(text,'findUser',client)}
                             value={this.state.findUser} />
                             <Icon  name="send" onPress={this.doSubmit.bind(this, doSendRequest, {data,loading, error})} />

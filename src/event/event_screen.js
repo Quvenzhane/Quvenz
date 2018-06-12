@@ -4,8 +4,6 @@ import { Container, Content, List, ListItem, Text, Badge, View, Icon, Toast} fro
 import { DeckSwiper, Card, CardItem, Thumbnail, Left, Body, H3, Fab, Button, Form } from 'native-base';
 import styles from './style'; 
 import { AsyncStorage } from 'react-native';
-// import CardViewEvent from './card_view_event'
-// import CardPicByUser from './card_pic_by_user'
 import { Mutation } from "react-apollo";
 import { SEND_JOIN_EVENT_REQUEST } from '../graph/mutations/sendJoinEventRequestMutation';
 import { Query } from "react-apollo";
@@ -47,7 +45,9 @@ export default class EventScreen extends Component {
                     ?details.user.profile.first_name+" "+details.user.profile.last_name
                     :details.user.username}
                 </Text>
-                <Text note onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>10 likes | 3 Comments  
+                <Text note onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
+                    10 likes | 3 Comments  
+                    {/* | {details.photo.photoComment.length !=0 ?details.photo.photoComment.length+" comments":" 0 comment"} */}
                     | {details.photo.length > 1?details.photo.length+" pictures":details.photo.length+" picture"}
                 </Text>
             </Body>
@@ -171,7 +171,7 @@ export default class EventScreen extends Component {
                             style={{ backgroundColor: '#FF6600' }}
                             position="bottomRight"
                             onPress={() =>navigate('AddPictureByEvent',{eventName:eventData.getEvent.title, eventId:eventId})}>
-                            <Icon name="add" />
+                            <Icon name="camera" />
                         </Fab>  
                         :<Text></Text>
                     }

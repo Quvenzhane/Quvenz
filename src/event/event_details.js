@@ -16,10 +16,14 @@ export default class EventDetails extends Component {
     }
     loadDetails() {   
         return this.state.userPhotoDetails.map(details => (
+            // var lastComment = details.photoComment[details.photoComment.length-1].user.username
             <CardViewEvent theNav={this.props.navigation.navigate} 
                 imageSource={details.image_url}
-                likes="101" 
-                comments="2" 
+                photo={details._id}
+                likes="101"
+                lastComment ={details.photoComment.length !=0?details.photoComment[details.photoComment.length-1].comment:null }
+                lastCommentFromUser ={details.photoComment.length !=0?details.photoComment[details.photoComment.length-1].user.username:null }
+                comments={details.photoComment.length}
                 />
          ))
     }
@@ -87,12 +91,6 @@ export default class EventDetails extends Component {
                     <Content style={styles.eventScreenContainer}>
                         {this.loadDetails()}
                     </Content>
-                    {/* <Fab
-                        style={{ backgroundColor: '#2980b9' }}
-                        position="bottomRight"
-                        onPress={() =>navigate('EventPicDetails')}>
-                        <Icon name="add" />
-                    </Fab> */}
                 </Container> 
             )
         }}

@@ -95,7 +95,7 @@ class GroupMember extends Component {
                                         {members.user.profile
                                             ?members.user.profile.first_name+" "+members.user.profile.last_name
                                             :members.user.username}</Text>
-                                    <Text note onPress={this.showAlertDialog.bind(this,members._id,groupId)}>{members.user.profile?members.user.profile.bio:"Hi! I am on Pixfam"}..</Text>
+                                    <Text note onPress={this.showAlertDialog.bind(this,members._id,groupId)}>{members.user.profile?members.user.profile.bio:"Yep! I am on Pixfam"}..</Text>
                                 </Body>
                                 {members.user_type=="Admin"?<Right><Text note>admin</Text></Right>:<Text></Text>}
                             </ListItem>
