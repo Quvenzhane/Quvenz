@@ -114,7 +114,7 @@ export default class AddPictureByEvent extends Component {
       <Mutation
         mutation={ADD_PHOTO}
         refetchQueries={[
-          { query: GET_EVENTS },
+          { query: GET_USER_EVENTS },
           { query: GET_EVENTSCREEN, variables: { eventId } }
         ]}
       >
