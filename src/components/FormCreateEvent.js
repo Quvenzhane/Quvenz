@@ -36,12 +36,10 @@ export default class FormCreateEvent extends Component {
         } 
 
         loadGroupList() {
-            return this.state.groupList.map(groups => (
-                <Picker.Item label={groups.group.title} value={groups.group._id} />
-             ))
+           const minusAdmin = this.state.groupList.filter(group => (group.user_type=="Admin"))
+            return minusAdmin.map(groups => (<Picker.Item label={groups.group.title} value={groups.group._id} />))
         }
-  
-    
+
   render() {
     if(this.props.isError){
         Toast.show({

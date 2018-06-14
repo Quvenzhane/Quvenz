@@ -18,7 +18,7 @@ export default class EventScreen extends Component {
            eventDetail: null,
            email:"no@mail.com",
            isAMember: false,
-           event:null, receiverUser:null, status:"Pending",requestType:"Join"
+           event:null, receiverUser:null, status:"Pending",requestType:"Join",
         };
     }
 
@@ -32,28 +32,34 @@ export default class EventScreen extends Component {
         } 
     };
    
-    loadDetails(eventId, eventTitle) {   
-        return this.state.eventDetail.map(details => (
+    loadDetails(eventId, eventTitle) {  
+        
+        return this.state.eventDetail.map(details => {
 
-            <ListItem avatar>
-            <Left>
-                <Thumbnail source={{ uri: details.user.image_path }} />
-            </Left>
-            <Body>
-                <Text onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
-                    {details.user.profile
-                    ?details.user.profile.first_name+" "+details.user.profile.last_name
-                    :details.user.username}
-                </Text>
-                <Text note onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
-                    10 likes | 3 Comments  
-                    {/* | {details.photo.photoComment.length !=0 ?details.photo.photoComment.length+" comments":" 0 comment"} */}
-                    | {details.photo.length > 1?details.photo.length+" pictures":details.photo.length+" picture"}
-                </Text>
-            </Body>
-          
-            </ListItem>
-         ))
+            var commentCount = 0 ;
+            var photoCount = details.photo.length;
+            for(i=0; i < photoCount; i++){
+                commentCount +=   details.photo[i].photoComment.length;          
+            }
+           const toReturn =  (<ListItem avatar>
+                <Left>
+                    <Thumbnail source={{ uri: details.user.image_path }} />
+                </Left>
+                <Body>
+                    <Text onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
+                        {details.user.profile
+                        ?details.user.profile.first_name+" "+details.user.profile.last_name
+                        :details.user.username}
+                    </Text>
+                    <Text note onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
+                        10 likes 
+                        | {commentCount ==0 ?"":commentCount > 1?commentCount+" comments ":commentCount+" comment "}
+                        | {photoCount > 1?photoCount+" pictures":photoCount+" picture"}
+                    </Text>
+                </Body>
+            </ListItem>)
+            return toReturn;
+        })
     }
 
     getTotalPictures(){

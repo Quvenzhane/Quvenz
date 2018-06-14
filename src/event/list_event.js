@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Header, Content, List, ListItem, Text, Badge, View, H3, Icon, Button, Body, Toast} from 'native-base';
-import { Right, Left} from 'native-base';
+import { Right, Left, Fab} from 'native-base';
 
 import styles from './style'; 
 import globalColor from '../../config/app-colors'; 
@@ -69,7 +69,16 @@ export default class ListEvent extends Component {
                             </View>  
                             {theList}
                         </Content>
+
+                         <Fab
+                            style={{ backgroundColor: "#FF6600", marginBottom: 40 }}
+                            position="bottomRight"
+                            onPress={() => navigate("AddPictureByEventList")}
+                            >
+                        <Icon name="camera" />
+                        </Fab>
                     </Container>
+                    
                 )
             }}
         </Query>

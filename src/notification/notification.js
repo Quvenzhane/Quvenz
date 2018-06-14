@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Image, View, Alert} from 'react-native'; 
-import { Container, Content, List, ListItem, Body, Right, Thumbnail, Text, Toast, Button } from 'native-base';
+import { Alert} from 'react-native'; 
+import { Container, Content, List, ListItem, Body, Left, Thumbnail, Text, Toast } from 'native-base';
 import styles from './style';
 import globalColor from '../../config/app-colors'; 
 import { graphql} from 'react-apollo';
@@ -83,8 +83,12 @@ import { RESPOND_2_REQUEST } from '../graph/mutations/respond2RequestMutation';
                         theList = (
                             <List dataArray={data.getRequests}
                             renderRow={(requestDetails) =>
-                            <ListItem >
+                            <ListItem avatar>
+                                <Left>
+                                    <Thumbnail small source={{ uri: requestDetails.senderUser.image_path}}/>
+                                </Left>
                                 <Body>
+
                                     {requestDetails.group
                                         ?<Text note>You are invite to join {requestDetails.group.title} group</Text>
                                         :<Text note>{requestDetails.requestType == "Invite"

@@ -4,7 +4,7 @@ import ApolloClient from "apollo-boost";
 import gql from "graphql-tag";
 
 export const client = new ApolloClient({
-  //uri: "https://pix-fam.herokuapp.com/graphql",
+  // uri: "https://pix-fam.herokuapp.com/graphql",
   uri: "http://10.0.3.2:4800/graphql",
   //uri: "http://192.168.88.22:4800/graphql",
 

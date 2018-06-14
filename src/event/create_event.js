@@ -3,8 +3,6 @@ import {  View, Text,ImageBackground, Keyboard} from 'react-native'
 
 import { Mutation } from "react-apollo";
 import { Container, Content } from 'native-base';
-
-
 import { ADD_EVENT} from '../graph/mutations/eventMutation';
 import { GET_USER_EVENTS} from '../graph/queries/eventListQueries';
 import styles from './style'; 

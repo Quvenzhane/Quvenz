@@ -3,6 +3,7 @@ import { Image, View, Text, TouchableOpacity, Keyboard} from 'react-native';
 import { Card, CardItem, Thumbnail, Left, Right, Body, Icon, Button, Form, Item, Input,Toast } from 'native-base';
 import { Mutation } from "react-apollo";
 import { ADD_PHOTO_COMMENT } from '../graph/mutations/photoCommentMutation';
+import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
 
 export default class CardViewEvent extends Component {
   constructor(props){
@@ -35,8 +36,10 @@ export default class CardViewEvent extends Component {
     }
   }
   render() {
+    const eventId = this.props.eventId;
+    const userId = this.props.userId;
     return (
-
+      
         <Card>
           <CardItem>
             <Left>
@@ -57,9 +60,9 @@ export default class CardViewEvent extends Component {
                   <Icon name="ios-chatbubbles-outline" style={{color:"black"}} />
                   <Text> {this.props.comments !=0?this.props.comments:null}</Text> 
                 </Button>
-                {/* <Button transparent onPress={() =>this.props.theNav('EventPicDetails')}>
+                <Button transparent>
                   <Icon name="ios-eye-outline" style={{color:"black"}} />
-                </Button> */}
+                </Button>
             </Left>
           </CardItem>
 
@@ -72,7 +75,8 @@ export default class CardViewEvent extends Component {
                           {this.props.lastComment}</Text>
                         :null
                     } 
-                  <Mutation mutation={ADD_PHOTO_COMMENT}>
+                  <Mutation mutation={ADD_PHOTO_COMMENT} 
+                            refetchQueries={[ {query:GET_USER_PHOTO, variables:{userId, eventId}}]}>
                     {(doComment, {data, loading, error }) => 
                     (           
                         <Form style={{padding:8,}}>

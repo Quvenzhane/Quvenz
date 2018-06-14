@@ -11,7 +11,7 @@ query {
             title,description,_id
           }
           senderUser{
-              username
+              username,image_path
               profile{
                   first_name, last_name
               }

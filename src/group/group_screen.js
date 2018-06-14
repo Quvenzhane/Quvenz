@@ -71,7 +71,7 @@ export default class GroupScreen extends Component {
                     </Content>
                     <Fab style={{ backgroundColor: '#FF6600', marginBottom:40 }}
                         position="bottomRight"
-                        onPress={() =>navigate('CreateGroup')}>
+                        onPress={() =>navigate('CreateEvent')}>
                         <Icon name="add" />
                     </Fab>
                 </Container>

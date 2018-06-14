@@ -20,7 +20,7 @@ query getEvent ($eventId: ID!){
             }
           }
           photo{
-           _id,image_url
+           image_url
             photoComment{
               _id,comment
             }

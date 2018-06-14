@@ -24,6 +24,8 @@ export default class EventDetails extends Component {
                 lastComment ={details.photoComment.length !=0?details.photoComment[details.photoComment.length-1].comment:null }
                 lastCommentFromUser ={details.photoComment.length !=0?details.photoComment[details.photoComment.length-1].user.username:null }
                 comments={details.photoComment.length}
+                userId ={this.props.navigation.getParam('userId')}
+                eventId ={this.props.navigation.getParam('eventId')}
                 />
          ))
     }
