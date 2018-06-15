@@ -117,7 +117,7 @@ export default class HomeBody extends Component {
                 { 
                     var theList = null;
                     if (loading) return <Text> Loading...</Text>;
-                    if (error) return <Text> error...</Text>
+                    if (error) return <Text>Internet error...</Text>
                     if(data){ console.log(data)
                         if(data.getPopularEvents){ 
                             this.state.popularEvents = data.getPopularEvents;

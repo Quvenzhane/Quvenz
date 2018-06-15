@@ -26,7 +26,7 @@ export default class HomeHeader extends Component {
                             if (loading) return <Text> </Text>;
                             if (error)return <Text> </Text>;
                             
-                            if(data){console.log(data)
+                            if(data){
                                 if(data.getRequests.length > 0){ 
                                     this.state.notificationCount =data.getRequests.length;
                                 }

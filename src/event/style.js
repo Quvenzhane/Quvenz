@@ -6,11 +6,10 @@ export default StyleSheet.create({
     //flexDirection: 'column', 
     padding: 15,
   },
+  
   containerCardByPic: {
     flex:1,
-    //flexDirection: 'column', 
-    //justifyContent: 'space-around',
-    //paddingBottom: 120,
+    padding: 10,
   },
   containerPicComment :{
     backgroundColor:'#fff',

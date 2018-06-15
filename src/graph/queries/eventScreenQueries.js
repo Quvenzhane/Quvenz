@@ -24,6 +24,9 @@ query getEvent ($eventId: ID!){
             photoComment{
               _id,comment
             }
+            photoLike{
+              _id
+            }
           }
          }
     

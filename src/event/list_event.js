@@ -43,7 +43,7 @@ export default class ListEvent extends Component {
                             {eventMembers.event.e_type=="Private"?<Icon name="lock" style={{color:"gray"}}/>:<Icon name="people" style={{color:"gray"}}/>}
                             <Body>
                                 <Text onPress={() =>navigate('Event',{eventId:eventMembers.event._id})}>{eventMembers.event.title}</Text>
-                                <Text note style={{fontSize:10}}>{eventMembers.event.description}</Text>
+                                <Text onPress={() =>navigate('Event',{eventId:eventMembers.event._id})} note style={{fontSize:10}}>{eventMembers.event.description}</Text>
                                 <Text note>{eventMembers.event.photo.length > 1?
                                     eventMembers.event.photo.length+" pictures":
                                     eventMembers.event.photo.length+" picture"}</Text>

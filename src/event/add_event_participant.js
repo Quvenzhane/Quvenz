@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Container, Content,Text, Item, View, Icon, Input, H3, Form, Button, Toast} from 'native-base';
 import styles from './style'; 
 import { Keyboard } from 'react-native'
-import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import { SEND_REQUEST } from '../graph/mutations/sendRequestMutation';
 import { USER_SEARCH} from '../graph/queries/userSearchQueries';

@@ -37,9 +37,11 @@ export default class EventScreen extends Component {
         return this.state.eventDetail.map(details => {
 
             var commentCount = 0 ;
+            var likeCount = 0;
             var photoCount = details.photo.length;
             for(i=0; i < photoCount; i++){
-                commentCount +=   details.photo[i].photoComment.length;          
+                commentCount +=   details.photo[i].photoComment.length; 
+                likeCount +=   details.photo[i].photoLike.length;                   
             }
            const toReturn =  (<ListItem avatar>
                 <Left>
@@ -52,9 +54,9 @@ export default class EventScreen extends Component {
                         :details.user.username}
                     </Text>
                     <Text note onPress={() =>this.props.navigation.navigate('EventDetails',{userId:details.user._id, eventId:eventId,eventTitle:eventTitle})}>
-                        10 likes 
-                        | {commentCount ==0 ?"":commentCount > 1?commentCount+" comments ":commentCount+" comment "}
-                        | {photoCount > 1?photoCount+" pictures":photoCount+" picture"}
+                        {likeCount ==0 ?"":likeCount > 1?likeCount+" likes | ":likeCount+" like | "} 
+                        {commentCount ==0 ?"":commentCount > 1?commentCount+" comments | ":commentCount+" comment | "}
+                        {photoCount > 1?photoCount+" pictures":photoCount+" picture"}
                     </Text>
                 </Body>
             </ListItem>)
