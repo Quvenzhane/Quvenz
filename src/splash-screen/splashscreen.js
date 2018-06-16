@@ -8,9 +8,6 @@ import {
   ImageBackground,
   AsyncStorage
 } from "react-native";
-import { StackNavigator } from "react-navigation";
-import gql from "graphql-tag";
-
 import styles from "./style";
 
 export default class SplashScreen extends Component {
@@ -35,7 +32,7 @@ export default class SplashScreen extends Component {
       const token = await AsyncStorage.getItem("@pixfam_token");
       token ? this.setState({ token: true }) : this.setState({ token: false });
       console.log("token in componentWillMount: ", this.state.token);
-      this.state.token && this.props.navigation.navigate("Home");
+      this.state.token && this.props.navigation.navigate("ListEvent");
     } catch (error) {
       console.log("error: " + error.message);
     }

@@ -11,7 +11,7 @@ import GroupMember from './src/group/group_members';
 
 import CreateEvent from './src/event/create_event';
 import ListEvent from './src/event/list_event';
-import EventPicDetails from './src/event/event_pic_details';
+import EventPicComment from './src/event/event_pic_comment';
 import EventDetails from './src/event/event_details';
 import EventScreen from './src/event/event_screen';
 import AddEventParticipant from './src/event/add_event_participant';
@@ -51,7 +51,7 @@ const PixNavigation = StackNavigator(
     ListEvent: { screen: ListEvent, navigationOptions: {title: 'Event List', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     Event: { screen: EventScreen, navigationOptions: {title: 'Event', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     EventDetails: { screen: EventDetails, navigationOptions: {title: 'Events Details', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
-    EventPicDetails: { screen: EventPicDetails, navigationOptions: {title: 'Picture Comments', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
+    EventPicComment: { screen: EventPicComment, navigationOptions: {title: 'Picture Comments', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     AddEventParticipant: { screen: AddEventParticipant, navigationOptions: {title: 'Add Participant', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
     EventParticipant: { screen: EventParticipant, navigationOptions: {title: 'Event participant', headerStyle:{backgroundColor: '#2980b9'},headerTintColor: '#fff',}},
 

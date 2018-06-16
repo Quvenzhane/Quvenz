@@ -35,7 +35,6 @@ export default class ListEvent extends Component {
                         return <Text> Whoops! Something got broken</Text>;
                 }
                 if(data){ console.log('there is data');
-                if(data.getUserEvents){ 
                     theList = (
                         <List dataArray={data.getUserEvents}
                         renderRow={(eventMembers) =>
@@ -54,6 +53,7 @@ export default class ListEvent extends Component {
                         </ListItem>
                         }>
                     </List>)
+                if(data.getUserEvents){ 
                 }
             }
 

@@ -40,8 +40,10 @@ export default class EventDetails extends Component {
                 }
             }
             const returnBack=  <CardViewEvent theNav={this.props.navigation.navigate} 
+                picCreatorUsername={this.state.username}
                 imageSource={details.image_url}
                 photo={details._id}
+                description={details.description}
                 view={details.view}
                 dateCreated = {this.formatDate(details.createdAt)}
                 likes={details.photoLike.length}
@@ -75,8 +77,8 @@ export default class EventDetails extends Component {
         if (hours <= 24) {if(hours == 1){return "AN HOUR AGO"}else{return hours+ " HOURS AGO";}}
         if (days <= 7) {if(days == 1){return "A DAY AGO"}else{return days+ " DAYS AGO";}}
         if (weeks <= 4.3) {if(weeks == 1){return "A WEEK AGO"}else{return weeks+ " WEEKS AGO";}}
-        if (months <= 4.3) {if(months == 1){return "A MONTH AGo"}else{return months+ " MONTHS AGO";}}
-        if (years <= 4.3) {if(years == 1){return "A YEAR AGO"}else{return years+ " YEARS AGO";}}
+        if (months <= 12) {if(months == 1){return "A MONTH AGo"}else{return months+ " MONTHS AGO";}}
+        else {if(years == 1){return "A YEAR AGO"}else{return years+ " YEARS AGO";}}
     }
 
   render() {

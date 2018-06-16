@@ -97,7 +97,11 @@ export default class CardViewEvent extends Component {
                     )}
                   </Mutation> 
 
-                  <Button transparent  onPress={() =>this.props.theNav('EventPicDetails')}>
+                  <Button transparent  onPress={() =>this.props.theNav('EventPicComment', 
+                          {photo:this.props.photo,
+                          likes:this.props.likes,
+                          comments:this.props.comments,
+                          username:this.props.picCreatorUsername})}>
                     <Icon name="ios-chatbubbles-outline" style={{color:"black"}} />
                     <Text> {this.props.comments !=0?this.props.comments:null}</Text> 
                   </Button>
@@ -111,6 +115,7 @@ export default class CardViewEvent extends Component {
 
             <CardItem>
               <Body  style={{  flex:1, flexDirection: 'column', alignItems:'stretch'}}>
+                <Text note>{this.props.description}</Text>
                 <View>
                       {this.props.lastComment
                           ?<Text>{this.props.lastCommentFromUser
