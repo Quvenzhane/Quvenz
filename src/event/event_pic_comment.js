@@ -12,7 +12,8 @@ export default class EventPicComment extends Component {
   constructor(props){
     super(props);
     this.state = { 
-       showToast: false,comment:null,photo:null
+       showToast: false,comment:null,photo:null,
+       photoCreator:null,
       };
   }
 
@@ -30,8 +31,9 @@ export default class EventPicComment extends Component {
         });
     }else{
       this.state.photo = this.props.navigation.getParam('photo');
-      const { comment, photo } = this.state;
-      doComment({variables: {comment, photo}});
+      this.state.photoCreator = this.props.navigation.getParam('photoCreator');
+      const { comment, photo,photoCreator } = this.state;
+      doComment({variables: {comment, photo, photoCreator}});
       this.state.comment = null
     }
   }
@@ -114,13 +116,11 @@ export default class EventPicComment extends Component {
                                           })}
                               {data &&  Toast.show({
                                           text: "Your comment saved",
-                                          type: "success",
                                           duration: 2000
                                           }) 
                               }
                             <Item rounded >
                             <Input placeholder='Add comment' 
-                                autoCapitalize="none" autoCorrect={false}
                                 onChangeText={text => this.onInputTextChange(text, 'comment')} 
                                 value={this.state.comment} />
                             <Icon  name="send" onPress={this.doSubmit.bind(this, doComment, {data,loading, error})} />

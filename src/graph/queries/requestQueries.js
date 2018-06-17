@@ -10,6 +10,9 @@ query {
           event{
             title,description,_id
           }
+          photo{
+            _id
+          }
           senderUser{
               username,image_path
               profile{

@@ -32,7 +32,7 @@ export default class SplashScreen extends Component {
       const token = await AsyncStorage.getItem("@pixfam_token");
       token ? this.setState({ token: true }) : this.setState({ token: false });
       console.log("token in componentWillMount: ", this.state.token);
-      this.state.token && this.props.navigation.navigate("ListEvent");
+      this.state.token && this.props.navigation.navigate("Home");
     } catch (error) {
       console.log("error: " + error.message);
     }

@@ -13,6 +13,7 @@ export default class CardViewEvent extends Component {
     this.state = {
       showToast: false,
       comment:null,photo:null,
+      photoCreator:null,
       photoWasViewed: false
     };
     this.doSubmit = this.doSubmit.bind(this);
@@ -32,8 +33,9 @@ export default class CardViewEvent extends Component {
         });
     }else{
       this.state.photo = this.props.photo
-      const { comment, photo } = this.state;
-      doComment({variables: {comment, photo}});
+      this.state.photoCreator = this.props.userId;
+      const { comment, photo, photoCreator } = this.state;
+      doComment({variables: {comment, photo, photoCreator}});
       this.state.comment = null
     }
   }
@@ -89,8 +91,8 @@ export default class CardViewEvent extends Component {
                             {loading && <Text>saving...</Text>}
                             {error && null}{data && null}
                             {this.props.isLikedByUser
-                                ?<Icon name="heart" style={{ color: '#ED4A6A' }} onPress={this.doSubmitLike.bind(this, doLike, {data,loading, error})} />
-                                :<Icon name="ios-heart-outline" style={{color:"black"}} onPress={this.doSubmitLike.bind(this, doLike, {data,loading, error})} />
+                                ?<Icon name="heart" style={{ color: '#ED4A6A' }} onPress={this.doSubmitLike.bind(this, doLike)} />
+                                :<Icon name="ios-heart-outline" style={{color:"black"}} onPress={this.doSubmitLike.bind(this, doLike)} />
                               }    
                         <Text> {this.props.likes}</Text> 
                       </Button>
@@ -99,6 +101,7 @@ export default class CardViewEvent extends Component {
 
                   <Button transparent  onPress={() =>this.props.theNav('EventPicComment', 
                           {photo:this.props.photo,
+                          photoCreator:this.props.userId,
                           likes:this.props.likes,
                           comments:this.props.comments,
                           username:this.props.picCreatorUsername})}>
@@ -142,7 +145,6 @@ export default class CardViewEvent extends Component {
                                 }
                               <Item rounded >
                               <Input placeholder='Add comment' 
-                                  autoCapitalize="none" autoCorrect={false}
                                   onChangeText={text => this.onInputTextChange(text, 'comment')} 
                                   value={this.state.comment} />
                               <Icon  name="send" onPress={this.doSubmit.bind(this, doComment, {data,loading, error})} />

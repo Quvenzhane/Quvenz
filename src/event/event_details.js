@@ -92,7 +92,6 @@ export default class EventDetails extends Component {
         <Query query={GET_USER_PHOTO} variables={{ userId, eventId }} fetchPolicy="network-only">
         {({ loading, error, data }) => 
         { 
-            var theList = null;
             if (loading) return <Text> Loading...</Text>;
             if (error){
                 Toast.show({

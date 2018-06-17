@@ -86,7 +86,7 @@ export default class AddGroupMember extends Component {
                         text: error.message,
                         type: "danger",
                         duration: 4000
-                        }):<Text></Text>}
+                        }):null}
 
                     {data?
                       data.sendRequest.status == "Pending"
@@ -100,7 +100,7 @@ export default class AddGroupMember extends Component {
                             type: "warning",
                             duration: 4000
                             })
-                      :<Text></Text>
+                      :null
                     }  
                   <View style={{paddingTop:5, paddingBottom:15 }}>
                   <Text note style={{marginBottom:10}}>{this.state.findUserResult}</Text>
