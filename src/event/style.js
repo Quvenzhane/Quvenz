@@ -49,6 +49,9 @@ export default StyleSheet.create({
     borderRadius :7,
     backgroundColor: '#FFF'
 },
+borderEventRadius:{
+  borderRadius :7
+},
   
 });
   

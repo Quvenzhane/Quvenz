@@ -13,9 +13,10 @@ export default class AddGroupMember extends Component {
     super(props);
     this.state = { 
        showToast: false,
-       findUser:"", findUserResult:"Search on Pixfam to add", findUserStatus:false,
+       findUser:null, findUserResult:"Search on Pixfam to add", findUserStatus:false,
        timeout: null,
-       group:null, receiverUser:null, status:"Pending",requestType:"Invite"
+       group:null, receiverUser:null, status:"Pending",requestType:"Invite",
+       message:["searching...","searching for user...","user not found. Try again!"]
     };
   }
 
@@ -39,14 +40,15 @@ export default class AddGroupMember extends Component {
         this.onResultGotten(data.userSearch.username+" was found. Invite user");
       }catch (error){
         this.state.findUserStatus = false;
-        this.onResultGotten('User not found on our records. Try again!');
+        var random = Math.floor((Math.random())*(3-0))+0;
+        this.onResultGotten(this.state.message[random]);
       }
     
   }
 
   doSubmit = (doSendInvite, obj, e) => {
     Keyboard.dismiss();
-    if(this.state.findUser ==""){
+    if(this.state.findUser ==null){
       Toast.show({
         text: "Whoops! Enter the user detail",
         type: "warning",
@@ -61,6 +63,8 @@ export default class AddGroupMember extends Component {
       const { receiverUser, group, status,requestType } = this.state;
       const {data,loading, error} = obj;
       doSendInvite({variables: {receiverUser, group,status,requestType}});
+      this.state.findUser= null;
+
     }
   }
 

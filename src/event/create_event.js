@@ -18,7 +18,7 @@ export default class CreateEvent extends Component {
     }
   
     doSubmit(doAddEvent, obj, e){   
-      Keyboard.dismiss();   
+      Keyboard.dismiss(); 
       const { group, title, description, eventType } = e;
       const {data,loading, error} = obj;
       doAddEvent({variables: {title, description, eventType, group}});

@@ -6,6 +6,7 @@ import styles from './style';
 import { Mutation } from "react-apollo";
 import {ADD_GROUP } from '../graph/mutations/groupMutation';
 import { GET_GROUPLIST} from '../graph/queries/groupListQueries';
+import {UppperCaseFirst} from '../../config/functions'; 
 
 export default class CreateGroup extends Component {
   constructor(props){
@@ -25,6 +26,8 @@ export default class CreateGroup extends Component {
   doSubmit = (doAddGroup, obj, e) => {
     Keyboard.dismiss();
     if(this.state.title != ""){
+      this.state.title = UppperCaseFirst(this.state.title);
+      this.state.description = UppperCaseFirst(this.state.description);
       const { title, description } = this.state;
       const {data,loading, error} = obj;
      doAddGroup({variables: {title, description}}); 
@@ -38,8 +41,11 @@ export default class CreateGroup extends Component {
           duration: 4000
           });
     }
- 
-} 
+  }
+  
+  uppperCaseFirst(str){
+    return str.charAt(0).toUpperCase + str.slice(1);
+  }
 
   render() {
     const { navigate } = this.props.navigation;

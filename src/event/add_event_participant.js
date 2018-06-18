@@ -13,9 +13,10 @@ export default class AddEventParticipant extends Component {
     super(props);
     this.state = { 
        showToast: false,
-       findUser:"", findUserResult:"Search for friends on Pixfam", findUserStatus:false,
+       findUser:null, findUserResult:"Search for friends on Pixfam", findUserStatus:false,
        timeout: null,
-       event:null, receiverUser:null, status:"Pending",requestType:"Invite"
+       event:null, receiverUser:null, status:"Pending",requestType:"Invite",
+       message:["searching...","searching for user...","user not found. Try again!"]
     };
   }
 
@@ -33,20 +34,21 @@ export default class AddEventParticipant extends Component {
         variables: { searchQuery: text }
       });
       try{
-        console.log(data.userSearch.username);
+        // console.log(data.userSearch.username);
         this.state.findUserStatus = true;
         this.state.receiverUser = data.userSearch._id
         this.onResultGotten(data.userSearch.username+" was found. Invite user");
       }catch (error){
         this.state.findUserStatus = false;
-        this.onResultGotten('User not found in our records. Try again!');
+        var random = Math.floor((Math.random())*(3-0))+0;
+        this.onResultGotten(this.state.message[random]);
       }
     
   }
 
   doSubmit = (doSendInvite, obj, e) => {
     Keyboard.dismiss();
-    if(this.state.findUser ==""){
+    if(this.state.findUser ==null){
       Toast.show({
         text: "Whoops! Enter the user detail",
         type: "warning",
@@ -61,6 +63,7 @@ export default class AddEventParticipant extends Component {
       const { receiverUser, event, status, requestType } = this.state;
       const {data,loading, error} = obj;
       doSendInvite({variables: {receiverUser, event,status, requestType}});
+      this.state.findUser= null;
     }
   }
 

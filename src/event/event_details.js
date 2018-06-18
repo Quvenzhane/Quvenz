@@ -5,6 +5,7 @@ import styles from './style';
 import { Query } from "react-apollo";
 import { GET_USER_PHOTO} from '../graph/queries/photoByUserQueries';
 import { AsyncStorage } from 'react-native';
+import { FormatDate } from '../../config/functions'; 
 
 export default class EventDetails extends Component {
     constructor(props){
@@ -45,7 +46,7 @@ export default class EventDetails extends Component {
                 photo={details._id}
                 description={details.description}
                 view={details.view}
-                dateCreated = {this.formatDate(details.createdAt)}
+                dateCreated = {FormatDate(details.createdAt)}
                 likes={details.photoLike.length}
                 isLikedByUser ={photoIsLikedByUser}
                 lastComment ={details.photoComment.length !=0?details.photoComment[details.photoComment.length-1].comment:null }
@@ -59,27 +60,7 @@ export default class EventDetails extends Component {
         })
     }
 
-    formatDate(datetime) {
-        var theEvent = new Date(datetime);
-        now = new Date();
-        var timeElapsed = (now - theEvent) / 1000;
-
-        var seconds    = timeElapsed ;
-        var minutes    = Math.floor(timeElapsed / 60 );
-        var hours      = Math.floor(timeElapsed / 3600);
-        var days       = Math.floor(timeElapsed / 86400 );
-        var weeks      = Math.floor(timeElapsed / 604800);
-        var months     = Math.floor(timeElapsed / 2600640 );
-        var years      = Math.floor(timeElapsed / 31207680 );
-        
-        if (seconds <= 60) {return "MOMENTS ago";}
-        if (minutes <= 60) {if(minutes ==1){return "A MIN AGO"}else{return minutes+" MINS AGO";}}
-        if (hours <= 24) {if(hours == 1){return "AN HOUR AGO"}else{return hours+ " HOURS AGO";}}
-        if (days <= 7) {if(days == 1){return "A DAY AGO"}else{return days+ " DAYS AGO";}}
-        if (weeks <= 4.3) {if(weeks == 1){return "A WEEK AGO"}else{return weeks+ " WEEKS AGO";}}
-        if (months <= 12) {if(months == 1){return "A MONTH AGo"}else{return months+ " MONTHS AGO";}}
-        else {if(years == 1){return "A YEAR AGO"}else{return years+ " YEARS AGO";}}
-    }
+    
 
   render() {
     const { navigate } = this.props.navigation;

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, View, Keyboard} from 'react-native';
+import { ScrollView, View, Keyboard, Image} from 'react-native';
 import { Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body,Toast} from 'native-base';
 import { List, ListItem, Item, Input, Form } from 'native-base';
 import { Query } from "react-apollo";
@@ -41,14 +41,17 @@ export default class EventPicComment extends Component {
 
   render() {
     const photoId = this.props.navigation.getParam('photo');
+    const imageSource = this.props.navigation.getParam('imageSource');
     const username = this.props.navigation.getParam('username');
     const comments = this.props.navigation.getParam('comments');
     const likes = this.props.navigation.getParam('likes');
 
     return (
       <ScrollView style={styles.container}>
-          <Card style={{borderRadius :7}}>
-              <CardItem style={{height:40,  borderRadius :7}} >
+          <Card  style={styles.borderEventRadius}>
+
+             {likes
+              ?<CardItem style={{height:40,  borderRadius :7}} >
                 <Left>
                   <Button transparent>
                     <Icon  name="ios-heart" style={{ color: '#ED4A6A' }}/>
@@ -60,6 +63,9 @@ export default class EventPicComment extends Component {
                   </Button>
                 </Left>
               </CardItem>
+              : <CardItem cardBody style={styles.borderEventRadius}>
+                  <Image style={{height:350, width:null, flex:1}} source={{ uri: imageSource}} />
+                </CardItem>  }
           </Card>
 
       <Text note style={{padding:10}}>Reactions to {username} picture</Text> 

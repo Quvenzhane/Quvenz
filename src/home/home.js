@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Container, Fab, Icon } from "native-base";
-import { AsyncStorage, View, Text } from "react-native";
-import { StackNavigator } from "react-navigation";
 
 import HomeHeader from "./header";
 import HomeFooter from "./footer";

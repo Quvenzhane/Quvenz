@@ -39,10 +39,13 @@ export default class GroupScreen extends Component {
                         <List dataArray={data.getGroup.event}
                         renderRow={(events) =>
                          <ListItem>
-                         <Thumbnail square size={80} source={require('../../images/star.png') } />
+                            <View style={styles.groupBox} >
+                                <H3 style={{padding:15, color:"#FFF"}} 
+                                    onPress={() =>navigate('Event',{eventId:events._id})}>{events.title.charAt(0)}</H3>
+                            </View>
                          <Body>
                              <Text onPress={() =>navigate('Event',{eventId:events._id})}>{events.title}</Text>
-                             <Text note>123 pictures . .</Text>
+                             <Text note>{events.description}</Text>
                          </Body>
                      </ListItem>
                         }>
@@ -54,17 +57,14 @@ export default class GroupScreen extends Component {
                 <Container style={styles.container}>
                     <Content>
                         <View style={styles.metricsContainer}>
-                            <Text> Pictures  </Text>
-                            <Badge>
-                                <Text>12</Text>
-                            </Badge>
+                        
                             <Text onPress={() =>navigate('GroupMember',{groupId:groupId})}>  
                                 {groupMember==1?"  Participant":"  Participants"} </Text>
                             <Badge success>
                                 <Text>{groupMember}</Text>
                             </Badge>
                         </View> 
-                        <H3 style={styles.header}>{data.getGroup.title} events</H3>
+                        <H3 style={styles.header}>Events under {data.getGroup.title}</H3>
                         <Text note>{data.getGroup.description}</Text>
                         
                         {theList}

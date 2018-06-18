@@ -3,12 +3,11 @@ import { Alert} from 'react-native';
 import { Container, Content, View,List, ListItem, Body, Left, Thumbnail, Text, Toast } from 'native-base';
 import styles from './style';
 import globalColor from '../../config/app-colors'; 
-import { graphql} from 'react-apollo';
 import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import { GET_REQUESTS} from '../graph/queries/requestQueries';
 import { RESPOND_2_REQUEST } from '../graph/mutations/respond2RequestMutation';
-import { ApolloConsumer } from 'react-apollo';
+import { CLEAR_COMMENT_NOTIFICATION } from '../graph/mutations/clearCommentNotificationMutation';
 
 export default class Notification extends Component {
     constructor(props){
@@ -30,13 +29,13 @@ export default class Notification extends Component {
           )
     }
       
-    showAlertCommentDialog = (doRequest, requestID,photoID, obj) =>{
+    showAlertCommentDialog = (doClearComment, requestID,photoID, photoUrl) =>{
         Alert.alert(
             '',
             'Comment notification',
             [
-              {text: 'View', onPress: this.doSubmitComment.bind(this,doRequest, requestID,photoID, obj, "View")},
-              {text: 'Clear', onPress: this.doSubmitComment.bind(this,doRequest, requestID,photoID, obj, "Clear"), style: 'cancel'},
+              {text: 'View', onPress: this.doClearNofication.bind(this,doClearComment, requestID, photoID, photoUrl, "View")},
+              {text: 'Clear', onPress: this.doClearNofication.bind(this,doClearComment, requestID, photoID, photoUrl, "Clear"), style: 'cancel'},
             ],
             // { cancelable: false }
           )
@@ -74,16 +73,15 @@ console.log(data)
         // }
     }
 
-    doSubmitComment(doComment, requestID,photoID, obj, userResponse) {
+    doClearNofication(doClearComment, requestID,photoID, photoUrl, userResponse) {
         if(userResponse=="View"){
             console.log(photoID);
-           this.props.navigation.navigate("EventPicComment",{photo:photoID});
+           this.props.navigation.navigate("EventPicComment",{photo:photoID, imageSource:photoUrl});
+        }else{
+            this.state.requestId = requestID;
+            const {requestId} = this.state
+            doClearComment({variables: {requestId}});
         }
-        // this.state.requestId = requestID;
-        // this.state.responseType = userResponse;
-        // const {requestId, responseType} = this.state
-        // const {data,loading, error} = obj;
-        // doRequest({variables: {requestId, responseType}});
     }
 
     render() {
@@ -129,13 +127,13 @@ console.log(data)
                                                 :requestDetails.senderUser.username}</Text>
                                 </Body>
                                 {requestDetails.photo
-                                    ?<Mutation mutation={RESPOND_2_REQUEST} refetchQueries={[ {query:GET_REQUESTS}]}>
-                                    {(doComment, {data, loading, error }) => 
+                                    ?<Mutation mutation={CLEAR_COMMENT_NOTIFICATION} refetchQueries={[ {query:GET_REQUESTS}]}>
+                                    {(doClearComment, {data, loading, error }) => 
                                     (   
                                         <View>
-                                            {data?data.respond2Request.status != null
+                                            {data?data.clearCommentNotification.status == "Cleared"
                                                     ?Toast.show({
-                                                        text: "You have "+data.respond2Request.status+" the request",
+                                                        text: "Comment notification cleared",
                                                         type: "success",
                                                         duration: 4000
                                                         })
@@ -156,7 +154,9 @@ console.log(data)
                                             }  
                                             <Text note 
                                                 onPress={this.showAlertCommentDialog.bind(this, 
-                                                doComment, requestDetails._id, requestDetails.photo._id, {data, loading, error })} 
+                                                doClearComment, 
+                                                requestDetails._id, requestDetails.photo._id, 
+                                                requestDetails.photo.image_url)} 
                                                 style={globalColor.appDarkPrimayColor}>act</Text>
                                         </View>
                                     )}                                

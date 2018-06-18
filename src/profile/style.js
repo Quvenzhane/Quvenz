@@ -37,5 +37,12 @@ export default StyleSheet.create({
     picker:{
         marginTop:20,
         marginLeft:10
-    }
+    },
+    groupBox:{
+        width: 50, 
+        height: 50,
+        backgroundColor:'#FF6600',
+        borderRadius :6,
+      },
+       
 });

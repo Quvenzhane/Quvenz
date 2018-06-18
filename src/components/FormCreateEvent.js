@@ -5,6 +5,7 @@ import {Container, Content,  Form, Item, Input, Label, Button,Text, Toast } from
 import styles from './../event/style'; 
 import { Query } from "react-apollo";
 import { GET_GROUPLIST} from '../graph/queries/groupListQueries';
+import {UppperCaseFirst} from '../../config/functions'; 
 
 export default class FormCreateEvent extends Component {
     constructor(props){
@@ -14,7 +15,6 @@ export default class FormCreateEvent extends Component {
             showToast: false,
             groupList:""
           };
-        
       }
       onInputTextChange = (text, type) => {
         this.setState({ [type]: text }); 
@@ -22,10 +22,13 @@ export default class FormCreateEvent extends Component {
 
       doSubmit = () => {
             if(this.state.title != "" && this.state.eventType !="" && this.state.group !="" ){
-            const { group, title, description, eventType } = this.state;
-            this.props.handleSubmit({title, description, eventType, group});
-            this.state.title="";
-            this.state.description ="";
+                console.log(  this.state.title)
+                this.state.title = UppperCaseFirst(this.state.title);
+                this.state.description = UppperCaseFirst(this.state.description);  
+                const { group, title, description, eventType } = this.state;
+                this.props.handleSubmit({title, description, eventType, group});
+                this.state.title="";
+                this.state.description ="";
             }else{
             Toast.show({
                 text: "Whoops! Add required information to the fields",

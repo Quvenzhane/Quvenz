@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Image, View, Text, TouchableOpacity, Keyboard,ScrollView} from 'react-native';
-import { Card, CardItem, Thumbnail, Left, Right, Body, Icon, Button, Form, Item, Input,Toast } from 'native-base';
+import { Card, CardItem, Left, Body, Icon, Button, Form, Item, Input,Toast } from 'native-base';
 import { Mutation } from "react-apollo";
+import styles from './style'; 
 import { ADD_PHOTO_COMMENT } from '../graph/mutations/photoCommentMutation';
 import { ADD_PHOTO_LIKE } from '../graph/mutations/photoLikeMutation';
 import { ADD_PHOTO_VIEW } from '../graph/mutations/photoViewMutation';
@@ -62,7 +63,7 @@ export default class CardViewEvent extends Component {
     const userId = this.props.userId;
     return (
       
-        <Card>
+        <Card >
             <CardItem>
               <Left>
                   <Text note>{this.props.dateCreated}</Text>

@@ -27,6 +27,12 @@ export default StyleSheet.create({
     borderRadius :7,
     backgroundColor: '#FFF'
 },
+groupBox:{
+  width: 50, 
+  height: 50,
+  backgroundColor:'#FF6600',
+  borderRadius :6,
+},
  
 
 });

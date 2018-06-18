@@ -11,7 +11,7 @@ query {
             title,description,_id
           }
           photo{
-            _id
+            _id,image_url
           }
           senderUser{
               username,image_path

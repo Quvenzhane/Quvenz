@@ -20,7 +20,7 @@ export default class Profile extends Component {
 
         <Query query={GET_PROFILE}>
             {({ loading, error, data }) => {
-            var theList = null;
+            var groupList = null; var eventList=null;
             var name = null;
 
             if (loading) return <Text> Loading...</Text>;
@@ -41,7 +41,10 @@ export default class Profile extends Component {
                         <List dataArray={data.getProfile.groupMember}
                         renderRow={(groups) =>
                             <ListItem>
-                                <Thumbnail square size={80} source={require('../../images/cam.png') } />
+                                <View style={styles.groupBox} >
+                                    <H3 style={{padding:15, color:"#FFF"}} 
+                                        onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.group.title.charAt(0)}</H3>
+                                </View>                                
                                 <Body>
                                     <Text  onPress={() =>navigate('Group',{groupId:groups.group._id})}>{groups.group.title}</Text>
                                     <Text note>{groups.member.length==1?groups.member.length+" Participant":groups.member.length+" Participants"} . . .</Text>
@@ -76,7 +79,7 @@ export default class Profile extends Component {
                     <View style={styles.containerWhite}>
                         <List>
                             <ListItem>
-                            <Thumbnail large source={require('../../images/profile.jpg')}  />
+                            <Thumbnail large source={{ uri: data.getProfile.user.image_path }} />           
                             <Body style={styles.itemPad} >
                                 <H3 style={styles.itemPad}>{name}</H3>
                                 <Text style={styles.itemPadBottom} note>{data.getProfile.country}.{data.getProfile.state}</Text>
@@ -84,15 +87,14 @@ export default class Profile extends Component {
                                     <Text>Edit Profile</Text>
                                 </Button>
                             </Body> 
-                            {/* <Image source={{uri: 'https://magbodo.com/asset/pixfam-images/pic3.jpg'}}
-                                        style={{width: 40, height: 40}} /> */}
+                           
                             </ListItem>
                         </List>
                     </View>
                     <Content>
-                        <Text note style={styles.groupHeader}>GROUPS</Text>    
+                        <Text note style={styles.groupHeader}>MY GROUPS</Text>    
                         {groupList}
-                        <Text note style={styles.groupHeader}>EVENTS</Text>
+                        <Text note style={styles.groupHeader}>MY EVENTS</Text>
                         {eventList}
                         <Text>{console.log(data.getProfile)}</Text>
                     </Content>
