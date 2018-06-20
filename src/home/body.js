@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Container, Content, Button, Text, Icon, Item, Input,
          Card, CardItem,Right,Left,Thumbnail,Body, H1, ActionSheet,Root  } from 'native-base'; 
 import { Image,ScrollView, View, ImageBackground } from 'react-native'; 
-import { StackNavigator,} from 'react-navigation';
 import styles from './style'; 
 import { Query } from "react-apollo";
 import { GET_POPULAR_EVENTS} from '../graph/queries/eventPopularQueries';
-
+import { GET_PHOTOS} from '../graph/queries/photoQueries';
+import FitImage from 'react-native-fit-image';
 var BUTTONS = [
     { text: "Create", icon: "add", iconColor: "#2c8ef4" },
     { text: "List", icon: "list", iconColor: "#f42ced" },
@@ -42,21 +42,56 @@ export default class HomeBody extends Component {
 
     return (
         <Content style={styles.container}>
-            <Text style={styles.groupHeader} note> Group: Family</Text>
-            <View style={styles.defaultGroup}>
-                
-                <ImageBackground style={styles.eventBirthday} source={require('../../images/cake.jpg')}>
-                    <Icon name="add" onPress={() =>this.props.theNav('Event')} style={{marginTop:40}} />
-                    {/* <H1>B</H1>
-                    <Text> Birthday</Text> */}
-                </ImageBackground>  
+            <Text style={styles.groupHeader} note> Moment Pictures</Text>
 
-                <View style={styles.createEvent1} >
-                    <Icon name="add" onPress={() =>this.props.theNav('CreateEvent')} style={{marginTop:40}} />
-                </View>    
-                <View style={styles.createEvent2}  >
-                    <Icon name="add" onPress={() =>this.props.theNav('CreateEvent')} style={{marginTop:40}} />
-                </View>    
+            
+            <View style={styles.defaultGroup}>
+                    <ScrollView horizontal={true}>
+                        <View style={{padding:2}}>
+                        <FitImage
+                            source={{ uri: 'https://magbodo.com/asset/pixfam-images/event1.jpg' }}
+                            style={styles.fitImageWithSize}
+                        />
+                        </View>
+                        <View style={{padding:2}}>
+                        <FitImage
+                            source={{ uri: 'https://magbodo.com/asset/pixfam-images/event4.jpg' }}
+                            style={styles.fitImageWithSize}
+                        />
+                        </View>
+                        <View style={{padding:2}}>
+                            <FitImage
+                                source={{ uri: 'https://magbodo.com/asset/pixfam-images/event3.jpg' }}
+                                style={styles.fitImageWithSize}
+                            />
+                        </View>
+                        <View style={{padding:2}}>
+                            <FitImage
+                                source={{ uri: 'https://magbodo.com/asset/pixfam-images/event2.jpg' }}
+                                style={styles.fitImageWithSize}
+                            />
+                        </View>
+                   </ScrollView>
+            {/* <Query query={GET_POPULAR_EVENTS} fetchPolicy="network-only">
+                {({ loading, error, data }) => 
+                { 
+                    var theList = null;
+                    if (loading) return <Text> Loading...</Text>;
+                    if (error) return <Text>Internet error...</Text>
+                    if(data){ console.log(data)
+                        if(data.getPopularEvents){ 
+                            this.state.popularEvents = data.getPopularEvents;
+                        }
+                    }
+                    return(    
+                        <Card >
+                             {this.loadDetails()}
+                        </Card>
+                        )
+                    }}
+                </Query> */}
+              
+                
             </View>
 
            

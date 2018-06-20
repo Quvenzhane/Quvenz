@@ -3,7 +3,7 @@ import { Container, Content,Text, Item, View, Icon, Input, H3, Form, Button, Toa
 import styles from './style'; 
 import { Keyboard } from 'react-native'
 import { Mutation } from "react-apollo";
-import { SEND_REQUEST } from '../graph/mutations/sendRequestMutation';
+import { SEND_EVENT_INVITE } from '../graph/mutations/sendEventInviteMutation';
 import { USER_SEARCH} from '../graph/queries/userSearchQueries';
 import { ApolloConsumer } from 'react-apollo';
 
@@ -80,7 +80,7 @@ export default class AddEventParticipant extends Component {
           <Content style={styles.backgroundEdit}>
               <Text style={{paddingBottom:10}}>Inivited friends can only access this event</Text>
               
-              <Mutation mutation={SEND_REQUEST}>
+              <Mutation mutation={SEND_EVENT_INVITE}>
                 {(doSendRequest, {data, loading, error }) => 
                 (
                 <Form>
@@ -93,7 +93,7 @@ export default class AddEventParticipant extends Component {
                         }):<Text></Text>}
 
                     {data?
-                      data.sendRequest.status == "Pending"
+                      data.sendEventInvite.status == "Pending"
                         ?Toast.show({
                           text: "Invite was successfull. Add another user",
                           type: "success",

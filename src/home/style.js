@@ -13,8 +13,8 @@ export default StyleSheet.create({
   defaultGroup: {
     flex: 1, 
     flexDirection: 'row', 
-    justifyContent: 'space-around',
-    padding: 10,
+    // justifyContent: 'space-around',
+    padding: 5,
   },
 
   eventBirthday:{
@@ -59,7 +59,12 @@ export default StyleSheet.create({
     padding:5,
     // justifyContent: 'space-around',
     // alignItems: 'stretch'
-  }
+  },
+
+  fitImageWithSize: {
+    height: 120,
+    width: 120,
+  },
 
 });
   

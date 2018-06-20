@@ -4,7 +4,7 @@ import styles from './style';
 import { Keyboard } from 'react-native'
 import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
-import { SEND_REQUEST } from '../graph/mutations/sendRequestMutation';
+import { SEND_GROUP_INVITE } from '../graph/mutations/sendGroupInviteMutation';
 import { USER_SEARCH} from '../graph/queries/userSearchQueries';
 import { ApolloConsumer } from 'react-apollo';
 
@@ -80,7 +80,7 @@ export default class AddGroupMember extends Component {
           <Content style={styles.backgroundEdit}>
               <Text style={{marginBottom:15}}>Friends you add to a group will have access to all the events under this group</Text>
 
-              <Mutation mutation={SEND_REQUEST}>
+              <Mutation mutation={SEND_GROUP_INVITE}>
                 {(doSendRequest, {data, loading, error }) => 
                 (
                 <Form>
@@ -93,7 +93,7 @@ export default class AddGroupMember extends Component {
                         }):null}
 
                     {data?
-                      data.sendRequest.status == "Pending"
+                      data.sendGroupInvite.status == "Pending"
                         ?Toast.show({
                           text: "Invite was successfull. Add another user",
                           type: "success",
