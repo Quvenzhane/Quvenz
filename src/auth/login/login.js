@@ -1,22 +1,7 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  Image,
-  KeyboardAvoidingView,
-  TouchableOpacity
-} from "react-native";
-import {
-  StatusBar,
-  Navigator,
-  ImageBackground,
-  AsyncStorage,
-  Keyboard
-} from "react-native";
+import { Text, TextInput, View, KeyboardAvoidingView, TouchableOpacity } from "react-native";
+import { ImageBackground, AsyncStorage, Keyboard } from "react-native";
 import { H3, Toast } from "native-base";
-
 import { graphql } from "react-apollo";
 import styles from "./style";
 import LOGIN_MUTATION from "../../graph/mutations/loginMutation";
@@ -26,10 +11,8 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      loading: false,
-      loggedin: false,
+      email: "",password: "",
+      loading: false, loggedin: false,
       errorMessage: false,
       showToast: false
     };

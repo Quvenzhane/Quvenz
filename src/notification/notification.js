@@ -4,11 +4,11 @@ import { Container, Content, View,List, ListItem, Body, Left, Thumbnail, Text, T
 import styles from './style';
 import globalColor from '../../config/app-colors'; 
 import { Query } from "react-apollo";
-import { Mutation } from "react-apollo";
 import { GET_REQUESTS} from '../graph/queries/requestQueries';
-import { RESPOND_2_REQUEST } from '../graph/mutations/respond2RequestMutation';
+import { RESPOND_2_JOIN } from '../graph/mutations/respond2JoinEventMutation';
+import { RESPOND_2_INVITE } from '../graph/mutations/respond2InviteMutation';
 import { CLEAR_COMMENT_NOTIFICATION } from '../graph/mutations/clearCommentNotificationMutation';
-
+import { ApolloConsumer } from 'react-apollo';
 export default class Notification extends Component {
     constructor(props){
         super(props);
@@ -18,69 +18,142 @@ export default class Notification extends Component {
         };
     }
 
-    showAlertRequestDialog = (doRequest, requestID, obj) =>{
+    showAlertRequestDialog = (requestID, client) =>{
         Alert.alert(
             '',
             'Notification response',
             [
-              {text: 'Accept', onPress: this.doSubmitRequest.bind(this,doRequest, requestID, obj, "Accept")},
-              {text: 'Reject', onPress: this.doSubmitRequest.bind(this,doRequest, requestID, obj, "Reject"), style: 'cancel'},
+              {text: 'Accept', onPress: this.doSubmitInviteRequest.bind(this, requestID, client, "Accept")},
+              {text: 'Reject', onPress: this.doSubmitInviteRequest.bind(this, requestID, client,"Reject"), style: 'cancel'},
             ],
           )
     }
       
-    showAlertCommentDialog = (doClearComment, requestID,photoID, photoUrl) =>{
+    showAlertJoinRequestDialog = (requestID, client) =>{
+        Alert.alert(
+            '',
+            'I want to Join',
+            [
+              {text: 'Accept', onPress: this.doSubmitJoinRequest.bind(this, requestID, client, "Accept")},
+              {text: 'Reject', onPress: this.doSubmitJoinRequest.bind(this, requestID, client,"Reject"), style: 'cancel'},
+            ],
+          )
+    }
+    
+    showAlertCommentDialog = (requestID, client,photoID, photoUrl) =>{
         Alert.alert(
             '',
             'Comment notification',
             [
-              {text: 'View', onPress: this.doClearNofication.bind(this,doClearComment, requestID, photoID, photoUrl, "View")},
-              {text: 'Clear', onPress: this.doClearNofication.bind(this,doClearComment, requestID, photoID, photoUrl, "Clear"), style: 'cancel'},
+              {text: 'View', onPress: this.doClearNofication.bind(this, requestID, client, photoID, photoUrl, "View")},
+              {text: 'Clear', onPress: this.doClearNofication.bind(this, requestID, client, photoID, photoUrl, "Clear"), style: 'cancel'},
             ],
             // { cancelable: false }
           )
     }
     
-      doSubmitRequest(doRequest, requestID, obj, userResponse) {
-        this.state.requestId = requestID;
-        this.state.responseType = userResponse;
-        const {requestId, responseType} = this.state
-        const {data,loading, error} = obj;
-        doRequest({variables: {requestId, responseType}});
-        console.log(obj)
-console.log(data)
-        // if(data.respond2Request.status != null){
-        //     Toast.show({
-        //         text: "You have "+data.respond2Request.status+" the request",
-        //         type: "success",
-        //         duration: 4000
-        //         });
-        // }else{
-        //     Toast.show({
-        //         text: "Some strange went wrong",
-        //         type: "warning",
-        //         duration: 4000
-        //         });
-        // }
-        // if(error){
-        //     Toast.show({
-        //         text: error.message,
-        //         buttonText: 'Okay',
-        //         type: "danger",
-        //         duration: 4000
-        //       });
-        //       throw error;
-        // }
+    async doSubmitInviteRequest(requestId, client, responseType) {
+        client.mutate({
+            variables: {requestId, responseType},
+            mutation: RESPOND_2_INVITE,
+            refetchQueries:[ {query:GET_REQUESTS}]
+            })
+          .then(data => { 
+              if(data.data.respond2Invite.status != null){
+                  Toast.show({
+                      text: "You have "+data.data.respond2Invite.status+" the invite",
+                      type: "success",
+                      duration: 4000
+                      });
+              }else{
+                  Toast.show({
+                      text: "Some strange went wrong",
+                      type: "warning",
+                      duration: 4000
+                      });
+              } }
+            )
+          .catch(error => { console.log(error)
+            if(error){
+                Toast.show({
+                    text: error.message,
+                    buttonText: 'Okay',
+                    type: "danger",
+                    duration: 4000
+                  });
+                  throw error;
+            } }); 
     }
 
-    doClearNofication(doClearComment, requestID,photoID, photoUrl, userResponse) {
+    async doSubmitJoinRequest(requestId, client, responseType) {
+        client.mutate({
+            variables: {requestId, responseType},
+            mutation: RESPOND_2_JOIN,
+            refetchQueries:[ {query:GET_REQUESTS}]
+            })
+          .then(data => { 
+              if(data.data.respond2JoinEventRequest.status != null){
+                  Toast.show({
+                      text: "You have "+data.data.respond2JoinEventRequest.status+" the invite",
+                      type: "success",
+                      duration: 4000
+                      });
+              }else{
+                  Toast.show({
+                      text: "Some strange went wrong",
+                      type: "warning",
+                      duration: 4000
+                      });
+              } }
+            )
+          .catch(error => { console.log(error)
+            if(error){
+                Toast.show({
+                    text: error.message,
+                    buttonText: 'Okay',
+                    type: "danger",
+                    duration: 4000
+                  });
+                  throw error;
+            } }); 
+    }
+
+    async doClearNofication(requestId, client, photoID, photoUrl, userResponse) {
         if(userResponse=="View"){
-            console.log(photoID);
            this.props.navigation.navigate("EventPicComment",{photo:photoID, imageSource:photoUrl});
         }else{
-            this.state.requestId = requestID;
-            const {requestId} = this.state
-            doClearComment({variables: {requestId}});
+            client.mutate({
+                variables: {requestId},
+                mutation: CLEAR_COMMENT_NOTIFICATION,
+                refetchQueries:[ {query:GET_REQUESTS}]
+                })
+              .then(data => { 
+                //   console.log("here is result: ",data.data)
+                //   console.log(JSON.stringify(data.data, null, 4))
+                 if(data.data.clearCommentNotification.status == "Cleared"){
+                      Toast.show({
+                          text: "Comment notification cleared",
+                          type: "success",
+                          duration: 4000
+                          });
+                  }else{
+                      Toast.show({
+                          text: "Some strange went wrong",
+                          type: "warning",
+                          duration: 4000
+                          });
+                  } }
+                )
+              .catch(error => { console.log(error)
+                if(error){
+                    Toast.show({
+                        text: error.message,
+                        buttonText: 'Okay',
+                        type: "danger",
+                        duration: 4000
+                      });
+                      throw error;
+                } }); 
         }
     }
 
@@ -126,75 +199,40 @@ console.log(data)
                                                 ?requestDetails.senderUser.profile.first_name+" "+requestDetails.senderUser.profile.last_name
                                                 :requestDetails.senderUser.username}</Text>
                                 </Body>
+                                
                                 {requestDetails.photo
-                                    ?<Mutation mutation={CLEAR_COMMENT_NOTIFICATION} refetchQueries={[ {query:GET_REQUESTS}]}>
-                                    {(doClearComment, {data, loading, error }) => 
-                                    (   
-                                        <View>
-                                            {data?data.clearCommentNotification.status == "Cleared"
-                                                    ?Toast.show({
-                                                        text: "Comment notification cleared",
-                                                        type: "success",
-                                                        duration: 4000
-                                                        })
-                                                    :Toast.show({
-                                                        text: "Some strange went wrong",
-                                                        type: "warning",
-                                                        duration: 4000
-                                                        })
-                                                :null        
-                                            }
-                                            {error &&
-                                                Toast.show({
-                                                    text: error.message,
-                                                    buttonText: 'Okay',
-                                                    type: "danger",
-                                                    duration: 4000
-                                                })
-                                            }  
+                                    ?<View>
+                                        <ApolloConsumer>
+                                            {client => (
                                             <Text note 
                                                 onPress={this.showAlertCommentDialog.bind(this, 
-                                                doClearComment, 
-                                                requestDetails._id, requestDetails.photo._id, 
+                                                requestDetails._id, client, requestDetails.photo._id, 
                                                 requestDetails.photo.image_url)} 
                                                 style={globalColor.appDarkPrimayColor}>act</Text>
-                                        </View>
-                                    )}                                
-                                    </Mutation> 
-                                    
-            
-                                :<Mutation mutation={RESPOND_2_REQUEST} refetchQueries={[ {query:GET_REQUESTS}]}>
-                                {(doRequest, {data, loading, error }) => 
-                                (   
-                                    <View>
-                                        {data?data.respond2Request.status != null
-                                                ?Toast.show({
-                                                    text: "You have "+data.respond2Request.status+" the request",
-                                                    type: "success",
-                                                    duration: 4000
-                                                    })
-                                                :Toast.show({
-                                                    text: "Some strange went wrong",
-                                                    type: "warning",
-                                                    duration: 4000
-                                                    })
-                                            :null        
-                                        }
-                                        {error &&
-                                            Toast.show({
-                                                text: error.message,
-                                                buttonText: 'Okay',
-                                                type: "danger",
-                                                duration: 4000
-                                            })
-                                        }  
-                                        <Text note 
-                                            onPress={this.showAlertRequestDialog.bind(this, 
-                                            doRequest, requestDetails._id, {data, loading, error })} 
-                                            style={globalColor.appDarkPrimayColor}>respond</Text>
+                                                )}
+                                        </ApolloConsumer>
                                     </View>
-                                )}                                
-                                </Mutation> 
+                                    :requestDetails.requestType == "Invite"
+                                    ?<View>
+                                        <ApolloConsumer>
+                                            {client => (
+                                            <Text note 
+                                                onPress={this.showAlertRequestDialog.bind(this, 
+                                                requestDetails._id,client)} 
+                                                style={globalColor.appDarkPrimayColor}>respond</Text>
+                                            )}
+                                        </ApolloConsumer>
+                                    </View>
+                                    :<View>
+                                        <ApolloConsumer>
+                                            {client => (
+                                            <Text note 
+                                                onPress={this.showAlertJoinRequestDialog.bind(this, 
+                                                requestDetails._id,client)} 
+                                                style={globalColor.appDarkPrimayColor}>respond</Text>
+                                            )}
+                                        </ApolloConsumer>
+                                    </View>                
                                 }    
                             </ListItem>
                             }>
@@ -221,6 +259,3 @@ console.log(data)
         )
     }
 }
-
-// export default graphql(RESPOND_2_REQUEST) ( Notification);
-
