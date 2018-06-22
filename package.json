@@ -24,6 +24,7 @@
     "react-apollo": "^2.1.2",
     "react-native": "0.54.4",
     "react-native-fit-image": "^1.5.4",
+    "react-native-gridview": "^0.1.2",
     "react-native-image-crop-picker": "^0.20.3",
     "react-navigation": "^1.5.8"
   },

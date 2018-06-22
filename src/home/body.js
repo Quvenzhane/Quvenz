@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Content, Button, Text, Icon, Item, Input,
-         Card, CardItem,Right,Left,Thumbnail,Body, H1, ActionSheet,Root  } from 'native-base'; 
-import { Image,ScrollView, View, ImageBackground } from 'react-native'; 
+import { Content, Button, Text, Icon, Card, CardItem,Right,Body, ActionSheet,Root  } from 'native-base'; 
+import { ScrollView, View, TouchableOpacity } from 'react-native'; 
 import styles from './style'; 
 import { Query } from "react-apollo";
 import { GET_POPULAR_EVENTS} from '../graph/queries/eventPopularQueries';
@@ -19,7 +18,7 @@ export default class HomeBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            popularEvents:null,
+            popularEvents:null, momentPhotos:null
         };
 
       }
@@ -38,60 +37,45 @@ export default class HomeBody extends Component {
         ))
     }
 
+    loadMomentImages() {  
+        const minusPrivate = this.state.momentPhotos.filter(photos => (photos.event.e_type=="Public"))
+        console.log(minusPrivate)
+        return minusPrivate.slice(0, 10).map(photos => (
+               <TouchableOpacity style={{padding:2}} onPress ={() =>this.props.theNav("EventPicComment",{photo:photos._id, imageSource:photos.image_url})} >
+                    <FitImage 
+                        source={{ uri: photos.image_url }}
+                        style={styles.fitImageWithSize}
+                    />        
+                </TouchableOpacity>
+            ))
+        }
+
+
   render() {
 
     return (
         <Content style={styles.container}>
             <Text style={styles.groupHeader} note> Moment Pictures</Text>
-
-            
+    
             <View style={styles.defaultGroup}>
-                    <ScrollView horizontal={true}>
-                        <View style={{padding:2}}>
-                        <FitImage
-                            source={{ uri: 'https://magbodo.com/asset/pixfam-images/event1.jpg' }}
-                            style={styles.fitImageWithSize}
-                        />
-                        </View>
-                        <View style={{padding:2}}>
-                        <FitImage
-                            source={{ uri: 'https://magbodo.com/asset/pixfam-images/event4.jpg' }}
-                            style={styles.fitImageWithSize}
-                        />
-                        </View>
-                        <View style={{padding:2}}>
-                            <FitImage
-                                source={{ uri: 'https://magbodo.com/asset/pixfam-images/event3.jpg' }}
-                                style={styles.fitImageWithSize}
-                            />
-                        </View>
-                        <View style={{padding:2}}>
-                            <FitImage
-                                source={{ uri: 'https://magbodo.com/asset/pixfam-images/event2.jpg' }}
-                                style={styles.fitImageWithSize}
-                            />
-                        </View>
-                   </ScrollView>
-            {/* <Query query={GET_POPULAR_EVENTS} fetchPolicy="network-only">
+                <Query query={GET_PHOTOS} fetchPolicy="network-only">
                 {({ loading, error, data }) => 
                 { 
-                    var theList = null;
                     if (loading) return <Text> Loading...</Text>;
                     if (error) return <Text>Internet error...</Text>
-                    if(data){ console.log(data)
-                        if(data.getPopularEvents){ 
-                            this.state.popularEvents = data.getPopularEvents;
+                    if(data){ 
+                        if(data.getPhotos){  
+                            this.state.momentPhotos = data.getPhotos;
                         }
                     }
                     return(    
-                        <Card >
-                             {this.loadDetails()}
-                        </Card>
+                        <ScrollView horizontal={true}>
+                            {this.loadMomentImages()}
+                        </ScrollView>
                         )
                     }}
-                </Query> */}
-              
-                
+                </Query>
+   
             </View>
 
            
@@ -150,10 +134,9 @@ export default class HomeBody extends Component {
                 <Query query={GET_POPULAR_EVENTS} fetchPolicy="network-only">
                 {({ loading, error, data }) => 
                 { 
-                    var theList = null;
                     if (loading) return <Text> Loading...</Text>;
                     if (error) return <Text>Internet error...</Text>
-                    if(data){ console.log(data)
+                    if(data){
                         if(data.getPopularEvents){ 
                             this.state.popularEvents = data.getPopularEvents;
                         }

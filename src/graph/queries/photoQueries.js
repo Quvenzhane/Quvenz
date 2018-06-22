@@ -5,6 +5,7 @@ query getPhotos{
 
     getPhotos{
        _id
+       image_url
        event{
            e_type
        }

@@ -16,36 +16,6 @@ export default StyleSheet.create({
     // justifyContent: 'space-around',
     padding: 5,
   },
-
-  eventBirthday:{
-    width: 100, 
-    height: 110,
-    padding: 2,
-    //backgroundColor: 'powderblue',
-    color:'#fff',
-    alignItems:'center',
-    borderRadius :20,
-    opacity: 0.8
-  },
-  createEvent1:{
-    width: 100, 
-    height: 110,
-    padding: 2,
-    backgroundColor: '#FAD566',
-    alignItems:'center',
-    borderRadius :6,
-    opacity: 0.2
-  },
-  createEvent2:{
-    width: 100, 
-    height: 110,
-    padding: 2,
-    backgroundColor: '#FAD566',
-    alignItems:'center',
-    borderRadius :6,
-    opacity: 0.2
-
-  },
   groupHeader:{
     paddingLeft:15,
     paddingTop:10,
@@ -62,8 +32,8 @@ export default StyleSheet.create({
   },
 
   fitImageWithSize: {
-    height: 120,
-    width: 120,
+    height: 130,
+    width: 130,
   },
 
 });
